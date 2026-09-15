@@ -6,95 +6,15 @@ import { LinkedinIcon } from '@/components/BrandIcons'
 import { listVisibleTeamMembers } from '@/lib/team/api'
 import type { TeamMember } from '@/lib/team/types'
 
-// Hardcoded fallback — used during dev (no Supabase) or while loading.
-const FALLBACK_MEMBERS: TeamMember[] = [
-  {
-    id: 'featured',
-    name: 'Muneaza Durrani',
-    role: 'Project Director',
-    tagline:
-      'A venture builder and ecosystem strategist focused on turning early-stage potential into growth-ready enterprises.',
-    bio: "Leads WISE Lab's programme direction setting the vision, standards, and day-to-day execution that help women entrepreneurs access mentorship, markets, capital readiness, and the right room to grow. She is the founding member of the team building the platform.",
-    imageUrl: '/team/munneaza-durrani-resized.jpeg',
-    linkedinUrl: 'https://www.linkedin.com/in/muneaza-durrani-35a85810',
-    isFeatured: true,
-    sortOrder: 0,
-    isVisible: true,
-  },
-  {
-    id: '1',
-    name: 'Kashmala Shahid',
-    role: 'Communications & Partnerships Manager',
-    tagline:
-      'A strategic communications and partnerships professional who turns messages into momentum and relationships into opportunity.',
-    bio: '',
-    imageUrl: '/team/kashmala-shahid.png',
-    linkedinUrl: 'https://www.linkedin.com/in/kashmalaskhattak',
-    isFeatured: false,
-    sortOrder: 1,
-    isVisible: true,
-  },
-  {
-    id: '2',
-    name: 'Fatima Shah',
-    role: 'Growth & Monitoring Specialist',
-    tagline:
-      'A public-policy and social-impact professional advancing inclusion through evidence, partnerships and purpose-led action.',
-    bio: '',
-    imageUrl: '/team/fatima-shah.png',
-    linkedinUrl: 'https://www.linkedin.com/in/fatima-shah-56540687',
-    isFeatured: false,
-    sortOrder: 2,
-    isVisible: true,
-  },
-  {
-    id: '3',
-    name: 'Iqra Shamshad',
-    role: 'Finance Manager',
-    tagline:
-      'A people-and-process professional building the organisational discipline that turns ambitious programmes into sustainable impact.',
-    bio: '',
-    imageUrl: '/team/iqra-shamshad-resized.jpeg',
-    linkedinUrl: 'https://www.linkedin.com/in/iqra-shamshad-110645165',
-    isFeatured: false,
-    sortOrder: 3,
-    isVisible: true,
-  },
-  {
-    id: '4',
-    name: 'Esha Mubashir',
-    role: 'Graphics Designer',
-    tagline:
-      'A visual designer building memorable brand experiences through clarity, composition and creative systems.',
-    bio: '',
-    imageUrl: '/team/esha-mubashir-resized.jpeg',
-    linkedinUrl: 'https://www.linkedin.com/in/esha-mubashir-444023318',
-    isFeatured: false,
-    sortOrder: 4,
-    isVisible: true,
-  },
-  {
-    id: '5',
-    name: 'Abeeha Widad',
-    role: 'Video Editor',
-    tagline:
-      'A young creative translating ideas into visual stories, digital conversations and audience engagement.',
-    bio: '',
-    imageUrl: '/team/abeeha-widad.png',
-    linkedinUrl: 'https://www.linkedin.com/in/abeeha-widad-793020374',
-    isFeatured: false,
-    sortOrder: 5,
-    isVisible: true,
-  },
-]
-
 export function BehindTheWings() {
   const { t } = useTranslation()
-  const [members, setMembers] = useState<TeamMember[]>(FALLBACK_MEMBERS)
+  const [members, setMembers] = useState<TeamMember[]>([])
 
   useEffect(() => {
     listVisibleTeamMembers().then((data) => {
-      if (data.length > 0) setMembers(data)
+      setMembers(data)
+    }).catch((err) => {
+      console.error('Failed to load team members:', err)
     })
   }, [])
 

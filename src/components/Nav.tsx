@@ -107,11 +107,11 @@ export function Nav() {
                   href={`#${l.id}`}
                   data-active={active === l.id}
                   className={cn(
-                    'link-underline whitespace-nowrap text-[13px] 2xl:text-sm font-medium transition-colors',
+                    'link-underline whitespace-nowrap px-3 py-1.5 rounded-full text-[13px] 2xl:text-sm font-medium transition-all duration-300',
                     lightText
-                      ? 'text-white/85 hover:text-white'
-                      : 'text-plum/75 hover:text-plum',
-                    active === l.id && (lightText ? 'text-white' : 'text-plum')
+                      ? 'text-white/85 hover:text-white hover:bg-white/10'
+                      : 'text-plum/75 hover:text-plum hover:bg-plum/5',
+                    active === l.id && (lightText ? 'text-white bg-white/20 shadow-sm' : 'text-plum bg-plum/10 shadow-sm')
                   )}
                 >
                   {t(`nav.links.${l.id}`, l.label)}
