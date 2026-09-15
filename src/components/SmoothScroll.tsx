@@ -14,6 +14,17 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       wheelMultiplier: 1,
     })
 
+    // Handle scroll to hash on initial load
+    if (window.location.hash && window.location.hash !== '#') {
+      const el = document.querySelector(window.location.hash)
+      if (el) {
+        // Small delay to ensure layout is computed before jumping
+        setTimeout(() => {
+          lenis.scrollTo(el as HTMLElement, { offset: -72, immediate: true })
+        }, 100)
+      }
+    }
+
     let raf = 0
     const loop = (time: number) => {
       lenis.raf(time)
