@@ -14,15 +14,32 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       wheelMultiplier: 1,
     })
 
-    // Handle scroll to hash on initial load
+    // Handle scroll to hash on initial load (accounting for layout shifts from async data)
     if (window.location.hash && window.location.hash !== '#') {
-      const el = document.querySelector(window.location.hash)
-      if (el) {
-        // Small delay to ensure layout is computed before jumping
-        setTimeout(() => {
+      const hash = window.location.hash
+      
+      const scrollToHash = () => {
+        const el = document.querySelector(hash)
+        if (el) {
           lenis.scrollTo(el as HTMLElement, { offset: -72, immediate: true })
-        }, 100)
+        }
       }
+
+      // Try immediately
+      setTimeout(scrollToHash, 50)
+
+      // Re-adjust if layout shifts (images loading, API data rendering)
+      const ro = new ResizeObserver(() => {
+        scrollToHash()
+      })
+      
+      // Observe the body for height changes
+      ro.observe(document.body)
+
+      // Stop forcing scroll after 2.5 seconds so user can scroll freely
+      setTimeout(() => {
+        ro.disconnect()
+      }, 2500)
     }
 
     let raf = 0

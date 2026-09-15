@@ -13,7 +13,12 @@ export function Nav() {
   const { t } = useTranslation()
   const { track } = useTrack()
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState<string>('hero')
+  const [active, setActive] = useState<string>(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      return window.location.hash.replace('#', '')
+    }
+    return 'hero'
+  })
   const [menuOpen, setMenuOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
@@ -26,7 +31,7 @@ export function Nav() {
   }, [])
 
   useEffect(() => {
-    const ids = ['hero', 'faqs', 'newsletter', ...NAV_LINKS.map((l) => l.id)]
+    const ids = ['hero', ...NAV_LINKS.map((l) => l.id), 'faqs', 'newsletter']
     const els = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
