@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { Rocket, X, Clock, Sparkles, ArrowRight } from 'lucide-react'
+import { X, Clock, Sparkles, ArrowRight } from 'lucide-react'
 import { usePrefersReducedMotion } from '@/lib/useTrackState'
 
 /**
@@ -29,6 +29,13 @@ export function ApplyNowButton() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
 
+  // Listen for custom event from other components (like PMBanner)
+  useEffect(() => {
+    const handleOpenModal = () => setIsOpen(true)
+    window.addEventListener('open-apply-modal', handleOpenModal)
+    return () => window.removeEventListener('open-apply-modal', handleOpenModal)
+  }, [])
+
   // Navigate or smooth scroll to the newsletter section
   const handleStayUpdated = () => {
     setIsOpen(false)
@@ -44,23 +51,6 @@ export function ApplyNowButton() {
 
   return (
     <>
-      <motion.button
-        type="button"
-        onClick={() => setIsOpen(true)}
-        aria-label={t('applyNow.cta', 'Apply Now')}
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        initial={reduce ? false : { scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.96 }}
-        className="fixed bottom-6 left-6 z-40 flex h-14 items-center gap-2.5 rounded-full px-5 text-sm font-semibold text-plum bg-[#FF8A65] shadow-[0_4px_16px_-2px_rgba(255,138,101,0.45)] hover:shadow-[0_6px_22px_-2px_rgba(255,138,101,0.6)] transition-shadow cursor-pointer"
-      >
-        <Rocket className="h-5 w-5" />
-        {t('applyNow.cta', 'Apply Now')}
-      </motion.button>
-
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">

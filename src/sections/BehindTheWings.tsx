@@ -98,9 +98,6 @@ export function BehindTheWings() {
     })
   }, [])
 
-  const featured = members.find((m) => m.isFeatured) ?? members[0]
-  const grid = members.filter((m) => !m.isFeatured)
-
   return (
     <section
       id="behind-the-wings"
@@ -126,68 +123,21 @@ export function BehindTheWings() {
           </Reveal>
         </div>
 
-        {/* Featured team card */}
-        {featured && (
-          <Reveal delay={0.1}>
-            <motion.div
-              whileHover={{ y: -4 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-              className="mt-14 grid overflow-hidden rounded-3xl border border-plum/10 shadow-card md:grid-cols-[minmax(0,340px)_1fr]"
-            >
-              {/* Image panel */}
-              <div className="relative flex min-h-[240px] overflow-hidden bg-plum/5 md:min-h-full">
-                <img
-                  src={featured.imageUrl}
-                  alt={featured.name}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </div>
-
-              {/* Details */}
-              <div className="flex flex-col justify-center bg-white p-8 md:p-10">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="font-display text-2xl font-bold text-plum">{featured.name}</h3>
-                    <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-teal">
-                      {featured.role}
-                    </p>
-                  </div>
-                  {featured.linkedinUrl && (
-                    <a
-                      href={featured.linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${featured.name} on LinkedIn`}
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-plum/15 text-plum transition-colors hover:border-teal hover:bg-teal hover:text-white"
-                    >
-                      <LinkedinIcon className="h-5 w-5" />
-                    </a>
-                  )}
-                </div>
-                {featured.tagline && (
-                  <p className="mt-4 font-display italic leading-snug text-plum/80">
-                    {featured.tagline}
-                  </p>
-                )}
-                {featured.bio && (
-                  <p className="mt-4 leading-relaxed text-plum/70">{featured.bio}</p>
-                )}
-              </div>
-            </motion.div>
-          </Reveal>
-        )}
-
         {/* Team Grid */}
-        {grid.length > 0 && (
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {grid.map((member, i) => (
-              <Reveal key={member.id} delay={0.15 + i * 0.05} className="h-full">
+        {members.length > 0 && (
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {members.map((member, i) => (
+              <Reveal
+                key={member.id}
+                delay={0.15 + i * 0.05}
+                className="flex flex-col h-full"
+              >
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 shadow-card"
+                  className="flex-1 w-full group flex flex-col overflow-hidden rounded-3xl border border-plum/10 shadow-card"
                 >
-                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-plum/5">
+                  <div className="relative aspect-square w-full overflow-hidden bg-plum/5">
                     <img
                       src={member.imageUrl}
                       alt={member.name}
@@ -199,7 +149,7 @@ export function BehindTheWings() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0 flex-1">
                         <h3 className="font-display text-xl font-bold text-plum">{member.name}</h3>
-                        <p className="mt-1 min-h-[2.25rem] text-[11px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-teal">
+                        <p className="mt-1 text-[11px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-teal">
                           {member.role}
                         </p>
                       </div>
