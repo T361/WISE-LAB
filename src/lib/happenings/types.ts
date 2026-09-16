@@ -1,6 +1,4 @@
-import type { NAV_LINKS } from '@/lib/nav'
-
-export type HappeningsSection = (typeof NAV_LINKS)[number]['id'] | 'enter-the-lab' | 'testimonials'
+export type HappeningsSection = 'happenings' | 'events' | 'testimonials'
 
 export interface HappeningsPost {
   id: string
@@ -13,5 +11,6 @@ export interface HappeningsPost {
   publishedAt: string | null
   status: 'draft' | 'published'
   tags: string[]
+  galleryUrls: string[]
   section: HappeningsSection | null
 }

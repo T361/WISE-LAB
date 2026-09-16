@@ -12,6 +12,7 @@ interface DbRow {
   published_at: string | null
   status: 'draft' | 'published'
   tags: string[] | null
+  gallery_urls: string[] | null
   section: HappeningsPost['section'] | undefined
 }
 
@@ -27,6 +28,7 @@ function fromRow(row: DbRow): HappeningsPost {
     publishedAt: row.published_at,
     status: row.status,
     tags: row.tags ?? [],
+    galleryUrls: row.gallery_urls ?? [],
     section: row.section ?? null,
   }
 }
@@ -90,6 +92,7 @@ export async function upsertPost(post: Partial<HappeningsPost> & { slug: string 
     published_at: post.status === 'published' ? post.publishedAt ?? new Date().toISOString() : null,
     status: post.status ?? 'draft',
     tags: post.tags ?? [],
+    gallery_urls: post.galleryUrls ?? [],
     section: post.section ?? null,
   })
   if (error) throw error

@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
+import { Reveal } from '@/components/Reveal'
 import { listPublishedPosts } from '@/lib/happenings/api'
 import type { HappeningsPost } from '@/lib/happenings/types'
+import { HappeningsBlogCard } from '@/components/happenings/HappeningsBlogCard'
+import { HappeningsEventCard } from '@/components/happenings/HappeningsEventCard'
 
-const MotionLink = motion(Link)
+type TabType = 'blog' | 'events'
 
 export function GlobalHappenings() {
   const { t } = useTranslation()
+  const [activeTab, setActiveTab] = useState<TabType>('blog')
   const [posts, setPosts] = useState<HappeningsPost[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -18,7 +21,7 @@ export function GlobalHappenings() {
     let alive = true
     listPublishedPosts().then((p) => {
       if (alive) {
-        setPosts(p.slice(0, 3)) // Show top 3 recent posts
+        setPosts(p)
         setLoading(false)
       }
     })
@@ -27,76 +30,111 @@ export function GlobalHappenings() {
     }
   }, [])
 
-  if (!loading && posts.length === 0) return null
+  const filteredPosts = posts.filter((post) => 
+    activeTab === 'events' ? post.section === 'events' : post.section !== 'events'
+  ).slice(0, 4) // Show top 4 posts
 
   return (
     <section id="happenings" className="relative overflow-hidden bg-white py-24 md:py-32 border-t border-plum/10">
-      <div className="container-wise relative">
+      <div className="container-wise relative mx-auto max-w-6xl">
         <Reveal>
+          {/* Breadcrumb & Title row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <p className="eyebrow">{t('journal.latestFrom', 'Happenings')}</p>
-              <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
+              <h2 className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-tight text-[#1A1A1A]">
                 Latest updates
               </h2>
             </div>
-            <Link
-              to="/happenings"
-              className="hidden md:inline-flex shrink-0 items-center gap-2 rounded-full border border-plum/20 px-6 py-2.5 text-sm font-semibold text-plum transition-colors hover:bg-plum/[0.04]"
-            >
-              View all
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
           </div>
         </Reveal>
 
-        {loading ? (
-          <div className="mt-12 text-sm text-plum/60 animate-pulse">Loading happenings...</div>
-        ) : (
-          <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.05}>
-            {posts.map((post) => (
-              <RevealItem key={post.id}>
-              <MotionLink
-                to={`/happenings/${post.slug}`}
-                whileHover={{ y: -5 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-plum/10 bg-white shadow-card transition-shadow duration-500 hover:shadow-card-hover"
+        {/* Tabs Row */}
+        <div className="mt-16 flex items-center justify-between border-b border-plum/10 pb-4">
+          <div className="flex items-center gap-8 text-[13px] font-bold tracking-wider text-plum/50">
+            <button
+              onClick={() => setActiveTab('blog')}
+              className={`relative pb-4 transition-colors hover:text-plum ${
+                activeTab === 'blog' ? 'text-plum' : ''
+              }`}
+            >
+              Blog
+              {activeTab === 'blog' && (
+                <motion.div
+                  layoutId="global-tab-indicator"
+                  className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"
+                />
+              )}
+            </button>
+            <button
+              onClick={() => setActiveTab('events')}
+              className={`relative pb-4 transition-colors hover:text-plum ${
+                activeTab === 'events' ? 'text-plum' : ''
+              }`}
+            >
+              Events
+              {activeTab === 'events' && (
+                <motion.div
+                  layoutId="global-tab-indicator"
+                  className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"
+                />
+              )}
+            </button>
+          </div>
+          
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-bold tracking-widest text-plum/50 uppercase">
+            <div className="h-1.5 w-1.5 rounded-full bg-plum/40" />
+            UPDATED THIS WEEK
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <div className="mt-12">
+          {loading ? (
+            <div className="flex h-64 items-center justify-center">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-plum/20 border-t-plum" />
+            </div>
+          ) : (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
               >
-                {post.coverImageUrl && (
-                  <div className="aspect-[16/9] w-full overflow-hidden bg-plum/5">
-                    <img
-                      src={post.coverImageUrl}
-                      alt={post.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-xl font-semibold text-plum">
-                    {post.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-[15px] leading-relaxed text-plum/65">
-                    {post.excerpt}
+                {filteredPosts.length === 0 ? (
+                  <p className="rounded-2xl border border-plum/10 bg-white/60 p-6 text-sm text-plum/60">
+                    No {activeTab} posts found.
                   </p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-teal">
-                    {t('happeningsPage.readMore', 'Read more')}
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </MotionLink>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        )}
+                ) : (
+                  <>
+                    <div className="grid gap-6 sm:grid-cols-2">
+                      {filteredPosts.map((post) =>
+                        activeTab === 'blog' ? (
+                          <HappeningsBlogCard key={post.id} post={post} />
+                        ) : (
+                          <HappeningsEventCard key={post.id} post={post} />
+                        )
+                      )}
+                    </div>
+                  </>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          )}
+        </div>
 
         <Reveal delay={0.1}>
-          <Link
-            to="/happenings"
-            className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full border border-plum/20 px-6 py-3 text-sm font-semibold text-plum transition-colors hover:bg-plum/[0.04] md:hidden"
-          >
-            View all
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-16 flex justify-center">
+            <Link
+              to={activeTab === 'blog' ? '/happenings?tab=blog' : '/happenings?tab=events'}
+              className="group flex items-center gap-2 rounded-full bg-[#FF8A65] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#E67C5B]"
+            >
+              {activeTab === 'blog' ? 'Browse all Blog' : 'Browse all Events'}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </Reveal>
       </div>
     </section>
