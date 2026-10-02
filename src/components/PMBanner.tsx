@@ -608,32 +608,6 @@ export function PMBanner() {
               </p>
             </div>
 
-            {/* CTA */}
-            <div className="hero-cta-group">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault()
-                  window.dispatchEvent(new Event('open-apply-modal'))
-                }}
-                className="gs-container"
-              >
-                <div className="gs-content">
-                  <span>Apply Now</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20" height="20"
-                    viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor"
-                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="m12 5 7 7-7 7" />
-                  </svg>
-                </div>
-              </a>
-            </div>
 
             {/* Partner logos */}
             <div className="hero-partner-logos-strip">
@@ -668,7 +642,6 @@ export function PMBanner() {
                   />
                 </div>
                 <div className="hero-pm-caption-editorial">
-                  <span className="caption-badge-pk">PK</span>
                   <p className="caption-text">
                     Under the vision of the Honorable Prime Minister of
                     Pakistan, WISE Lab is funded under the Ministry of IT &amp;
