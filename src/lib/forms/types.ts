@@ -3,11 +3,11 @@ import type { Track } from '@/lib/useTrackState'
 /**
  * Config-driven form schema architecture.
  *
- * A FormSchema describes an entire application form (Founder Flightpath,
- * Enterprise Flightpath, Become a Mentor, Partner with WISE) as data, so the
+ * A FormSchema describes an entire application form (Incubation,
+ * Micro-Entrepreneurship, Become a Mentor, Partner with WISE) as data, so the
  * DynamicForm component can render, validate, and submit any of them without
  * per-track bespoke form code. Sections group related fields visually
- * (mirrors the docx structure for Founder Flightpath); fields within a
+ * (mirrors the docx structure for Incubation); fields within a
  * section render in a single card, matching the WiseConnect visual pattern.
  */
 

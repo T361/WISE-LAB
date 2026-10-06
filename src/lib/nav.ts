@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
   { id: 'wise-journey', label: 'Journey' },
-  { id: 'build-tracks', label: 'Flight Path' },
+  { id: 'build-tracks', label: 'Programs' },
   // { id: 'testimonials', label: 'Founder Stories' },
   { id: 'power-circle', label: 'Power Circle' },
   { id: 'behind-the-wings', label: 'Behind the Wings' },

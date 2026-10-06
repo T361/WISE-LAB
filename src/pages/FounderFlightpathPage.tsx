@@ -6,20 +6,20 @@ import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { breadcrumbSchema, courseSchema } from '@/lib/structuredData'
 
 const DESCRIPTION =
-  'A structured six-month incubation programme for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.'
+  'A structured six-month incubation for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.'
 
 export function FounderFlightpathPage() {
   const { t } = useTranslation()
   useDocumentMeta({
-    title: 'Founder Flightpath',
+    title: 'Incubation',
     description: DESCRIPTION,
     path: '/founder-flightpath',
     structuredData: [
       breadcrumbSchema([
         { name: 'Home', path: '/' },
-        { name: 'Founder Flightpath', path: '/founder-flightpath' },
+        { name: 'Incubation', path: '/founder-flightpath' },
       ]),
-      courseSchema({ name: 'Founder Flightpath', description: DESCRIPTION, path: '/founder-flightpath' }),
+      courseSchema({ name: 'Incubation', description: DESCRIPTION, path: '/founder-flightpath' }),
     ],
   })
   return (
@@ -42,7 +42,7 @@ export function FounderFlightpathPage() {
               {t('founderFlightpathPage.kicker', 'Track One · Women-Led Startup Incubation')}
             </p>
             <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-plum">
-              {t('founderFlightpathPage.title', 'Founder Flightpath')}
+              {t('founderFlightpathPage.title', 'Incubation')}
             </h1>
             <p className="mt-3 font-display text-xl italic text-plum/70">
               {t('founderFlightpathPage.subtitle', 'From an Early Idea to an Investment-Ready Enterprise')}
@@ -157,7 +157,7 @@ export function FounderFlightpathPage() {
               <ul className="list-disc space-y-2 pl-5 marker:text-teal">
                 <li>{t('founderFlightpathPage.receive.grant.li1', 'Up to five startups from the eligible graduating cohort may receive a grant of PKR 2 million each.')}</li>
                 <li>{t('founderFlightpathPage.receive.grant.li2', 'Grant selection may be based on performance, innovation potential, commercial viability, programme participation, investment readiness, and evaluation by the designated selection committee.')}</li>
-                <li>{t('founderFlightpathPage.receive.grant.li3', 'Graduation from the incubation programme will not automatically guarantee grant funding.')}</li>
+                <li>{t('founderFlightpathPage.receive.grant.li3', 'Graduation from incubation will not automatically guarantee grant funding.')}</li>
               </ul>
 
               <h3 className="font-display text-lg font-semibold text-plum">
@@ -235,7 +235,7 @@ export function FounderFlightpathPage() {
               className="mt-10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
               style={{ background: '#0F3D3B' }}
             >
-              {t('founderFlightpathPage.apply', 'Apply to Founder Flightpath')}
+              {t('founderFlightpathPage.apply', 'Apply to Incubation')}
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </article>

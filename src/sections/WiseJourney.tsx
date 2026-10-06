@@ -67,7 +67,7 @@ export function WiseJourney() {
             <div className="group relative h-full overflow-hidden rounded-3xl bg-[#FAFAFA] border border-black/5 p-8 shadow-card transition-all duration-500 hover:shadow-card-hover md:p-10">
               <div className="absolute right-0 top-0 h-32 w-32 -translate-y-10 translate-x-10 rounded-full bg-teal/10 blur-2xl transition-transform duration-700 group-hover:translate-x-6" />
               <p className="eyebrow" style={{ color: '#2C7A70' }}>
-                {t('wiseJourney.vision.eyebrow', 'The Flight Path')}
+                {t('wiseJourney.vision.eyebrow', 'Programs')}
               </p>
               <h3 className="mt-3 font-display text-2xl font-semibold text-black">
                 {t('wiseJourney.vision.title', 'Our Vision')}

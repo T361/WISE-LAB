@@ -19,7 +19,7 @@ interface Pillar {
 function getPillars(t: TFunction): Pillar[] {
   return [
     {
-      title: t('enterTheLab.founder.title', 'Founder Flightpath'),
+      title: t('enterTheLab.founder.title', 'Incubation'),
       body: t(
         'enterTheLab.founder.body',
         'For women founders ready to move from an early idea to an investment-ready enterprise, through incubation, mentorship, and investor readiness.'
@@ -30,7 +30,7 @@ function getPillars(t: TFunction): Pillar[] {
       Icon: Rocket,
     },
     {
-      title: t('enterTheLab.enterprise.title', 'Enterprise Flightpath'),
+      title: t('enterTheLab.enterprise.title', 'Micro-Entrepreneurship'),
       body: t(
         'enterTheLab.enterprise.body',
         'For women running micro, small, or home-based businesses ready to grow through practical training, digital tools, and market access.'

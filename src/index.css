@@ -44,7 +44,7 @@
     --radius: 0.85rem;
   }
 
-  /* Track: Founder Flightpath — TEAL */
+  /* Track: Incubation — TEAL */
   [data-track='founder'] {
     --track-primary: #0f3d3b;
     --track-accent: #2e7d7b;
@@ -58,7 +58,7 @@
     --ring: 175 46% 30%;
   }
 
-  /* Track: Enterprise Flightpath — ORANGE */
+  /* Track: Micro-Entrepreneurship — ORANGE */
   [data-track='enterprise'] {
     --track-primary: #b85c1a;
     --track-accent: #e8823c;

@@ -114,7 +114,7 @@ export function Hero() {
               className="text-sm theme-shift"
               style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(74,46,61,0.55)' }}
             >
-              {t('hero.previewHint', 'or preview a flight path ↓')}
+              {t('hero.previewHint', 'or preview a program ↓')}
             </span>
           </motion.div>
 

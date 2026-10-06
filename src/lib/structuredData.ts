@@ -14,7 +14,7 @@ export function breadcrumbSchema(crumbs: { name: string; path: string }[]) {
   }
 }
 
-/** Course — fits Founder/Enterprise Flightpath: they're structured, timed training programmes. */
+/** Course — fits Founder/Micro-Entrepreneurship: they're structured, timed training programmes. */
 export function courseSchema({
   name,
   description,

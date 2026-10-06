@@ -33,7 +33,7 @@ export function VisionPage() {
         <Reveal delay={0.1}>
           <article className="mt-10">
             <p className="eyebrow" style={{ color: '#2C7A70' }}>
-              {t('visionPage.eyebrow', 'The Flight Path')}
+              {t('visionPage.eyebrow', 'Programs')}
             </p>
             <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-black">
               {t('visionPage.title', 'Our Vision')}

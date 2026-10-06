@@ -107,8 +107,8 @@ const FAQ_DATA: FAQCategory[] = [
         a: 'Support includes mentorship, business development, technical guidance, market access, investor readiness and ecosystem connections.',
       },
       {
-        q: 'How long is the Startup Incubation programme?',
-        a: 'The Startup Incubation programme runs for six months.',
+        q: 'How long is the Startup Incubation?',
+        a: 'The Startup Incubation runs for six months.',
       },
       {
         q: 'Is the programme online or in person?',

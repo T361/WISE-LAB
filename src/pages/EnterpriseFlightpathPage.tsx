@@ -11,15 +11,15 @@ const DESCRIPTION =
 export function EnterpriseFlightpathPage() {
   const { t } = useTranslation()
   useDocumentMeta({
-    title: 'Enterprise Flightpath',
+    title: 'Micro-Entrepreneurship',
     description: DESCRIPTION,
     path: '/enterprise-flightpath',
     structuredData: [
       breadcrumbSchema([
         { name: 'Home', path: '/' },
-        { name: 'Enterprise Flightpath', path: '/enterprise-flightpath' },
+        { name: 'Micro-Entrepreneurship', path: '/enterprise-flightpath' },
       ]),
-      courseSchema({ name: 'Enterprise Flightpath', description: DESCRIPTION, path: '/enterprise-flightpath' }),
+      courseSchema({ name: 'Micro-Entrepreneurship', description: DESCRIPTION, path: '/enterprise-flightpath' }),
     ],
   })
   return (
@@ -42,7 +42,7 @@ export function EnterpriseFlightpathPage() {
               {t('enterpriseFlightpathPage.kicker', 'Track Two · Micro-Entrepreneurship and MSME Training')}
             </p>
             <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-plum">
-              {t('enterpriseFlightpathPage.title', 'Enterprise Flightpath')}
+              {t('enterpriseFlightpathPage.title', 'Micro-Entrepreneurship')}
             </h1>
             <p className="mt-3 font-display text-xl italic text-plum/70">
               {t(

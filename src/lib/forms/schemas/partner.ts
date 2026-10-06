@@ -2,7 +2,7 @@ import type { FormSchema } from '../types'
 
 /**
  * Open the Ecosystem — Expression of Interest.
- * Deliberately short, like Enterprise Flightpath and Guide Her Growth:
+ * Deliberately short, like Micro-Entrepreneurship and Guide Her Growth:
  * organization, category, and what you're proposing, so WISE Lab can follow
  * up directly. Partner categories come from the Content Brief's Power Circle
  * section (Academic, Corporate, Development, Financial, Media, Investor

@@ -29,7 +29,7 @@ function getCards(t: TFunction): TrackCard[] {
       id: 'founder',
       index: '01',
       kicker: t('buildTracks.founder.kicker', 'Startup Incubation'),
-      title: t('buildTracks.founder.title', 'Founder Flightpath'),
+      title: t('buildTracks.founder.title', 'Incubation'),
       lead: t(
         'buildTracks.founder.lead',
         'A structured six-month programme for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.'
@@ -50,7 +50,7 @@ function getCards(t: TFunction): TrackCard[] {
       id: 'enterprise',
       index: '02',
       kicker: t('buildTracks.enterprise.kicker', 'MSME Training'),
-      title: t('buildTracks.enterprise.title', 'Enterprise Flightpath'),
+      title: t('buildTracks.enterprise.title', 'Micro-Entrepreneurship'),
       lead: t(
         'buildTracks.enterprise.lead',
         'A nationwide capacity-building programme for women running micro, small, home-based, or early-stage businesses.'
@@ -82,9 +82,9 @@ export function BuildTracks() {
     >
       <div className="container-wise relative">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">{t('nav.links.build-tracks', 'Flight Path')}</p>
+          <p className="eyebrow">{t('nav.links.build-tracks', 'Programs')}</p>
           <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
-            {t('buildTracks.title', 'Choose your flight path')}
+            {t('buildTracks.title', 'Choose your program')}
           </h2>
           <p className="mt-4 text-lg text-plum/70">
             {t('buildTracks.subtitle', 'Two tracks. One destination: women-led enterprise growth.')}

@@ -3,8 +3,8 @@ import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 import { listSubmissions, aggregateByDimension, type StoredSubmission } from '@/lib/admin/submissions'
 
 const TRACK_LABELS: Record<string, string> = {
-  founder: 'Founder Flightpath',
-  enterprise: 'Enterprise Flightpath (EOI)',
+  founder: 'Incubation',
+  enterprise: 'Micro-Entrepreneurship (EOI)',
   mentor: 'Guide Her Growth',
   partner: 'Open the Ecosystem',
 }

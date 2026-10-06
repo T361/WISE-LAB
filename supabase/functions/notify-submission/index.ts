@@ -24,8 +24,8 @@ const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
 const NOTIFY_EMAIL_TO = Deno.env.get('NOTIFY_EMAIL_TO')
 
 const TRACK_LABELS: Record<string, string> = {
-  founder: 'Founder Flightpath',
-  enterprise: 'Enterprise Flightpath',
+  founder: 'Incubation',
+  enterprise: 'Micro-Entrepreneurship',
   mentor: 'Guide Her Growth',
   partner: 'Open the Ecosystem',
 }

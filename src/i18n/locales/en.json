@@ -2,7 +2,7 @@
   "nav": {
     "links": {
       "wise-journey": "Journey",
-      "build-tracks": "Flight Path",
+      "build-tracks": "Programs",
       "enter-the-lab": "Enter the Lab",
       "testimonials": "Founder Stories",
       "power-circle": "Power Circle",
@@ -82,7 +82,7 @@
     "headline": "Her idea. Her enterprise.",
     "eyebrow": "Women Innovation & Startup Empowerment Lab",
     "subheadline": "Where women-led ideas move from quiet potential to visible enterprise.",
-    "previewHint": "or preview a flight path ↓",
+    "previewHint": "or preview a program ↓",
     "credibility": "Under the vision of the Honorable Prime Minister of Pakistan, WISE Lab is designed & funded by the Ministry of IT & Telecom & Ignite - National Technology Fund.",
     "trustedBy": "Trusted by"
   },
@@ -96,7 +96,7 @@
     "quoteLine2": "The room was.",
     "body2": "Through incubation, MSME training, mentorship, market access, investor readiness, digital enablement, and ecosystem partnerships, WISE Lab helps women transform their ideas into sustainable businesses and their ambition into enterprise.",
     "vision": {
-      "eyebrow": "The Flight Path",
+      "eyebrow": "Programs",
       "title": "Our Vision",
       "body": "To become Pakistan's leading platform exclusively for women-led innovation and enterprise enabling women across the country to transform ideas into sustainable businesses, access the right spaces, and contribute to inclusive digital and economic growth.",
       "line": "A future where she doesn't wait for opportunity she enters the room & builds it.",
@@ -113,7 +113,7 @@
   "buildTracks": {
     "founder": {
       "kicker": "Startup Incubation",
-      "title": "Founder Flightpath",
+      "title": "Incubation",
       "lead": "A structured six-month programme for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.",
       "body": "From an early idea to an investment-ready enterprise with business-model refinement, product validation, real-time mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.",
       "motto": "From idea to investor-ready unseen to undeniable.",
@@ -121,13 +121,13 @@
     },
     "enterprise": {
       "kicker": "MSME Training",
-      "title": "Enterprise Flightpath",
+      "title": "Micro-Entrepreneurship",
       "lead": "A nationwide capacity-building programme for women running micro, small, home-based, or early-stage businesses.",
       "body": "Turning skills, home-based work, and small businesses into sustainable enterprises with business planning, financial literacy, digital tools, branding, pricing, customer management, and market access.",
       "motto": "From skill to income cocoon to flight.",
       "cta": "Grow Your Enterprise"
     },
-    "title": "Choose your flight path",
+    "title": "Choose your program",
     "subtitle": "Two tracks. One destination: women-led enterprise growth.",
     "hint": "Select a track to preview it in the scene above the whole page responds to your choice.",
     "previewingAbove": "Previewing above ↑",
@@ -137,11 +137,11 @@
   "enterTheLab": {
     "cohortAnnouncement": "Cohort 1 applications are open apply now",
     "founder": {
-      "title": "Founder Flightpath",
+      "title": "Incubation",
       "body": "For women founders ready to move from an early idea to an investment-ready enterprise, through incubation, mentorship, and investor readiness."
     },
     "enterprise": {
-      "title": "Enterprise Flightpath",
+      "title": "Micro-Entrepreneurship",
       "body": "For women running micro, small, or home-based businesses ready to grow through practical training, digital tools, and market access."
     },
     "mentor": {
@@ -273,7 +273,7 @@
       "subtitle": "For women founders, startup teams, and small business owners ready for incubation, validation, mentorship, and growth support.",
       "submitLabel": "Submit application",
       "successTitle": "Thank you, {firstName}.",
-      "successBody": "Your Founder Flightpath application is in. Our team will review it and reach out about next steps.",
+      "successBody": "Your Incubation application is in. Our team will review it and reach out about next steps.",
       "sections": {
         "startup-basics": {
           "title": "Startup basics"
@@ -457,7 +457,7 @@
           }
         },
         "commitmentConsent": {
-          "label": "By applying, I confirm my commitment to actively participate in the incubation program, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
+          "label": "By applying, I confirm my commitment to actively participate in incubation, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem."
         },
         "applicantSignature": {
           "label": "Applicant signature",
@@ -466,7 +466,7 @@
       }
     },
     "enterprise": {
-      "title": "Enterprise Flightpath Expression of Interest",
+      "title": "Micro-Entrepreneurship Expression of Interest",
       "subtitle": "For women-led small businesses and home-based entrepreneurs interested in business training, digital skills, visibility, and market access. Share a few details and our team will follow up.",
       "submitLabel": "Submit expression of interest",
       "successTitle": "Thank you, {firstName}.",

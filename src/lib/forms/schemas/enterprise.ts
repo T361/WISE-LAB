@@ -1,15 +1,15 @@
 import type { FormSchema } from '../types'
 
 /**
- * Enterprise Flightpath — Expression of Interest.
- * Deliberately short: unlike Founder Flightpath (a full application),
- * Enterprise Flightpath currently only collects a lightweight expression of
+ * Micro-Entrepreneurship — Expression of Interest.
+ * Deliberately short: unlike Incubation (a full application),
+ * Micro-Entrepreneurship currently only collects a lightweight expression of
  * interest — business name, a one-line description, and contact details —
  * so WISE Lab can follow up directly rather than screening a long form.
  */
 export const enterpriseFormSchema: FormSchema = {
   track: 'enterprise',
-  title: 'Enterprise Flightpath Expression of Interest',
+  title: 'Micro-Entrepreneurship Expression of Interest',
   subtitle:
     'For women-led small businesses and home-based entrepreneurs interested in business training, digital skills, visibility, and market access. Share a few details and our team will follow up.',
   themeTrack: 'enterprise',

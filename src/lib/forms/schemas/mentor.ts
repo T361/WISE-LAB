@@ -2,7 +2,7 @@ import type { FormSchema } from '../types'
 
 /**
  * Guide Her Growth — Expression of Interest.
- * Deliberately short: like Enterprise Flightpath, mentoring starts as a
+ * Deliberately short: like Micro-Entrepreneurship, mentoring starts as a
  * lightweight expression of interest — who you are, what you can help with,
  * and how to reach you — so WISE Lab can follow up directly rather than
  * screening a long application. Uses `themeTrack: 'neutral'` since

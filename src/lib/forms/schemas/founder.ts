@@ -1,7 +1,7 @@
 import type { FormSchema } from '../types'
 
 /**
- * Founder Flightpath — WISE Lab Incubation Application Form.
+ * Incubation — WISE Lab Incubation Application Form.
  *
  * Field-for-field match to the live Google Form ("WISE Lab – Women Innovation
  * and Startup Empowerment Application Form"), which is the ground truth for
@@ -21,7 +21,7 @@ export const founderFormSchema: FormSchema = {
   submitLabel: 'Submit application',
   successTitle: 'Thank you, {firstName}.',
   successBody:
-    "Your Founder Flightpath application is in. Our team will review it and reach out about next steps.",
+    "Your Incubation application is in. Our team will review it and reach out about next steps.",
   sections: [
     {
       id: 'startup-basics',
@@ -339,7 +339,7 @@ export const founderFormSchema: FormSchema = {
         {
           name: 'commitmentConsent',
           label:
-            'By applying, I confirm my commitment to actively participate in the incubation program, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem.',
+            'By applying, I confirm my commitment to actively participate in incubation, attend mentoring sessions, and contribute to the growth of Pakistan’s women entrepreneurship ecosystem.',
           type: 'consent',
           required: true,
         },

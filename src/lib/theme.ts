@@ -32,7 +32,7 @@ export const TRACK_THEME: Record<Track, TrackTheme> = {
     bgA: '#0b2320',
     bgB: '#154a47',
     accent: '#2e7d7b',
-    label: 'Founder Flightpath',
+    label: 'Incubation',
   },
   enterprise: {
     figure: '#ffd9a8',
@@ -41,6 +41,6 @@ export const TRACK_THEME: Record<Track, TrackTheme> = {
     bgA: '#2c1707',
     bgB: '#7a3f12',
     accent: '#e8823c',
-    label: 'Enterprise Flightpath',
+    label: 'Micro-Entrepreneurship',
   },
 }
