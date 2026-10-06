@@ -6,12 +6,10 @@ import { useTranslation } from 'react-i18next'
 import { WiseMark } from './WiseLabLogo'
 
 import { NAV_LINKS } from '@/lib/nav'
-import { useTrack } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
 
 export function Nav() {
   const { t } = useTranslation()
-  const { track } = useTrack()
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState<string>(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
@@ -72,10 +70,10 @@ export function Nav() {
     menuButtonRef.current?.focus()
   }
 
-  // over hero with a track active -> dark backdrop -> white logo/links
-  const overDarkHero = !scrolled && active === 'hero' && track !== 'neutral'
-  const lightText = overDarkHero
-  const logoVariant = lightText ? 'white' : 'color'
+  // The hero background is now always white, so we never need the white text variant
+  // for the nav links over the hero section.
+  const lightText = false
+  const logoVariant = 'color'
 
   return (
     <motion.header
@@ -100,7 +98,7 @@ export function Nav() {
                 inline — no need to reserve the taller desktop header there.
                 Steps back down at xl so the full link row + CTA fit on one
                 line on a 1280px laptop; the drawer handles everything narrower. */}
-            <WiseMark variant={logoVariant} className="h-9 w-auto sm:h-11 xl:h-14 2xl:h-16 scale-[1.35] transform-gpu origin-left" />
+            <WiseMark variant={logoVariant} className="h-[48px] -my-[6px] w-auto sm:h-[60px] sm:-my-[8px] xl:h-[75px] xl:-my-[9.5px] 2xl:h-[86px] 2xl:-my-[11px] origin-left" />
           </a>
   
           {/* Desktop links */}
@@ -128,10 +126,10 @@ export function Nav() {
 
         {/* Right side: Logos + Mobile / tablet menu trigger */}
         <div className="flex items-center gap-3 sm:gap-4 xl:gap-6">
-          <div className="flex items-center gap-8 sm:gap-10 xl:gap-12">
-            <img src="/Ministry-03.png" alt="Ministry" className="h-9 sm:h-11 xl:h-12 2xl:h-14 w-auto object-contain scale-[2.8] transform-gpu origin-center" />
+          <div className="flex items-center gap-4 sm:gap-5 xl:gap-6">
+            <img src="/Ministry-03.png" alt="Ministry" className="h-[100px] sm:h-[123px] xl:h-[134px] 2xl:h-[156px] -my-[32px] sm:-my-[39px] xl:-my-[43px] 2xl:-my-[50px] w-auto object-contain max-w-none" />
             <div className={cn("w-[1.5px] h-5 sm:h-7 xl:h-9 rounded-full transition-colors", lightText ? "bg-white/30" : "bg-plum/20")} />
-            <img src="/Ignite-06.png" alt="Ignite" className="h-9 sm:h-11 xl:h-12 2xl:h-14 w-auto object-contain scale-[2.2] transform-gpu origin-center" />
+            <img src="/Ignite-06.png" alt="Ignite" className="h-[79px] sm:h-[97px] xl:h-[105px] 2xl:h-[123px] -my-[21px] sm:-my-[26px] xl:-my-[28px] 2xl:-my-[33px] w-auto object-contain max-w-none" />
           </div>
 
           <button
