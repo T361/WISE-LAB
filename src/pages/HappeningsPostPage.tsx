@@ -150,7 +150,7 @@ function BlogPostLayout({ post }: { post: HappeningsPost }) {
           <img
             src={post.coverImageUrl}
             alt={post.title}
-            className="aspect-[16/9] w-full object-cover"
+            className="aspect-[16/9] w-full object-contain bg-plum/5"
           />
         </div>
       )}
@@ -212,7 +212,7 @@ function EventPostLayout({ post }: { post: HappeningsPost }) {
           <img
             src={allImages[0]}
             alt={post.title}
-            className="aspect-[21/9] w-full object-cover"
+            className="aspect-[21/9] w-full object-contain bg-black/90"
           />
           {/* Dark gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
