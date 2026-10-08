@@ -340,16 +340,12 @@ const styles = `
   display: block; margin-bottom: 0.15em;
 }
 
-.text-coral-gradient {
-  background: linear-gradient(135deg, #FF8A65 0%, #FFE8D6 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
+.text-coral {
+  color: #FF8A65;
 }
 
-.text-teal-gradient {
-  background: linear-gradient(135deg, #2E8C8A 0%, #246f6e 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
+.text-teal {
+  color: #2E8C8A;
 }
 
 .text-purple-accent { color: #4A2E3D; }
@@ -588,10 +584,10 @@ export function PMBanner() {
           <div className="hero-typography-layer">
             <h1 className="hero-title-bespoke">
               <div className="hero-title-line line-1">
-                <span className="text-coral-gradient">HER IDEA.</span>
+                <span className="text-coral">HER IDEA.</span>
               </div>
               <div className="hero-title-line line-2">
-                <span className="text-teal-gradient">HER</span>
+                <span className="text-teal">HER</span>
                 <StrokeTypedText />
               </div>
             </h1>

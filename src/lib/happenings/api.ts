@@ -89,7 +89,7 @@ export async function upsertPost(post: Partial<HappeningsPost> & { slug: string 
     content: post.content,
     cover_image_url: post.coverImageUrl,
     author: post.author,
-    published_at: post.status === 'published' ? post.publishedAt ?? new Date().toISOString() : null,
+    published_at: post.publishedAt ?? (post.status === 'published' ? new Date().toISOString() : null),
     status: post.status ?? 'draft',
     tags: post.tags ?? [],
     gallery_urls: post.galleryUrls ?? [],

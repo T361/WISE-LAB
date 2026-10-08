@@ -29,7 +29,7 @@ function Gallery({ images, title }: { images: string[]; title: string }) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
             transition={{ duration: 0.4 }}
-            className="aspect-[16/9] w-full object-cover"
+            className="aspect-[16/9] w-full object-contain"
           />
         </AnimatePresence>
 
@@ -80,7 +80,7 @@ function Gallery({ images, title }: { images: string[]; title: string }) {
               <img
                 src={url}
                 alt={`Thumbnail ${i + 1}`}
-                className="h-16 w-24 object-cover"
+                className="h-16 w-24 object-contain bg-plum/5"
               />
             </button>
           ))}

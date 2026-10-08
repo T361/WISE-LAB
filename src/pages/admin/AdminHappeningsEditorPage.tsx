@@ -222,6 +222,16 @@ export function AdminHappeningsEditorPage() {
         )}
 
         <div className="space-y-2">
+          <Label htmlFor="date">Date</Label>
+          <Input
+            id="date"
+            type="date"
+            value={post.publishedAt ? post.publishedAt.substring(0, 10) : ''}
+            onChange={(e) => setPost({ ...post, publishedAt: e.target.value ? new Date(e.target.value).toISOString() : null })}
+          />
+        </div>
+
+        <div className="space-y-2">
           <Label>Cover image {isEvent ? '(Main Event Photo)' : ''}</Label>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start mt-2">
             <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-plum/10 bg-plum/5">
@@ -306,15 +316,29 @@ export function AdminHappeningsEditorPage() {
             {post.galleryUrls.length > 0 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
                 {post.galleryUrls.map((url, i) => (
-                  <div key={i} className="relative group aspect-square rounded-2xl overflow-hidden border border-plum/10 bg-plum/5">
+                  <div key={i} className={`relative group aspect-square rounded-2xl overflow-hidden border ${post.coverImageUrl === url ? 'border-teal ring-2 ring-teal' : 'border-plum/10'} bg-plum/5`}>
                     <img src={url} alt="Gallery item" className="w-full h-full object-cover" />
                     <button
                       type="button"
                       onClick={() => setPost(p => ({ ...p, galleryUrls: p.galleryUrls.filter((_, index) => index !== i) }))}
-                      className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/70"
+                      className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 hover:bg-black/70 z-10"
                     >
                       <X className="h-3 w-3" />
                     </button>
+                    {post.coverImageUrl !== url && (
+                      <button
+                        type="button"
+                        onClick={() => setPost(p => ({ ...p, coverImageUrl: url }))}
+                        className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100 hover:bg-black/80 whitespace-nowrap z-10"
+                      >
+                        Set as Cover
+                      </button>
+                    )}
+                    {post.coverImageUrl === url && (
+                      <div className="absolute bottom-0 left-0 right-0 bg-teal/90 py-1 text-center text-[10px] font-bold text-white uppercase tracking-wider z-10">
+                        Cover Image
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
