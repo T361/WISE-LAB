@@ -36,6 +36,19 @@ export async function submitApplication(payload: SubmissionPayload): Promise<voi
   // If this is the enterprise bootcamp form, insert into the new bootcamp-specific table.
   if (payload.track === 'enterprise') {
     const v = payload.values as Record<string, any>
+
+    if (v.email) {
+      const { data: existingApp } = await supabase
+        .from('bootcamp_applications')
+        .select('id')
+        .eq('email', v.email)
+        .maybeSingle()
+
+      if (existingApp) {
+        throw new Error('An application with this email address has already been submitted.\nاس ای میل ایڈریس سے پہلے ہی درخواست جمع کرائی جا چکی ہے۔')
+      }
+    }
+
     const { error: bootcampError } = await supabase.from('bootcamp_applications').insert({
       email: v.email,
       full_name: v.fullName,

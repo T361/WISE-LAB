@@ -10,7 +10,7 @@ import type { ApplicationTrack } from './types'
 export const GOOGLE_FORM_URLS: Partial<Record<ApplicationTrack, string>> = {
   founder:
     'https://docs.google.com/forms/d/e/1FAIpQLScc2bPdx5MvD5JZCgiwjaJijk3wBlVhxz45f-KNwFAHbxv9qg/viewform',
-  // enterprise: '<awaiting Micro-Entrepreneurship Google Form URL>',
+  enterprise: 'https://forms.gle/pB6KpbS6Zxk4a7dH8',
   // mentor: '<awaiting Guide Her Growth Google Form URL>',
   // partner: '<awaiting Open the Ecosystem Google Form URL>',
 }

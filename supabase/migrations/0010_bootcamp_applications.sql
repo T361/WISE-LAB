@@ -15,7 +15,7 @@ create table if not exists public.bootcamp_applications (
   id               uuid primary key default gen_random_uuid(),
 
   -- Section 1: Personal Information
-  email                text not null,
+  email                text not null unique,
   full_name            text not null,
   cnic                 char(13) not null,
   disability_cnic      text,

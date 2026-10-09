@@ -381,7 +381,7 @@ const styles = `
 
 .mission-text {
   font-family: 'Inter', system-ui, sans-serif;
-  color: rgba(0, 0, 0, 0.7);
+  color: #808080;
   font-size: 1.05rem; line-height: 1.7;
   max-width: 480px; margin: 0;
 }
@@ -581,12 +581,12 @@ export function PMBanner() {
           <div className="hero-typography-layer">
             <h1 className="hero-title-bespoke">
               <div className="hero-title-line line-1">
-                <span className="text-coral">HER IDEA.</span>
+                <span className="text-black">Her Idea.</span>
               </div>
               <div className="hero-title-line line-2">
-                <span className="text-teal">HER</span>
+                <span className="text-black">Her</span>
                 {/* <StrokeTypedText /> */}
-                <span className="text-teal"> ENTERPRISE.</span>
+                <span className="text-[#FF8A65]"> Enterprise.</span>
               </div>
             </h1>
           </div>
@@ -632,7 +632,7 @@ export function PMBanner() {
                   <img
                     alt="Prime Minister"
                     className="hero-pm-portrait"
-                    src="/images/pm picture.png"
+                    src="/images/pmupdatedpic.jpeg"
                   />
                 </div>
                 <div className="hero-pm-caption-editorial">

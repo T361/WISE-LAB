@@ -7,7 +7,8 @@ const DISTRICTS = [
   ...['Abbottabad','Bajaur','Bannu','Battamgram','Buner','Central Kurram','Charsadda','Dera Ismail Khan','Hangu','Haripur','Karak','Khyber','Kohat','Kohistan Lower','Kolai Pallas','Kurram','Lakki Marwat','Lower Chitral','Lower Dir','Malakand','Mardan','Mohmand','North Waziristan','Orakzai','Peshawar','Shangla','South Waziristan Lower','South Waziristan Upper','Swabi','Swat','Tank','Torghar','Upper Chitral','Upper Dir','Upper Kohistan','Nowshera','Mansehra'].map(d => ({ label: `${d} - KPK`, value: `${d} - KPK` })),
   ...['Awaran','Barkhan','Chagai','Dera Bugti','Duki','Gwadar','Harnai','Hub','Jafarabad','Jhal Magsi','Kachhi','Kalat','Kech','Kharan','Khuzdar','Killa Abdullah','Killa Saifullah','Kohlu','Lasbela','Loralai','Mastung','Musakhel','Nasirabad','Nushki','Panjgur','Pishin','Quetta City','Quetta Saddar','Rakhni','Sibi','Sohbatpur','Surab','Taftan','Usta Muhammad','Wadh','Washuk','Zhob','Ziarat','Shaheed Sikandarabad','Sherani'].map(d => ({ label: `${d} - Balochistan`, value: `${d} - Balochistan` })),
   ...['Bagh','Bhimber','Hattian Bala','Haveli','Kotli','Mirpur','Muzaffarabad','Neelum','Poonch','Sudhanoti'].map(d => ({ label: `${d} - AJK`, value: `${d} - AJK` })),
-  ...['Astore','Darel','Diamer','Ghanche','Ghizer','Gilgit','Gupis - Yasin','Hunza','Kharmang','Nagar','Roundu','Shigar','Skardu','Tangir'].map(d => ({ label: `${d} - GB`, value: `${d} - GB` }))
+  ...['Astore','Darel','Diamer','Ghanche','Ghizer','Gilgit','Gupis - Yasin','Hunza','Kharmang','Nagar','Roundu','Shigar','Skardu','Tangir'].map(d => ({ label: `${d} - GB`, value: `${d} - GB` })),
+  { label: 'Other / دیگر', value: 'Other' }
 ]
 
 export const enterpriseFormSchema: FormSchema = {

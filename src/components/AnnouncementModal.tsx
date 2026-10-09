@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+// Link import removed as we now use a native 'a' tag for external links
 import { useTranslation } from 'react-i18next'
 
 export function AnnouncementModal() {
@@ -65,14 +65,16 @@ export function AnnouncementModal() {
               </p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Link
-                  to="/apply/enterprise"
+                <a
+                  href="https://forms.gle/pB6KpbS6Zxk4a7dH8"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF8A65] px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-[#FF8A65]/90 hover:shadow-lg hover:shadow-[#FF8A65]/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF8A65]"
                 >
                   Apply Now / ابھی اپلائی کریں
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </a>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"

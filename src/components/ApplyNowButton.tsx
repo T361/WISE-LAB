@@ -63,14 +63,16 @@ export function ApplyNowButton() {
         <div className="absolute inset-[-4px] rounded-full border border-[#FF8A65]/30 animate-pulse" />
 
         {/* Actual Button */}
-        <button
-          onClick={() => navigate('/apply/enterprise')}
+        <a
+          href="https://forms.gle/pB6KpbS6Zxk4a7dH8"
+          target="_blank"
+          rel="noopener noreferrer"
           className="relative flex h-12 items-center gap-2 rounded-full bg-[#FF8A65] px-5 text-white shadow-lg shadow-[#FF8A65]/30 transition-all hover:-translate-y-1 hover:bg-[#FF8A65]/90 hover:shadow-xl hover:shadow-[#FF8A65]/40"
           aria-label="Apply Now"
         >
           <span className="text-sm font-semibold tracking-wide">Apply Now</span>
           <ArrowRight className="h-4 w-4" />
-        </button>
+        </a>
       </motion.div>
 
       <AnimatePresence>
