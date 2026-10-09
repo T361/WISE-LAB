@@ -482,18 +482,14 @@ const styles = `
 .hero-visual-showcase { width: 100%; position: relative; }
 
 .hero-pm-showcase-frame {
-  position: relative; border-radius: 2.25rem;
-  overflow: visible; background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 25px 65px -15px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
-  padding: 2.5rem 1.75rem 3.5rem 1.75rem;
+  position: relative;
   display: flex; flex-direction: column;
   align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 @media (max-width: 1023px) {
-  .hero-pm-showcase-frame { padding: 2rem 1.25rem 3rem 1.25rem; }
+  .hero-pm-showcase-frame { padding: 0; }
 }
 
 .hero-pm-image-wrapper {
@@ -502,8 +498,8 @@ const styles = `
 }
 
 .hero-pm-portrait {
-  width: 100%; max-width: 375px; height: auto;
-  object-fit: contain; display: block; margin: 0 auto;
+  width: 100%; max-width: 100%; height: auto;
+  object-fit: cover; display: block; margin: 0 auto;
 }
 
 .hero-pm-caption-editorial {
@@ -588,7 +584,8 @@ export function PMBanner() {
               </div>
               <div className="hero-title-line line-2">
                 <span className="text-teal">HER</span>
-                <StrokeTypedText />
+                {/* <StrokeTypedText /> */}
+                <span className="text-teal"> ENTERPRISE.</span>
               </div>
             </h1>
           </div>

@@ -16,6 +16,7 @@ export type FieldType =
   | 'email'
   | 'tel'
   | 'number'
+  | 'date'
   | 'textarea'
   | 'select'
   | 'radio'
@@ -75,6 +76,10 @@ export interface FieldDef {
   patternMessage?: string
   /** max length for text/textarea */
   maxLength?: number
+  /** HTML inputMode attribute — e.g. 'numeric' for digit-only inputs */
+  inputMode?: 'text' | 'numeric' | 'decimal' | 'tel' | 'email' | 'url' | 'search' | 'none'
+  /** If true, non-numeric characters are silently stripped on every keystroke and paste */
+  numericOnly?: boolean
 }
 
 export interface FormSection {

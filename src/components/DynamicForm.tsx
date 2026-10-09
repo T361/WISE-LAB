@@ -36,6 +36,48 @@ import {
 type Values = Record<string, unknown>
 type Errors = Record<string, string>
 
+/**
+ * Renders bilingual text (English / Urdu).
+ *
+ * Separator priority:
+ *  1. First blank line (\n\n) — used for multi-paragraph blocks like the
+ *     declaration, where each language has several numbered points.
+ *  2. First single newline (\n) — used for short labels ("Q1. Full name\nمکمل نام").
+ *
+ * Each block is rendered with whitespace-pre-wrap so internal \n line-breaks
+ * display correctly. The Urdu block is right-aligned with dir="rtl".
+ */
+function BilingualText({ text, className }: { text: string; className?: string }) {
+  const doubleNl = text.indexOf('\n\n')
+  const singleNl = text.indexOf('\n')
+
+  // Pick the split point: prefer blank-line separator when available
+  const splitAt = doubleNl !== -1 ? doubleNl : singleNl
+  const skipLen  = doubleNl !== -1 ? 2 : 1
+
+  if (splitAt === -1) return <span className={className}>{text}</span>
+
+  const english = text.slice(0, splitAt).trim()
+  const urdu    = text.slice(splitAt + skipLen).trim()
+
+  return (
+    <span className={`block ${className ?? ''}`}>
+      <span className="block whitespace-pre-wrap text-left">{english}</span>
+      {urdu && (
+        <span
+          dir="rtl"
+          lang="ur"
+          className="mt-1 block whitespace-pre-wrap text-right font-normal"
+          style={{ fontFamily: "'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', sans-serif" }}
+        >
+          {urdu}
+        </span>
+      )}
+    </span>
+  )
+}
+
+
 function emptyTableRow(columns: TableColumn[]) {
   const row: Record<string, string> = {}
   for (const c of columns) row[c.key] = ''
@@ -90,6 +132,15 @@ export function DynamicForm({ schema }: DynamicFormProps) {
         continue
       }
 
+      // checkbox: require at least one selection
+      if (field.type === 'checkbox' && field.required) {
+        const arr = val as string[] | undefined
+        if (!arr || arr.length === 0) {
+          e[field.name] = t('form.requiredError')
+          continue
+        }
+      }
+
       if (field.pattern && val && !field.pattern.test(String(val))) {
         e[field.name] = tFieldPatternMessage(t, schema, field) ?? t('form.invalidValueError')
       }
@@ -101,7 +152,18 @@ export function DynamicForm({ schema }: DynamicFormProps) {
   const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault()
     setSubmitError(null)
-    if (!validate()) return
+    if (!validate()) {
+      window.alert('Please fill out all required fields and correct any errors before submitting.\n\nبراہ کرم جمع کرانے سے پہلے تمام ضروری خانے پُر کریں اور غلطیاں دور کریں۔')
+      
+      // Auto-scroll to the first field with an error
+      setTimeout(() => {
+        const firstErrorEl = document.querySelector('[aria-invalid="true"]')
+        if (firstErrorEl) {
+          firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 50)
+      return
+    }
 
     setSubmitting(true)
     try {
@@ -143,13 +205,13 @@ export function DynamicForm({ schema }: DynamicFormProps) {
               >
                 <CheckCircle2 className="h-10 w-10 text-[var(--track-accent)]" />
               </motion.div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-plum">
+              <h3 className="mt-6 font-display text-2xl font-bold text-black">
                 {tSuccessTitle(t, schema).replace(
                   '{firstName}',
                   firstName || t('form.successFallbackName')
                 )}
               </h3>
-              <p className="mt-2 max-w-xs text-plum/65">{tSuccessBody(t, schema)}</p>
+              <p className="mt-2 max-w-xs text-black">{tSuccessBody(t, schema)}</p>
               <button
                 type="button"
                 onClick={() => {
@@ -157,7 +219,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                   setValues({})
                   setErrors({})
                 }}
-                className="mt-8 text-sm font-semibold text-plum/60 underline underline-offset-4 hover:text-plum"
+                className="mt-8 text-sm font-semibold text-black underline underline-offset-4 hover:text-black/70"
               >
                 {t('form.submitAnother')}
               </button>
@@ -175,13 +237,13 @@ export function DynamicForm({ schema }: DynamicFormProps) {
               {schema.sections.map((section) => (
                 <div key={section.id} className="space-y-5">
                   <div>
-                    <h3 className="font-display text-lg font-semibold text-plum">
-                      {tSectionTitle(t, schema, section)}
+              <h3 className="font-display text-lg font-semibold text-black">
+                      <BilingualText text={tSectionTitle(t, schema, section)} />
                     </h3>
                     {section.description && (
-                      <p className="mt-1 text-sm text-plum/60">
-                        {tSectionDescription(t, schema, section)}
-                      </p>
+                      <div className="mt-1 text-sm text-black">
+                        <BilingualText text={tSectionDescription(t, schema, section)} />
+                      </div>
                     )}
                   </div>
                   {section.fields.map((field) =>
@@ -258,9 +320,16 @@ function FormField({
             aria-invalid={!!error}
             className="mt-0.5"
           />
-          <Label htmlFor={field.name} className="normal-case text-[14px] font-normal leading-relaxed text-plum/80">
-            {tFieldLabel(t, schema, field)}
-          </Label>
+          <div className="space-y-1 mt-0.5">
+            <Label htmlFor={field.name} className="normal-case text-[14px] font-semibold leading-relaxed text-black">
+              <BilingualText text={tFieldLabel(t, schema, field)} />
+            </Label>
+            {field.helpText && (
+              <div className="text-[13px] text-black">
+                <BilingualText text={field.helpText} />
+              </div>
+            )}
+          </div>
         </div>
         <ErrorMessage error={error} />
       </div>
@@ -272,22 +341,46 @@ function FormField({
 
   return (
     <div className="space-y-2">
-      <Label htmlFor={field.name}>
-        {tFieldLabel(t, schema, field)}
+      <Label htmlFor={field.name} className="leading-snug">
+        <BilingualText text={tFieldLabel(t, schema, field)} />
         {field.required && <span className="text-[var(--track-accent)]"> *</span>}
       </Label>
-      {helpText && <p className="text-[13px] text-plum/55">{helpText}</p>}
-
-      {field.type === 'textarea' && (
-        <Textarea
-          id={field.name}
-          value={(value as string) ?? ''}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          maxLength={field.maxLength}
-          aria-invalid={!!error}
-        />
+      {helpText && (
+        <div className="text-[13px] text-black">
+          <BilingualText text={helpText} />
+        </div>
       )}
+
+      {field.type === 'textarea' && (() => {
+        const text = (value as string) ?? ''
+        // count words only when a word-limit pattern exists
+        const hasWordLimit = field.pattern && field.patternMessage?.toLowerCase().includes('word')
+        const wordCount = hasWordLimit ? text.trim().split(/\s+/).filter(Boolean).length : 0
+        const atMin = wordCount >= 10
+        const atMax = wordCount <= 300
+        return (
+          <div className="space-y-1">
+            <Textarea
+              id={field.name}
+              value={text}
+              onChange={(e) => onChange(e.target.value)}
+              placeholder={placeholder}
+              maxLength={field.maxLength}
+              aria-invalid={!!error}
+              rows={5}
+            />
+            {hasWordLimit && (
+              <p className={`text-right text-[12px] tabular-nums transition-colors ${
+                text.trim() === '' ? 'text-black/40'
+                : (!atMin || !atMax) ? 'text-destructive'
+                : 'text-emerald-600'
+              }`}>
+                {wordCount} / 10–300 words
+              </p>
+            )}
+          </div>
+        )
+      })()}
 
       {field.type === 'select' && (
         <Select value={(value as string) ?? ''} onValueChange={onChange}>
@@ -311,7 +404,7 @@ function FormField({
           aria-invalid={!!error}
         >
           {field.options?.map((opt) => (
-            <label key={opt.value} className="flex items-center gap-2 text-sm font-medium text-plum/80">
+            <label key={opt.value} className="flex items-center gap-2 text-sm font-medium text-black">
               <RadioGroupItem value={opt.value} id={`${field.name}-${opt.value}`} />
               {tOptionLabel(t, schema, field, opt.value, opt.label)}
             </label>
@@ -319,17 +412,81 @@ function FormField({
         </RadioGroup>
       )}
 
-      {['text', 'email', 'tel', 'number', 'url'].includes(field.type) && (
-        <Input
-          id={field.name}
-          type={field.type}
-          value={(value as string) ?? ''}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          maxLength={field.maxLength}
-          aria-invalid={!!error}
-        />
+      {field.type === 'checkbox' && field.options && (
+        <div className="space-y-3" aria-invalid={!!error}>
+          {field.options.map((opt) => {
+            const isChecked = Array.isArray(value) ? value.includes(opt.value) : false
+            return (
+              <label key={opt.value} className="flex items-start gap-3 text-[14px] font-normal leading-relaxed text-black">
+                <Checkbox
+                  id={`${field.name}-${opt.value}`}
+                  checked={isChecked}
+                  onCheckedChange={(checked) => {
+                    const current = Array.isArray(value) ? [...value] : []
+                    if (checked) {
+                      onChange([...current, opt.value])
+                    } else {
+                      onChange(current.filter(v => v !== opt.value))
+                    }
+                  }}
+                  className="mt-0.5"
+                />
+                <span className="mt-0.5">{tOptionLabel(t, schema, field, opt.value, opt.label)}</span>
+              </label>
+            )
+          })}
+        </div>
       )}
+
+      {['text', 'email', 'tel', 'number', 'url', 'date'].includes(field.type) && (() => {
+        const text = (value as string) ?? ''
+        return (
+          <div className="space-y-1">
+            <Input
+              id={field.name}
+              type={field.type}
+              value={text}
+              onChange={(e) => {
+                const raw = e.target.value
+                // strip everything except digits when numericOnly is set
+                const next = field.numericOnly ? raw.replace(/\D/g, '') : raw
+                onChange(next)
+              }}
+              onPaste={field.numericOnly ? (e) => {
+                e.preventDefault()
+                const pasted = e.clipboardData.getData('text').replace(/\D/g, '')
+                const current = text
+                const el = e.currentTarget
+                const start = el.selectionStart ?? current.length
+                const end = el.selectionEnd ?? current.length
+                const next = current.slice(0, start) + pasted + current.slice(end)
+                const capped = field.maxLength ? next.slice(0, field.maxLength) : next
+                onChange(capped)
+              } : undefined}
+              onKeyDown={field.numericOnly ? (e) => {
+                // allow: backspace, delete, tab, escape, enter, arrows, home, end, ctrl/cmd combos
+                const allowedKeys = ['Backspace','Delete','Tab','Escape','Enter','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End']
+                if (allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey) return
+                // block anything that isn't a digit
+                if (!/^[0-9]$/.test(e.key)) e.preventDefault()
+              } : undefined}
+              placeholder={placeholder}
+              maxLength={field.maxLength}
+              inputMode={field.inputMode}
+              aria-invalid={!!error}
+            />
+            {field.numericOnly && field.maxLength && (
+              <p className={`text-right text-[12px] tabular-nums transition-colors ${
+                text.length === 0 ? 'text-black/40'
+                : text.length < field.maxLength ? 'text-destructive'
+                : 'text-emerald-600'
+              }`}>
+                {text.length} / {field.maxLength} digits
+              </p>
+            )}
+          </div>
+        )
+      })()}
 
       <ErrorMessage error={error} />
     </div>

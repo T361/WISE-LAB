@@ -33,6 +33,69 @@ export async function submitApplication(payload: SubmissionPayload): Promise<voi
     return
   }
 
+  // If this is the enterprise bootcamp form, insert into the new bootcamp-specific table.
+  if (payload.track === 'enterprise') {
+    const v = payload.values as Record<string, any>
+    const { error: bootcampError } = await supabase.from('bootcamp_applications').insert({
+      email: v.email,
+      full_name: v.fullName,
+      cnic: v.cnic,
+      disability_cnic: v.disabilityCnic,
+      minority: v.minority,
+      dob: v.dob,
+      mobile: v.mobile,
+      whatsapp: v.whatsapp,
+      marital_status: v.maritalStatus,
+      education: v.education,
+      city_preference: v.cityPreference,
+      language: v.language,
+
+      current_district: v.currentDistrict,
+      current_address: v.currentAddress,
+
+      permanent_district: v.permanentDistrict,
+      urban_rural: v.urbanRural,
+      permanent_address: v.permanentAddress,
+
+      phone_access: v.phoneAccess,
+      apps_used: v.appsUsed || [],
+
+      business_name: v.businessName,
+      business_duration: v.businessDuration,
+      business_registration: v.businessRegistration,
+      business_sector: v.businessSector,
+      business_sector_other: v.businessSectorOther,
+      average_earnings: v.averageEarnings,
+      paid_workers: v.paidWorkers,
+      unpaid_workers: v.unpaidWorkers,
+      equipment_value: v.equipmentValue,
+      sales_channel: v.salesChannel || [],
+      record_keeping: v.recordKeeping,
+
+      business_practices: v.businessPractices || [],
+      business_description: v.businessDescription,
+      business_difference: v.businessDifference,
+      bootcamp_reason: v.bootcampReason,
+      business_vision: v.businessVision,
+
+      grant_use: v.grantUse,
+      grant_expenses: v.grantExpenses,
+      grant_need: v.grantNeed,
+
+      source: v.source,
+      source_other: v.sourceOther,
+
+      declaration_consent: v.declarationConsent === true,
+
+      submitted_at: payload.submittedAt,
+      user_agent: payload.meta?.userAgent,
+      locale: payload.meta?.locale,
+    })
+
+    if (bootcampError) throw bootcampError
+  }
+
+  // Still insert into the generic submissions table for backward compatibility / unified analytics
   const { error } = await supabase.from('submissions').insert({
     track: payload.track,
     values: payload.values,
