@@ -55,7 +55,7 @@ export function AnnouncementModal() {
                 Micro-Entrepreneurship Bootcamp
               </h2>
               <p className="mt-2 text-sm font-medium text-plum/70">
-                A free one-month training programme for women-led small businesses.
+                A free one-month training programe for women-led businesses.
               </p>
             </div>
 

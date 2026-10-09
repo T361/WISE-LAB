@@ -51,6 +51,28 @@ export function ApplyNowButton() {
 
   return (
     <>
+      {/* Wrapper to hold the button and the pulse effect */}
+      <motion.div
+        initial={reduce ? false : { opacity: 0, scale: 0.8, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 0.5, type: 'spring', damping: 20, stiffness: 200 }}
+        className="fixed bottom-6 left-6 z-[90] flex items-center justify-center"
+      >
+        {/* Expanding pulsing ring */}
+        <div className="absolute inset-0 rounded-full bg-[#FF8A65] animate-ping opacity-20" style={{ animationDuration: '3s' }} />
+        <div className="absolute inset-[-4px] rounded-full border border-[#FF8A65]/30 animate-pulse" />
+
+        {/* Actual Button */}
+        <button
+          onClick={() => navigate('/apply/enterprise')}
+          className="relative flex h-12 items-center gap-2 rounded-full bg-[#FF8A65] px-5 text-white shadow-lg shadow-[#FF8A65]/30 transition-all hover:-translate-y-1 hover:bg-[#FF8A65]/90 hover:shadow-xl hover:shadow-[#FF8A65]/40"
+          aria-label="Apply Now"
+        >
+          <span className="text-sm font-semibold tracking-wide">Apply Now</span>
+          <ArrowRight className="h-4 w-4" />
+        </button>
+      </motion.div>
+
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
