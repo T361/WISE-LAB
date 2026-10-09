@@ -242,7 +242,7 @@ export function DynamicForm({ schema }: DynamicFormProps) {
                     </h3>
                     {section.description && (
                       <div className="mt-1 text-sm text-black">
-                        <BilingualText text={tSectionDescription(t, schema, section)} />
+                        <BilingualText text={tSectionDescription(t, schema, section) || ''} />
                       </div>
                     )}
                   </div>

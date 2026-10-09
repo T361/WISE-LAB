@@ -90,6 +90,7 @@ interface LetterPaths {
   fill: SVGPathElement | null
 }
 
+// @ts-expect-error unused function kept for future reference
 function StrokeTypedText() {
   const svgRef = useRef<SVGSVGElement>(null)
   const wordIndexRef = useRef(0)
