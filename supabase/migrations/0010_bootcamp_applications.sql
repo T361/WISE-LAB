@@ -93,12 +93,14 @@ create index if not exists bootcamp_applications_submitted_at_idx
 alter table public.bootcamp_applications enable row level security;
 
 -- Anyone can submit
+drop policy if exists "bootcamp_applications: public insert" on public.bootcamp_applications;
 create policy "bootcamp_applications: public insert"
   on public.bootcamp_applications for insert
   to anon, authenticated
   with check (true);
 
 -- Only admins can read
+drop policy if exists "bootcamp_applications: admin read" on public.bootcamp_applications;
 create policy "bootcamp_applications: admin read"
   on public.bootcamp_applications for select
   to authenticated
@@ -107,6 +109,7 @@ create policy "bootcamp_applications: admin read"
   );
 
 -- Admins can update (for status/notes in future)
+drop policy if exists "bootcamp_applications: admin update" on public.bootcamp_applications;
 create policy "bootcamp_applications: admin update"
   on public.bootcamp_applications for update
   to authenticated
