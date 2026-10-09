@@ -4,6 +4,7 @@ import { HappeningsSectionsProvider } from '@/lib/happenings/useSectionPosts'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Nav } from '@/components/Nav'
 import { PMBanner } from '@/components/PMBanner'
+import { AnnouncementModal } from '@/components/AnnouncementModal'
 import { Hero } from '@/sections/Hero'
 import { WiseJourney } from '@/sections/WiseJourney'
 import { BuildTracks } from '@/sections/BuildTracks'
@@ -28,6 +29,7 @@ function App() {
             <div className="sticky top-0 z-50">
               <Nav />
             </div>
+            <AnnouncementModal />
             <PMBanner />
             <main>
               <Hero />
