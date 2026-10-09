@@ -20,7 +20,7 @@ export function Hero() {
 
   // Split on spaces so the line-reveal animation works for any translated
   // headline, not just the hardcoded English word count.
-  const words = t('hero.headline', 'Her idea. Her enterprise.').split(' ')
+  const words = t('hero.headline', 'WISE Verticals').split(' ')
 
   return (
     <section
@@ -60,13 +60,14 @@ export function Hero() {
           </motion.p>
 
           <h1
-            className="mt-5 font-display text-[clamp(3.4rem,9vw,5.5rem)] font-bold leading-[0.98] theme-shift"
+            className="mt-5 font-display text-[clamp(2.5rem,7vw,4.2rem)] font-bold leading-[0.98] theme-shift"
             style={{ color: dark ? 'var(--track-ink)' : '#000000' }}
           >
             {words.map((w, i) => (
               <span key={i} className="mr-[0.28em] inline-block overflow-hidden align-bottom">
                 <motion.span
                   className="inline-block"
+                  style={{ color: w === 'WISE' ? '#6C1D7A' : undefined }}
                   initial={{ y: '110%' }}
                   animate={{ y: 0 }}
                   transition={{

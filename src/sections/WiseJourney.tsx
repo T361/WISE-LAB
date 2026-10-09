@@ -5,7 +5,7 @@ import { Reveal } from '@/components/Reveal'
 export function WiseJourney() {
   const { t } = useTranslation()
   return (
-    <section id="wise-journey" className="relative bg-white overflow-hidden py-28 md:py-36">
+    <section id="home" className="relative bg-white overflow-hidden py-28 md:py-36">
       {/* removed grain to keep background purely white */}
       <div className="container-wise relative">
         {/* Intro */}

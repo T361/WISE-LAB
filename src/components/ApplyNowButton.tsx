@@ -59,15 +59,15 @@ export function ApplyNowButton() {
         className="fixed bottom-6 left-6 z-[90] flex items-center justify-center"
       >
         {/* Expanding pulsing ring */}
-        <div className="absolute inset-0 rounded-full bg-[#FF8A65] animate-ping opacity-20" style={{ animationDuration: '3s' }} />
-        <div className="absolute inset-[-4px] rounded-full border border-[#FF8A65]/30 animate-pulse" />
+        <div className="absolute inset-0 rounded-full bg-[#6C1D7A] animate-ping opacity-20" style={{ animationDuration: '3s' }} />
+        <div className="absolute inset-[-4px] rounded-full border border-[#6C1D7A]/30 animate-pulse" />
 
         {/* Actual Button */}
         <a
           href="https://forms.gle/pB6KpbS6Zxk4a7dH8"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative flex h-12 items-center gap-2 rounded-full bg-[#FF8A65] px-5 text-white shadow-lg shadow-[#FF8A65]/30 transition-all hover:-translate-y-1 hover:bg-[#FF8A65]/90 hover:shadow-xl hover:shadow-[#FF8A65]/40"
+          className="relative flex h-12 items-center gap-2 rounded-full bg-[#6C1D7A] px-5 text-white shadow-lg shadow-[#6C1D7A]/30 transition-all hover:-translate-y-1 hover:bg-[#6C1D7A]/90 hover:shadow-xl hover:shadow-[#6C1D7A]/40"
           aria-label="Apply Now"
         >
           <span className="text-sm font-semibold tracking-wide">Apply Now</span>

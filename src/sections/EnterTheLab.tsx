@@ -73,18 +73,7 @@ export function EnterTheLab() {
     <section id="enter-the-lab" className="relative bg-white overflow-hidden py-28 md:py-36">
       {/* removed grain to keep background purely white */}
       <div className="container-wise relative">
-        <Reveal>
-          <Link
-            to="/apply/founder"
-            className="inline-flex items-center gap-2 rounded-full border border-teal/25 bg-teal/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-teal transition-colors hover:bg-teal/15"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
-            </span>
-            {t('enterTheLab.cohortAnnouncement', 'Cohort 1 applications are open apply now')}
-          </Link>
-        </Reveal>
+
         <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
             <p className="eyebrow">{t('nav.links.enter-the-lab', 'Enter the Lab')}</p>

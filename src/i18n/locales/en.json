@@ -1,11 +1,11 @@
 {
   "nav": {
     "links": {
-      "wise-journey": "Journey",
-      "build-tracks": "Programs",
+      "home": "Home",
+      "programs": "Programs",
       "enter-the-lab": "Enter the Lab",
       "testimonials": "Founder Stories",
-      "power-circle": "Power Circle",
+      "our-partners": "Our Partners",
       "behind-the-wings": "Behind the Wings",
       "wise-connect": "Connect",
       "become-a-mentor": "Become a Mentor",
@@ -40,7 +40,7 @@
     }
   },
   "footer": {
-    "tagline": "Her idea. Her enterprise. Her flight.",
+    "tagline": "Her idea. Her enterprise.",
     "underVision": "Under the vision of the Prime Minister of Pakistan.",
     "fundedBy": "Designed & funded by the Ministry of IT & Telecom and Ignite National Technology Fund.",
     "copyright": "© 2026 WISE Lab Women Innovation and Startup Empowerment Lab.",
@@ -79,7 +79,7 @@
     "seconds": "sec"
   },
   "hero": {
-    "headline": "Her idea. Her enterprise.",
+    "headline": "WISE Verticals",
     "eyebrow": "Women Innovation & Startup Empowerment Lab",
     "subheadline": "Where women-led ideas move from quiet potential to visible enterprise.",
     "previewHint": "or preview a program ↓",

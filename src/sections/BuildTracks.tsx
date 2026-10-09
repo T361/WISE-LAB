@@ -77,12 +77,12 @@ export function BuildTracks() {
 
   return (
     <section
-      id="build-tracks"
+      id="programs"
       className="relative overflow-hidden bg-white py-28 md:py-36"
     >
       <div className="container-wise relative">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">{t('nav.links.build-tracks', 'Programs')}</p>
+          <p className="eyebrow">{t('nav.links.programs', 'Programs')}</p>
           <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
             {t('buildTracks.title', 'Choose your program')}
           </h2>

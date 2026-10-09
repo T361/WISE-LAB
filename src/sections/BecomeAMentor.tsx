@@ -33,8 +33,6 @@ export function BecomeAMentor() {
               </p>
               <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
                 {t('mentorSection.title1')}
-                <br />
-                {t('mentorSection.title2')}
               </h2>
             </Reveal>
             <Reveal delay={0.1}>

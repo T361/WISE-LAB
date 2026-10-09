@@ -66,7 +66,7 @@ export function PowerCircle() {
 
   return (
     <section
-      id="power-circle"
+      id="our-partners"
       className="relative bg-white overflow-hidden py-28 text-black md:py-36"
     >
       {/* removed grain and glows for pure white bg */}
@@ -78,7 +78,7 @@ export function PowerCircle() {
               className="text-[11px] font-semibold uppercase tracking-eyebrow"
               style={{ color: '#FF8A65' }}
             >
-              {t('nav.links.power-circle', 'Power Circle')}
+              {t('nav.links.our-partners', 'Our Partners')}
             </p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
               {t('powerCircle.title', 'The ecosystem behind her enterprise')}

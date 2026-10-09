@@ -586,7 +586,7 @@ export function PMBanner() {
               <div className="hero-title-line line-2">
                 <span className="text-black">Her</span>
                 {/* <StrokeTypedText /> */}
-                <span className="text-[#FF8A65]"> Enterprise.</span>
+                <span className="text-[#6C1D7A]"> Enterprise.</span>
               </div>
             </h1>
           </div>
