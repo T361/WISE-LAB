@@ -2,10 +2,21 @@
   command = "npm run build"
   publish = "dist"
 
-# ── Legacy /blog/* → /happenings/* (301 Permanent) ────────────────────────────
-# Google previously indexed these URLs. These server-side redirects ensure
-# Googlebot (which doesn't run JS) gets a proper 301 and updates its index,
-# which will eventually remove /blog sitelinks and replace them with the real nav.
+# ── Redirects for Old URLs ────────────────────────────────────────────────────
+# Forwards users and search engine crawlers from old URLs to their new destinations:
+
+[[redirects]]
+  from = "/founder-flightpath"
+  to = "/incubation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/enterprise-flightpath"
+  to = "/micro-entrepreneurship"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/blog"
   to = "/happenings"
@@ -14,7 +25,7 @@
 
 [[redirects]]
   from = "/blog/*"
-  to = "/happenings/:splat"
+  to = "/happenings"
   status = 301
   force = true
 

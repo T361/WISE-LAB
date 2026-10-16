@@ -83,7 +83,11 @@ export function AppRouter() {
           <Route path="/vision" element={<VisionPage />} />
           <Route path="/mission" element={<MissionPage />} />
           <Route path="/incubation" element={<IncubationPage />} />
+          <Route path="/founder-flightpath" element={<Navigate to="/incubation" replace />} />
           <Route path="/micro-entrepreneurship" element={<MicroEntrepreneurshipPage />} />
+          <Route path="/enterprise-flightpath" element={<Navigate to="/micro-entrepreneurship" replace />} />
+          <Route path="/blog" element={<Navigate to="/happenings" replace />} />
+          <Route path="/blog/*" element={<Navigate to="/happenings" replace />} />
           <Route path="/faqs" element={<FAQPage />} />
           <Route path="/admin/*" element={<AdminApp />} />
           {/* Catch-all: any URL that doesn't match above renders the 404 page */}
