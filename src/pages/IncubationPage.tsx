@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
@@ -8,22 +8,24 @@ import { breadcrumbSchema, courseSchema } from '@/lib/structuredData'
 const DESCRIPTION =
   'A structured six-month incubation for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.'
 
-export function FounderFlightpathPage() {
+export function IncubationPage() {
   const { t } = useTranslation()
   useDocumentMeta({
     title: 'Incubation',
     description: DESCRIPTION,
-    path: '/founder-flightpath',
+    path: '/incubation',
     structuredData: [
       breadcrumbSchema([
         { name: 'Home', path: '/' },
-        { name: 'Incubation', path: '/founder-flightpath' },
+        { name: 'Incubation', path: '/incubation' },
       ]),
-      courseSchema({ name: 'Incubation', description: DESCRIPTION, path: '/founder-flightpath' }),
+      courseSchema({ name: 'Incubation', description: DESCRIPTION, path: '/incubation' }),
     ],
   })
   return (
-    <main className="relative min-h-screen overflow-hidden bg-beige py-16 pb-32 md:py-24 md:pb-32">
+    <main
+      className="relative min-h-screen overflow-hidden bg-white py-16 pb-32 md:py-24 md:pb-32"
+    >
       <div className="grain" />
       <div className="container-wise relative max-w-3xl">
         <Reveal>
@@ -41,7 +43,7 @@ export function FounderFlightpathPage() {
             <p className="eyebrow" style={{ color: '#2E7D7B' }}>
               {t('founderFlightpathPage.kicker', 'Track One · Women-Led Startup Incubation')}
             </p>
-            <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-plum">
+            <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-black">
               {t('founderFlightpathPage.title', 'Incubation')}
             </h1>
             <p className="mt-3 font-display text-xl italic text-plum/70">
@@ -62,7 +64,7 @@ export function FounderFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('founderFlightpathPage.scale.title', 'Programme Scale')}
               </h2>
               <p>{t('founderFlightpathPage.scale.intro', 'Over the five-year project period, WISE Lab will operate recurring incubation cohorts with the mandate to support:')}</p>
@@ -73,11 +75,11 @@ export function FounderFlightpathPage() {
                 <li>{t('founderFlightpathPage.scale.li4', 'Founders from Islamabad and across Pakistan, including eligible diaspora-led ventures where applicable')}</li>
               </ul>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('founderFlightpathPage.receive.title', 'What Selected Startups Will Receive')}
               </h2>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.incubation.title', 'Structured Incubation')}
               </h3>
               <p>
@@ -87,7 +89,7 @@ export function FounderFlightpathPage() {
                 )}
               </p>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.mentorship.title', 'Real-Time Mentorship')}
               </h3>
               <p>
@@ -103,7 +105,7 @@ export function FounderFlightpathPage() {
                 )}
               </p>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.investment.title', 'Investment Readiness')}
               </h3>
               <p>{t('founderFlightpathPage.receive.investment.intro', 'Support in developing:')}</p>
@@ -117,7 +119,7 @@ export function FounderFlightpathPage() {
                 <li>{t('founderFlightpathPage.receive.investment.li7', 'Negotiation and pitching skills')}</li>
               </ul>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.summits.title', 'Investor Summits and Demo Days')}
               </h3>
               <p>
@@ -144,7 +146,7 @@ export function FounderFlightpathPage() {
                 )}
               </p>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.grant.title', 'Startup Grant Opportunity')}
               </h3>
               <p>
@@ -160,7 +162,7 @@ export function FounderFlightpathPage() {
                 <li>{t('founderFlightpathPage.receive.grant.li3', 'Graduation from incubation will not automatically guarantee grant funding.')}</li>
               </ul>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.market.title', 'Market Access')}
               </h3>
               <p>
@@ -181,7 +183,7 @@ export function FounderFlightpathPage() {
                 <li>{t('founderFlightpathPage.receive.market.li8', "Visibility through WISE Lab's communication and media platforms")}</li>
               </ul>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.tech.title', 'Technology and Digital Enablement')}
               </h3>
               <p>
@@ -191,7 +193,7 @@ export function FounderFlightpathPage() {
                 )}
               </p>
 
-              <h3 className="font-display text-lg font-semibold text-plum">
+              <h3 className="font-display text-lg font-semibold text-black">
                 {t('founderFlightpathPage.receive.ecosystem.title', 'Ecosystem Exposure')}
               </h3>
               <p>
@@ -201,7 +203,7 @@ export function FounderFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('founderFlightpathPage.who.title', 'Who Should Apply?')}
               </h2>
               <p>{t('founderFlightpathPage.who.intro', 'The Incubation Track is suited to women who:')}</p>
@@ -215,7 +217,7 @@ export function FounderFlightpathPage() {
                 <li>{t('founderFlightpathPage.who.li7', 'Want access to corporate, investor, government, and market networks')}</li>
               </ul>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('founderFlightpathPage.outcome.title', 'The Outcome')}
               </h2>
               <p>
@@ -229,15 +231,6 @@ export function FounderFlightpathPage() {
                 {t('founderFlightpathPage.closingLine', 'Pakistan’s next big founder may not look like a founder yet.')}
               </blockquote>
             </div>
-
-            <Link
-              to="/apply/founder"
-              className="mt-10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
-              style={{ background: '#0F3D3B' }}
-            >
-              {t('founderFlightpathPage.apply', 'Apply to Incubation')}
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
           </article>
         </Reveal>
       </div>

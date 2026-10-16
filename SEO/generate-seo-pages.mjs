@@ -30,17 +30,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const DIST = join(ROOT, 'dist')
 
-// /apply/founder is deliberately excluded — it now auto-redirects to an
-// external Google Form (see src/lib/forms/googleFormLinks.ts), so
-// prerendering it would have the headless browser follow that redirect
+// /apply/founder and /apply/enterprise are deliberately excluded — they
+// now auto-redirect to external Google Forms (see src/lib/forms/googleFormLinks.ts),
+// so prerendering them would have the headless browser follow that redirect
 // and capture Google's page instead of ours.
 const STATIC_ROUTES = [
   '/',
   '/vision',
   '/mission',
-  '/founder-flightpath',
-  '/enterprise-flightpath',
-  '/apply/enterprise',
+  '/incubation',
+  '/micro-entrepreneurship',
   '/apply/mentor',
   '/apply/partner',
   '/happenings',
@@ -102,8 +101,8 @@ const STATIC_SITEMAP_ENTRIES = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/vision', changefreq: 'monthly', priority: '0.6' },
   { path: '/mission', changefreq: 'monthly', priority: '0.6' },
-  { path: '/founder-flightpath', changefreq: 'monthly', priority: '0.8' },
-  { path: '/enterprise-flightpath', changefreq: 'monthly', priority: '0.8' },
+  { path: '/incubation', changefreq: 'monthly', priority: '0.8' },
+  { path: '/micro-entrepreneurship', changefreq: 'monthly', priority: '0.8' },
   { path: '/apply/enterprise', changefreq: 'monthly', priority: '0.7' },
   { path: '/apply/mentor', changefreq: 'monthly', priority: '0.6' },
   { path: '/apply/partner', changefreq: 'monthly', priority: '0.6' },

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
@@ -8,22 +8,24 @@ import { breadcrumbSchema, courseSchema } from '@/lib/structuredData'
 const DESCRIPTION =
   'A nationwide capacity-building programme for women running micro, small, home-based, or early-stage businesses.'
 
-export function EnterpriseFlightpathPage() {
+export function MicroEntrepreneurshipPage() {
   const { t } = useTranslation()
   useDocumentMeta({
     title: 'Micro-Entrepreneurship',
     description: DESCRIPTION,
-    path: '/enterprise-flightpath',
+    path: '/micro-entrepreneurship',
     structuredData: [
       breadcrumbSchema([
         { name: 'Home', path: '/' },
-        { name: 'Micro-Entrepreneurship', path: '/enterprise-flightpath' },
+        { name: 'Micro-Entrepreneurship', path: '/micro-entrepreneurship' },
       ]),
-      courseSchema({ name: 'Micro-Entrepreneurship', description: DESCRIPTION, path: '/enterprise-flightpath' }),
+      courseSchema({ name: 'Micro-Entrepreneurship', description: DESCRIPTION, path: '/micro-entrepreneurship' }),
     ],
   })
   return (
-    <main className="relative min-h-screen overflow-hidden bg-beige py-16 pb-32 md:py-24 md:pb-32">
+    <main
+      className="relative min-h-screen overflow-hidden bg-white py-16 pb-32 md:py-24 md:pb-32"
+    >
       <div className="grain" />
       <div className="container-wise relative max-w-3xl">
         <Reveal>
@@ -41,7 +43,7 @@ export function EnterpriseFlightpathPage() {
             <p className="eyebrow" style={{ color: '#E8823C' }}>
               {t('enterpriseFlightpathPage.kicker', 'Track Two · Micro-Entrepreneurship and MSME Training')}
             </p>
-            <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-plum">
+            <h1 className="mt-3 font-display text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] text-black">
               {t('enterpriseFlightpathPage.title', 'Micro-Entrepreneurship')}
             </h1>
             <p className="mt-3 font-display text-xl italic text-plum/70">
@@ -65,7 +67,7 @@ export function EnterpriseFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.scale.title', 'Programme Scale')}
               </h2>
               <p>{t('enterpriseFlightpathPage.scale.intro', 'Across the five-year project period, WISE Lab aims to train:')}</p>
@@ -81,7 +83,7 @@ export function EnterpriseFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.learn.title', 'What Participants Will Learn')}
               </h2>
               <p>{t('enterpriseFlightpathPage.learn.intro', 'The programme may include practical training in:')}</p>
@@ -104,7 +106,7 @@ export function EnterpriseFlightpathPage() {
                 <li>{t('enterpriseFlightpathPage.learn.li16', 'Market linkage and growth planning')}</li>
               </ul>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.who.title', 'Who Is This Track For?')}
               </h2>
               <p>{t('enterpriseFlightpathPage.who.intro', 'The Micro-Entrepreneurship Track is suitable for women working in areas such as:')}</p>
@@ -122,7 +124,7 @@ export function EnterpriseFlightpathPage() {
                 <li>{t('enterpriseFlightpathPage.who.li11', 'Other micro and small enterprises with growth potential')}</li>
               </ul>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.mentorship.title', 'Practical Mentorship and Advisory Support')}
               </h2>
               <p>
@@ -138,7 +140,7 @@ export function EnterpriseFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.financial.title', 'Financial Enablement')}
               </h2>
               <p>
@@ -164,7 +166,7 @@ export function EnterpriseFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.market.title', 'Market and Buyer Linkages')}
               </h2>
               <p>{t('enterpriseFlightpathPage.market.intro', 'Participants may be connected with:')}</p>
@@ -187,7 +189,7 @@ export function EnterpriseFlightpathPage() {
                 )}
               </p>
 
-              <h2 className="font-display text-2xl font-bold text-plum">
+              <h2 className="font-display text-2xl font-bold text-black">
                 {t('enterpriseFlightpathPage.outcome.title', 'The Outcome')}
               </h2>
               <p>
@@ -197,15 +199,6 @@ export function EnterpriseFlightpathPage() {
                 )}
               </p>
             </div>
-
-            <Link
-              to="/apply/enterprise"
-              className="mt-10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
-              style={{ background: '#B85C1A' }}
-            >
-              {t('enterpriseFlightpathPage.apply', 'Register your interest')}
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
           </article>
         </Reveal>
       </div>

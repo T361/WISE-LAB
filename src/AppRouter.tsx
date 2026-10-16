@@ -23,16 +23,19 @@ const VisionPage = lazy(() =>
 const MissionPage = lazy(() =>
   import('@/pages/MissionPage').then((m) => ({ default: m.MissionPage }))
 )
-const FounderFlightpathPage = lazy(() =>
-  import('@/pages/FounderFlightpathPage').then((m) => ({ default: m.FounderFlightpathPage }))
+const IncubationPage = lazy(() =>
+  import('@/pages/IncubationPage').then((m) => ({ default: m.IncubationPage }))
 )
-const EnterpriseFlightpathPage = lazy(() =>
-  import('@/pages/EnterpriseFlightpathPage').then((m) => ({
-    default: m.EnterpriseFlightpathPage,
+const MicroEntrepreneurshipPage = lazy(() =>
+  import('@/pages/MicroEntrepreneurshipPage').then((m) => ({
+    default: m.MicroEntrepreneurshipPage,
   }))
 )
 const FAQPage = lazy(() =>
   import('@/pages/FAQPage').then((m) => ({ default: m.FAQPage }))
+)
+const NotFoundPage = lazy(() =>
+  import('@/pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 )
 /** Whole /admin/* subtree — auth provider, layout, and every admin page —
  *  as one chunk; see AdminApp.tsx for why AdminAuthProvider lives there. */
@@ -79,10 +82,12 @@ export function AppRouter() {
           <Route path="/happenings/:slug" element={<HappeningsPostPage />} />
           <Route path="/vision" element={<VisionPage />} />
           <Route path="/mission" element={<MissionPage />} />
-          <Route path="/founder-flightpath" element={<FounderFlightpathPage />} />
-          <Route path="/enterprise-flightpath" element={<EnterpriseFlightpathPage />} />
+          <Route path="/incubation" element={<IncubationPage />} />
+          <Route path="/micro-entrepreneurship" element={<MicroEntrepreneurshipPage />} />
           <Route path="/faqs" element={<FAQPage />} />
           <Route path="/admin/*" element={<AdminApp />} />
+          {/* Catch-all: any URL that doesn't match above renders the 404 page */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
       <GlobalChrome />

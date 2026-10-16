@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
 const SITE_NAME = 'WISE Lab'
-const DEFAULT_TITLE = 'WISE Lab Her idea. Her enterprise.'
+const DEFAULT_TITLE = 'WISE Lab | Her idea. Her enterprise.'
 const DEFAULT_DESCRIPTION =
-  "WISE Lab Women Innovation & Startup Empowerment Lab. Pakistan's national flagship platform where women-led ideas move from quiet potential to visible enterprise."
+  "WISE Lab is Pakistan's national flagship platform advancing women-led startups, entrepreneurs, and micro-enterprises from potential to scale."
 
 function setMetaByName(name: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`)

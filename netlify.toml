@@ -2,6 +2,23 @@
   command = "npm run build"
   publish = "dist"
 
+# ── Legacy /blog/* → /happenings/* (301 Permanent) ────────────────────────────
+# Google previously indexed these URLs. These server-side redirects ensure
+# Googlebot (which doesn't run JS) gets a proper 301 and updates its index,
+# which will eventually remove /blog sitelinks and replace them with the real nav.
+[[redirects]]
+  from = "/blog"
+  to = "/happenings"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/happenings/:splat"
+  status = 301
+  force = true
+
+# ── SPA fallback (must remain last) ───────────────────────────────────────────
 [[redirects]]
   from = "/*"
   to = "/index.html"

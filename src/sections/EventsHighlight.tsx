@@ -16,7 +16,7 @@ export function EventsHighlight() {
 
   return (
     <section className="relative mt-8 mb-16 overflow-hidden rounded-[2.5rem] bg-plum text-white shadow-xl">
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
+      <div className="grain opacity-[0.03]" />
       
       <div className="grid md:grid-cols-2 min-h-[400px]">
         {/* Text Content */}
