@@ -72,3 +72,66 @@ export function articleSchema({
     },
   }
 }
+
+/**
+ * FAQPage — emits Google's FAQ rich result schema.
+ * Only include items whose `a` is a plain string (no JSX).
+ * This unlocks the accordion FAQ appearance directly in Google SERPs.
+ */
+export function faqPageSchema(items: { q: string; a: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+}
+
+/**
+ * Event — for happenings posts that are real-world events.
+ * Unlocks Google's event rich results (shown with date/venue in SERPs).
+ */
+export function eventSchema({
+  name,
+  description,
+  path,
+  startDate,
+  endDate,
+  location = 'Islamabad, Pakistan',
+  image,
+}: {
+  name: string
+  description: string
+  path: string
+  startDate: string
+  endDate?: string
+  location?: string
+  image?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name,
+    description,
+    url: `${SITE_URL}${path}`,
+    startDate,
+    ...(endDate && { endDate }),
+    ...(image && { image }),
+    location: {
+      '@type': 'Place',
+      name: location,
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'PK',
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'WISE Lab',
+      url: SITE_URL,
+    },
+  }
+}

@@ -319,6 +319,7 @@ export function HappeningsPostPage() {
     title: post?.title,
     description: post?.excerpt,
     path: `/happenings/${slug ?? ''}`,
+    image: post?.coverImageUrl ?? undefined,
     structuredData: post
       ? [
           breadcrumbSchema([

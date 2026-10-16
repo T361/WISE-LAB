@@ -73,6 +73,7 @@ export function useDocumentMeta({
   path = '/',
   noIndex = false,
   structuredData,
+  image,
 }: {
   title?: string
   description?: string
@@ -80,12 +81,12 @@ export function useDocumentMeta({
   /** admin/auth pages: kept out of robots.txt too, but a noindex meta is the
    *  part that actually stops indexing if a page ever gets linked externally. */
   noIndex?: boolean
-  /** Page-specific JSON-LD (e.g. BreadcrumbList, Course, Article). Omit for
-   *  pages that don't warrant it (forms, admin). */
   structuredData?: object | object[]
+  /** Page-specific OG image URL. Falls back to the site-wide social card. */
+  image?: string
 }) {
   useEffect(() => {
-    const fullTitle = title ? `${title} ${SITE_NAME}` : DEFAULT_TITLE
+    const fullTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE
     const url = `https://wiselab.org.pk${path}`
 
     document.title = fullTitle
@@ -94,8 +95,12 @@ export function useDocumentMeta({
     setMetaByProperty('og:title', fullTitle)
     setMetaByProperty('og:description', description)
     setMetaByProperty('og:url', url)
+    setMetaByProperty('og:image', image ?? 'https://wiselab.org.pk/wise-lab-og-card.png')
     setMetaByName('twitter:title', fullTitle)
     setMetaByName('twitter:description', description)
+    setMetaByName('twitter:image', image ?? 'https://wiselab.org.pk/wise-lab-og-card.png')
+    setMetaByName('twitter:site', '@WISELabPK')
+    setMetaByName('twitter:creator', '@WISELabPK')
     setCanonical(url)
     setStructuredData(structuredData)
 
@@ -109,10 +114,14 @@ export function useDocumentMeta({
       setMetaByProperty('og:title', DEFAULT_TITLE)
       setMetaByProperty('og:description', DEFAULT_DESCRIPTION)
       setMetaByProperty('og:url', 'https://wiselab.org.pk/')
+      setMetaByProperty('og:image', 'https://wiselab.org.pk/wise-lab-og-card.png')
       setMetaByName('twitter:title', DEFAULT_TITLE)
       setMetaByName('twitter:description', DEFAULT_DESCRIPTION)
+      setMetaByName('twitter:image', 'https://wiselab.org.pk/wise-lab-og-card.png')
+      setMetaByName('twitter:site', '@WISELabPK')
+      setMetaByName('twitter:creator', '@WISELabPK')
       setCanonical('https://wiselab.org.pk/')
       setStructuredData(undefined)
     }
-  }, [title, description, path, noIndex, structuredData])
+  }, [title, description, path, noIndex, structuredData, image])
 }

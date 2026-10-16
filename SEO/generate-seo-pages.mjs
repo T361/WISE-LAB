@@ -44,6 +44,7 @@ const STATIC_ROUTES = [
   '/apply/mentor',
   '/apply/partner',
   '/happenings',
+  '/faqs',
 ]
 
 function getSupabaseConfig() {
@@ -107,6 +108,7 @@ const STATIC_SITEMAP_ENTRIES = [
   { path: '/apply/mentor', changefreq: 'monthly', priority: '0.6' },
   { path: '/apply/partner', changefreq: 'monthly', priority: '0.6' },
   { path: '/happenings', changefreq: 'weekly', priority: '0.7' },
+  { path: '/faqs', changefreq: 'monthly', priority: '0.6' },
 ]
 
 /** Regenerates dist/sitemap.xml with real published blog post URLs and
@@ -123,7 +125,7 @@ function writeSitemap(blogPosts) {
         `  <url>\n    <loc>${SITE_URL}/happenings/${p.slug}</loc>\n    <lastmod>${p.updatedAt.slice(0, 10)}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`
     ),
   ]
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`
   writeFileSync(join(DIST, 'sitemap.xml'), xml)
   console.log(`[prerender] ✓ sitemap.xml (${entries.length} URLs, including ${blogPosts.length} blog post(s))`)
 }

@@ -5,7 +5,7 @@ import { ArrowLeft, Plus, Minus, Mail } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
-import { breadcrumbSchema } from '@/lib/structuredData'
+import { breadcrumbSchema, faqPageSchema } from '@/lib/structuredData'
 import { InstagramIcon, FacebookIcon } from '@/components/BrandIcons'
 import { SOCIAL_LINKS } from '@/lib/social'
 
@@ -371,10 +371,19 @@ export function FAQPage() {
     description:
       'Answers to common questions about WISE Lab eligibility, programme support, grants, applications, and more.',
     path: '/faqs',
-    structuredData: breadcrumbSchema([
-      { name: 'Home', path: '/' },
-      { name: 'FAQs', path: '/faqs' },
-    ]),
+    structuredData: [
+      breadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'FAQs', path: '/faqs' },
+      ]),
+      faqPageSchema(
+        FAQ_DATA.flatMap((cat) =>
+          cat.items
+            .filter((item) => typeof item.a === 'string')
+            .map((item) => ({ q: item.q, a: item.a as string }))
+        )
+      ),
+    ],
   })
 
   return (
