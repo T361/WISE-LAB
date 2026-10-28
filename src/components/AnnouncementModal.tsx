@@ -66,7 +66,7 @@ export function AnnouncementModal() {
 
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 <a
-                  href="https://forms.gle/pB6KpbS6Zxk4a7dH8"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdp-CT7VblYUs-Q_3d6FMERWb25HxR_lAqcz67CLBAch-BfXQ/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}

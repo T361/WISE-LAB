@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WISE Lab Cohort 1 — Founder Spin Wheel</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wisePurple: '#641878',
+                        vividPurple: '#B81AE5',
+                        coralOrange: '#FF7657',
+                        tealAccent: '#318B90',
+                        warmIvory: '#FFF9F3',
+                        softLavender: '#F6D9FF'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF9F3 0%, #FDF4EB 50%, #F8EEF9 100%);
+        }
+        .wheel-shadow {
+            filter: drop-shadow(0 15px 25px rgba(100, 24, 120, 0.2));
+        }
+        /* Custom scrollbar for history */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF9F3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D8B4E2;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="w-full bg-white/80 backdrop-blur-md border-b border-purple-100 px-6 py-4 flex items-center justify-between shadow-sm z-20">
+        <div class="flex items-center space-x-3">
+            <!-- WISE Lab Butterfly Minimalist SVG Icon -->
+            <svg class="w-10 h-10 text-wisePurple" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 50 C40 20, 10 15, 10 35 C10 50, 30 55, 50 50 Z" fill="#641878" opacity="0.9"/>
+                <path d="M50 50 C60 20, 90 15, 90 35 C90 50, 70 55, 50 50 Z" fill="#641878" opacity="0.9"/>
+                <path d="M50 50 C35 70, 20 85, 35 90 C45 93, 50 75, 50 50 Z" fill="#318B90" opacity="0.9"/>
+                <path d="M50 50 C65 70, 80 85, 65 90 C55 93, 50 75, 50 50 Z" fill="#318B90" opacity="0.9"/>
+                <path d="M48 52 C46 30, 50 15, 50 10 C50 15, 54 30, 52 52 Z" fill="#FF7657"/>
+            </svg>
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight text-wisePurple">WISE Lab</h1>
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Cohort 1 Orientation • 21 October 2026</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-3">
+            <button id="fullscreenBtn" onclick="toggleFullScreen()" class="hidden md:flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-wisePurple text-sm font-semibold transition border border-purple-200" title="Full Screen Presentation Mode">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                <span>Present</span>
+            </button>
+            <button id="soundToggle" onclick="toggleSound()" class="flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-wisePurple text-sm font-semibold transition border border-purple-200">
+                <svg id="soundIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="soundText">Sound On</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        
+        <!-- Left Panel: Controls & Options -->
+        <section class="lg:col-span-3 flex flex-col space-y-4 order-2 lg:order-1">
+            <div class="bg-white/90 backdrop-blur rounded-2xl p-5 shadow-md border border-purple-100">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-wisePurple mb-3 flex items-center justify-between">
+                    <span>Draw Settings</span>
+                    <span id="remainingCount" class="bg-purple-100 text-wisePurple text-xs px-2 py-0.5 rounded-full">17 available</span>
+                </h2>
+                
+                <div class="space-y-3">
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-purple-50/50 transition">
+                        <input type="checkbox" id="removeSelectedCheckbox" checked class="w-4 h-4 text-wisePurple rounded border-purple-300 focus:ring-wisePurple">
+                        <span class="text-sm font-medium text-slate-700">Remove selected after win</span>
+                    </label>
+
+                    <div class="pt-2 border-t border-slate-100 flex space-x-2">
+                        <button onclick="resetWheel()" class="flex-1 py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition flex items-center justify-center space-x-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                            <span>Reset All</span>
+                        </button>
+                        <button onclick="openStartupListModal()" class="flex-1 py-2 px-3 bg-purple-50 hover:bg-purple-100 text-wisePurple rounded-xl text-xs font-semibold transition flex items-center justify-center space-x-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            <span>View All (17)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats / Info Card -->
+            <div class="bg-gradient-to-br from-wisePurple to-vividPurple rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                <h3 class="font-bold text-lg mb-1">Cohort 1 Live Draw</h3>
+                <p class="text-xs text-purple-100 leading-relaxed mb-4">Spin the wheel to select participating startups for pitching slots and orientation spotlights.</p>
+                <div class="flex items-center justify-between text-xs font-semibold bg-white/10 backdrop-blur rounded-xl p-2.5">
+                    <span>Total Startups</span>
+                    <span class="bg-white text-wisePurple px-2 py-0.5 rounded-md font-bold">17</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Center Wheel Section -->
+        <section class="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2 relative py-2">
+            
+            <!-- Pointer Arrow -->
+            <div class="absolute top-0 z-10 -translate-y-2 flex flex-col items-center pointer-events-none">
+                <div class="w-8 h-10 bg-coralOrange clip-path-pointer shadow-lg flex items-center justify-center">
+                    <div class="w-2.5 h-2.5 bg-white rounded-full mt-1"></div>
+                </div>
+            </div>
+
+            <!-- Wheel Container -->
+            <div class="relative w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] md:w-[460px] md:h-[460px] wheel-shadow my-4">
+                <svg id="wheelSvg" class="w-full h-full transition-transform duration-0 ease-out" viewBox="0 0 500 500">
+                    <!-- Dynamically rendered wheel slices -->
+                </svg>
+
+                <!-- Center Hub with WISE Lab Logo -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white shadow-xl border-4 border-wisePurple flex flex-col items-center justify-center text-center p-2 z-10 transition-transform hover:scale-105 pointer-events-auto cursor-pointer" onclick="spinWheel()" title="Click to Spin!">
+                        <!-- Butterfly Flame Icon -->
+                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-wisePurple mb-0.5" viewBox="0 0 100 100" fill="currentColor">
+                            <path d="M50 50 C40 20, 10 15, 10 35 C10 50, 30 55, 50 50 Z" fill="#641878"/>
+                            <path d="M50 50 C60 20, 90 15, 90 35 C90 50, 70 55, 50 50 Z" fill="#641878"/>
+                            <path d="M50 50 C35 70, 20 85, 35 90 C45 93, 50 75, 50 50 Z" fill="#318B90"/>
+                            <path d="M50 50 C65 70, 80 85, 65 90 C55 93, 50 75, 50 50 Z" fill="#318B90"/>
+                            <path d="M48 52 C46 30, 50 15, 50 10 C50 15, 54 30, 52 52 Z" fill="#FF7657"/>
+                        </svg>
+                        <span class="text-[10px] sm:text-xs font-extrabold tracking-widest text-wisePurple uppercase leading-none">SPIN</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Big Spin Button -->
+            <button id="spinBtn" onclick="spinWheel()" class="mt-4 px-8 py-3.5 bg-gradient-to-r from-wisePurple via-vividPurple to-coralOrange text-white font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl hover:opacity-95 active:scale-95 transition flex items-center space-x-2.5">
+                <svg class="w-6 h-6 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <span>SPIN THE WHEEL</span>
+            </button>
+        </section>
+
+        <!-- Right Panel: Selection History Feed -->
+        <section class="lg:col-span-3 flex flex-col space-y-4 order-3">
+            <div class="bg-white/90 backdrop-blur rounded-2xl p-5 shadow-md border border-purple-100 flex flex-col h-[420px]">
+                <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+                    <h2 class="text-sm font-bold uppercase tracking-wider text-wisePurple">Selected Startups</h2>
+                    <span id="historyCount" class="text-xs font-semibold text-slate-400">0 / 17</span>
+                </div>
+
+                <div id="historyList" class="flex-1 overflow-y-auto space-y-2.5 pr-1">
+                    <div id="emptyHistory" class="h-full flex flex-col items-center justify-center text-center text-slate-400 py-8">
+                        <svg class="w-10 h-10 mb-2 opacity-40 text-wisePurple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-xs">No startups selected yet.<br>Click spin to begin!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Winner Celebration Modal -->
+    <div id="winnerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="modalContent" class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-purple-100 transform scale-95 transition-transform duration-300 text-center relative overflow-hidden">
+            <!-- Decorative Header Blob -->
+            <div class="absolute -top-12 -right-12 w-36 h-36 bg-purple-100 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -left-12 w-36 h-36 bg-orange-100 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="w-16 h-16 bg-gradient-to-tr from-wisePurple to-coralOrange rounded-2xl mx-auto flex items-center justify-center shadow-lg mb-4 text-white">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                </div>
+
+                <span class="text-xs font-bold uppercase tracking-widest text-coralOrange">Selected Startup</span>
+                <h3 id="winnerTitle" class="text-2xl sm:text-3xl font-extrabold text-wisePurple mt-1 mb-6">Startup Name</h3>
+
+                <button onclick="closeWinnerModal()" class="w-full py-3.5 bg-wisePurple hover:bg-vividPurple text-white font-bold rounded-xl shadow-lg transition transform active:scale-95">
+                    Continue Drawing
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View All Startups Modal -->
+    <div id="startupListModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="startupModalContent" class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-purple-100 transform scale-95 transition-transform duration-300 flex flex-col max-h-[85vh]">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+                <h3 class="text-lg font-bold text-wisePurple">All 17 Cohort 1 Startups</h3>
+                <button onclick="closeStartupListModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div id="allStartupsGrid" class="flex-1 overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2.5 pr-1">
+                <!-- Populated via JS -->
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
+                <button onclick="closeStartupListModal()" class="px-5 py-2.5 bg-wisePurple text-white font-semibold rounded-xl text-sm">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas Confetti Library CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Application Script -->
+    <script>
+        // Exact 17 Startups in order
+        const allStartups = [
+            "Aao Kahani Ghar",
+            "Cardana",
+            "Qabil",
+            "MomSa",
+            "Era Robotics",
+            "Ustaad App",
+            "Blusha",
+            "EcoMuhafiz",
+            "Bayrish Naturals",
+            "Orvex",
+            "Parr",
+            "PhoneFlip.pk",
+            "CareMindX",
+            "Softech Digital Group",
+            "Adal Flow",
+            "Career Compass AI",
+            "Foxy Audit"
+        ];
+
+        // Theme Color Palette Slices
+        const sliceColors = [
+            "#641878", // Rich Purple
+            "#B81AE5", // Vivid Purple
+            "#FF7657", // Coral Orange
+            "#318B90", // Teal Accent
+            "#84309E", // Deep Orchid
+            "#FF9A7B", // Soft Coral
+            "#41A3A9", // Bright Teal
+            "#511261"  // Dark Purple
+        ];
+
+        let activeStartups = [...allStartups];
+        let history = [];
+        let isSpinning = false;
+        let currentRotation = 0;
+        let soundEnabled = true;
+
+        // Web Audio API Sound Generator
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playChime() {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now); // C5
+                osc.frequency.exponentialRampToValueAtTime(1046.50, now + 0.3); // C6
+                
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start(now);
+                osc.stop(now + 1.2);
+            } catch (e) {
+                console.log("Audio play error:", e);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('soundText').innerText = soundEnabled ? "Sound On" : "Muted";
+            const icon = document.getElementById('soundIcon');
+            if (soundEnabled) {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path>';
+            }
+        }
+
+        // Render SVG Wheel
+        function renderWheel() {
+            const svg = document.getElementById('wheelSvg');
+            svg.innerHTML = '';
+            
+            const count = activeStartups.length;
+            if (count === 0) {
+                svg.innerHTML = `<circle cx="250" cy="250" r="235" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="4"/><text x="250" y="250" text-anchor="middle" dominant-baseline="middle" fill="#64748b" font-size="18" font-weight="bold">All Startups Selected!</text>`;
+                return;
+            }
+
+            const anglePerSlice = 360 / count;
+            const radius = 235;
+            const center = 250;
+
+            activeStartups.forEach((startup, index) => {
+                const startAngle = index * anglePerSlice;
+                const endAngle = (index + 1) * anglePerSlice;
+
+                const x1 = center + radius * Math.cos((startAngle - 90) * Math.PI / 180);
+                const y1 = center + radius * Math.sin((startAngle - 90) * Math.PI / 180);
+                const x2 = center + radius * Math.cos((endAngle - 90) * Math.PI / 180);
+                const y2 = center + radius * Math.sin((endAngle - 90) * Math.PI / 180);
+
+                const largeArcFlag = anglePerSlice > 180 ? 1 : 0;
+                const pathData = `M ${center} ${center} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
+
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", pathData);
+                path.setAttribute("fill", sliceColors[index % sliceColors.length]);
+                path.setAttribute("stroke", "#FFF9F3");
+                path.setAttribute("stroke-width", "2");
+                svg.appendChild(path);
+
+                // Text label placement (radial)
+                const midAngle = startAngle + anglePerSlice / 2;
+                const textGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                
+                // Position text along the radius
+                textGroup.setAttribute("transform", `translate(${center}, ${center}) rotate(${midAngle})`);
+
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                // Distance from center based on name length
+                const textDistance = 150;
+                text.setAttribute("x", "0");
+                text.setAttribute("y", `-${textDistance}`);
+                text.setAttribute("fill", "#FFFFFF");
+                text.setAttribute("font-weight", "600");
+                
+                // Adaptive font sizing for longer names
+                let fontSize = 13;
+                if (startup.length > 12) fontSize = 11;
+                if (startup.length > 16) fontSize = 10;
+                text.setAttribute("font-size", fontSize);
+                
+                text.setAttribute("text-anchor", "middle");
+                text.setAttribute("dominant-baseline", "middle");
+                
+                // Rotate text upright if on the left half of the wheel
+                if (midAngle > 90 && midAngle < 270) {
+                    text.setAttribute("transform", `rotate(180, 0, -${textDistance})`);
+                }
+
+                text.textContent = startup;
+                textGroup.appendChild(text);
+                svg.appendChild(textGroup);
+            });
+
+            // Outer ring
+            const outerCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            outerCircle.setAttribute("cx", center);
+            outerCircle.setAttribute("cy", center);
+            outerCircle.setAttribute("r", radius);
+            outerCircle.setAttribute("fill", "none");
+            outerCircle.setAttribute("stroke", "#641878");
+            outerCircle.setAttribute("stroke-width", "6");
+            svg.appendChild(outerCircle);
+        }
+
+        // Spin Logic
+        function spinWheel() {
+            if (isSpinning) return;
+            if (activeStartups.length === 0) {
+                alert("All startups have been selected! Click 'Reset All' to start a new round.");
+                return;
+            }
+
+            isSpinning = true;
+            document.getElementById('spinBtn').disabled = true;
+            document.getElementById('spinBtn').classList.add('opacity-50', 'cursor-not-allowed');
+
+            const count = activeStartups.length;
+            const sliceAngle = 360 / count;
+
+            // Pick a random winning index
+            const winningIndex = Math.floor(Math.random() * count);
+            const winningStartup = activeStartups[winningIndex];
+
+            // Calculate precise target rotation so pointer (at top, 0 deg) lands on the winning slice center
+            // Slices are laid out clockwise starting from 0 deg.
+            // The middle of slice i is i * sliceAngle + sliceAngle / 2
+            const targetSliceCenter = winningIndex * sliceAngle + sliceAngle / 2;
+            
+            // We want targetSliceCenter + currentRotation % 360 to align with top (360 deg or 0 deg)
+            const extraSpins = 5 + Math.floor(Math.random() * 3); // 5 to 7 full rotations
+            const targetRotation = currentRotation + (360 * extraSpins) + (360 - (targetSliceCenter % 360));
+
+            currentRotation = targetRotation;
+
+            const svg = document.getElementById('wheelSvg');
+            svg.style.transition = 'transform 5.5s cubic-bezier(0.15, 0.85, 0.15, 1)';
+            svg.style.transform = `rotate(${currentRotation}deg)`;
+
+            // Handle win after animation completes
+            setTimeout(() => {
+                isSpinning = false;
+                document.getElementById('spinBtn').disabled = false;
+                document.getElementById('spinBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+
+                handleWinner(winningStartup, winningIndex);
+            }, 5600);
+        }
+
+        function handleWinner(startup, index) {
+            playChime();
+            triggerConfetti();
+
+            // Add to history
+            history.unshift({ name: startup, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }) });
+            updateHistoryUI();
+
+            // Remove if checkbox is checked
+            const removeChecked = document.getElementById('removeSelectedCheckbox').checked;
+            if (removeChecked) {
+                activeStartups.splice(index, 1);
+                renderWheel();
+                updateRemainingCount();
+            }
+
+            // Show Winner Modal
+            document.getElementById('winnerTitle').innerText = startup;
+            const modal = document.getElementById('winnerModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeWinnerModal() {
+            const modal = document.getElementById('winnerModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+        }
+
+        function updateHistoryUI() {
+            const list = document.getElementById('historyList');
+            const countEl = document.getElementById('historyCount');
+            countEl.innerText = `${history.length} / ${allStartups.length}`;
+
+            if (history.length === 0) {
+                list.innerHTML = `<div id="emptyHistory" class="h-full flex flex-col items-center justify-center text-center text-slate-400 py-8"><svg class="w-10 h-10 mb-2 opacity-40 text-wisePurple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="text-xs">No startups selected yet.<br>Click spin to begin!</p></div>`;
+                return;
+            }
+
+            list.innerHTML = '';
+            history.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-2.5 rounded-xl bg-purple-50/60 border border-purple-100/60 animate-fade-in";
+                div.innerHTML = `
+                    <div class="flex items-center space-x-2.5">
+                        <span class="w-5 h-5 rounded-full bg-wisePurple text-white text-[10px] font-bold flex items-center justify-center">${history.length - idx}</span>
+                        <span class="text-xs font-bold text-slate-800">${item.name}</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-medium">${item.time}</span>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function updateRemainingCount() {
+            const countEl = document.getElementById('remainingCount');
+            countEl.innerText = `${activeStartups.length} available`;
+        }
+
+        function resetWheel() {
+            if (isSpinning) return;
+            activeStartups = [...allStartups];
+            history = [];
+            currentRotation = 0;
+            
+            const svg = document.getElementById('wheelSvg');
+            svg.style.transition = 'none';
+            svg.style.transform = `rotate(0deg)`;
+
+            renderWheel();
+            updateHistoryUI();
+            updateRemainingCount();
+        }
+
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#641878', '#B81AE5', '#FF7657', '#318B90', '#FFF9F3']
+                });
+            }
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function openStartupListModal() {
+            const grid = document.getElementById('allStartupsGrid');
+            grid.innerHTML = '';
+            allStartups.forEach((name, i) => {
+                const isSelected = !activeStartups.includes(name);
+                const div = document.createElement('div');
+                div.className = `p-2.5 rounded-xl border text-xs font-semibold flex items-center justify-between ${isSelected ? 'bg-slate-100 text-slate-400 border-slate-200 line-through' : 'bg-purple-50/50 text-wisePurple border-purple-200'}`;
+                div.innerHTML = `<span>${i + 1}. ${name}</span><span>${isSelected ? 'Selected' : 'Active'}</span>`;
+                grid.appendChild(div);
+            });
+
+            const modal = document.getElementById('startupListModal');
+            const content = document.getElementById('startupModalContent');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-95');
+            content.classList.add('scale-100');
+        }
+
+        function closeStartupListModal() {
+            const modal = document.getElementById('startupListModal');
+            const content = document.getElementById('startupModalContent');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderWheel();
+            updateRemainingCount();
+        };
+    </script>
+</body>
+</html>

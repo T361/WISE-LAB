@@ -64,7 +64,7 @@ export function ApplyNowButton() {
 
         {/* Actual Button */}
         <a
-          href="https://forms.gle/pB6KpbS6Zxk4a7dH8"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSdp-CT7VblYUs-Q_3d6FMERWb25HxR_lAqcz67CLBAch-BfXQ/viewform"
           target="_blank"
           rel="noopener noreferrer"
           className="relative flex h-12 items-center gap-2 rounded-full bg-[#6C1D7A] px-5 text-white shadow-lg shadow-[#6C1D7A]/30 transition-all hover:-translate-y-1 hover:bg-[#6C1D7A]/90 hover:shadow-xl hover:shadow-[#6C1D7A]/40"
