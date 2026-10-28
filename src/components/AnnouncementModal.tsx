@@ -65,6 +65,7 @@ export function AnnouncementModal() {
               </p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+                {/* Updated Google Form link */}
                 <a
                   href="https://docs.google.com/forms/d/e/1FAIpQLSdp-CT7VblYUs-Q_3d6FMERWb25HxR_lAqcz67CLBAch-BfXQ/viewform"
                   target="_blank"
