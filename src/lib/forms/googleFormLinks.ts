@@ -11,7 +11,7 @@ export const GOOGLE_FORM_URLS: Partial<Record<ApplicationTrack, string>> = {
   founder:
     'https://docs.google.com/forms/d/e/1FAIpQLScc2bPdx5MvD5JZCgiwjaJijk3wBlVhxz45f-KNwFAHbxv9qg/viewform',
   enterprise:
-    'https://docs.google.com/forms/d/e/1FAIpQLSdp-CT7VblYUs-Q_3d6FMERWb25HxR_lAqcz67CLBAch-BfXQ/viewform',
+    'https://redmarker.io/apply',
   // mentor: '<awaiting Guide Her Growth Google Form URL>',
   // partner: '<awaiting Open the Ecosystem Google Form URL>',
 }
