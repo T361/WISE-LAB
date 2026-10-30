@@ -67,7 +67,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col items-start justify-between gap-3 text-sm text-black/45 sm:flex-row sm:items-center">
           <p>{t('footer.copyright')}</p>
-          <p className="font-display italic text-black/60">{t('footer.closingLine')}</p>
+          <p className="font-display italic text-black/60">{t('footer.closingLine', 'From idea to impact.')}</p>
         </div>
       </div>
     </footer>

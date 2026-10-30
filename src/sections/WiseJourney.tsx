@@ -14,9 +14,9 @@ export function WiseJourney() {
             <Reveal>
               <p className="eyebrow">{t('wiseJourney.eyebrow', 'Journey')}</p>
               <h2 className="mt-4 font-display text-[clamp(2.4rem,5vw,4rem)] font-bold leading-[1.02] text-black">
-                {t('wiseJourney.title1', 'From Cocoon')}
+                {t('wiseJourney.title1', 'From Idea')}
                 <br />
-                {t('wiseJourney.title2', 'to Flight')}
+                {t('wiseJourney.title2', 'to Impact')}
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
@@ -43,9 +43,9 @@ export function WiseJourney() {
             <Reveal delay={0.15}>
               <blockquote className="my-12 border-l-2 border-coral pl-6">
                 <p className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-medium italic leading-snug text-black">
-                  {t('wiseJourney.quoteLine1', 'Because her idea was never small.')}
+                  {t('wiseJourney.quoteLine1', 'She always had the wings.')}
                   <br />
-                  <span className="text-[#FF8A65]">{t('wiseJourney.quoteLine2', 'The room was.')}</span>
+                  <span className="text-[#FF8A65]">{t('wiseJourney.quoteLine2', 'Now she has the space to fly.')}</span>
                 </p>
               </blockquote>
             </Reveal>

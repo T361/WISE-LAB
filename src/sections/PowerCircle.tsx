@@ -206,7 +206,7 @@ export function PowerCircle() {
             <p className="max-w-xl font-display text-[clamp(1.4rem,2.6vw,2rem)] font-medium italic leading-snug text-black">
               {t(
                 'powerCircle.closingLine',
-                'Her idea was never small. The ecosystem needed to expand.'
+                'She always had the wings; now she has the space to fly.'
               )}
             </p>
             <a
