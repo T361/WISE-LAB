@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, Check, Rocket, Sprout } from 'lucide-react'
-import type { TFunction } from 'i18next'
-import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { useTrack, type Track } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
@@ -23,57 +21,41 @@ interface TrackCard {
   Icon: typeof Rocket
 }
 
-function getCards(t: TFunction): TrackCard[] {
-  return [
-    {
-      id: 'founder',
-      index: '01',
-      kicker: t('buildTracks.founder.kicker', 'Startup Incubation'),
-      title: t('buildTracks.founder.title', 'Incubation'),
-      lead: t(
-        'buildTracks.founder.lead',
-        'A structured six-month programme for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.'
-      ),
-      body: t(
-        'buildTracks.founder.body',
-        'From an early idea to an investment-ready enterprise with business-model refinement, product validation, real-time mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.'
-      ),
-      motto: t('buildTracks.founder.motto', 'From idea to investor-ready unseen to undeniable.'),
-      cta: t('buildTracks.founder.cta', 'Take Flight'),
-      readMoreHref: '/incubation',
-      primary: '#2E8C8A',
-      accent: '#2E7D7B',
-      soft: 'rgba(46,125,123,0.10)',
-      Icon: Rocket,
-    },
-    {
-      id: 'enterprise',
-      index: '02',
-      kicker: t('buildTracks.enterprise.kicker', 'MSME Training'),
-      title: t('buildTracks.enterprise.title', 'Micro-Entrepreneurship'),
-      lead: t(
-        'buildTracks.enterprise.lead',
-        'A nationwide capacity-building programme for women running micro, small, home-based, or early-stage businesses.'
-      ),
-      body: t(
-        'buildTracks.enterprise.body',
-        'Turning skills, home-based work, and small businesses into sustainable enterprises with business planning, financial literacy, digital tools, branding, pricing, customer management, and market access.'
-      ),
-      motto: t('buildTracks.enterprise.motto', 'From skill to income cocoon to flight.'),
-      cta: t('buildTracks.enterprise.cta', 'Grow Your Enterprise'),
-      readMoreHref: '/micro-entrepreneurship',
-      primary: '#FF8A65',
-      accent: '#FF8A65',
-      soft: 'rgba(232,130,60,0.10)',
-      Icon: Sprout,
-    },
-  ]
-}
+const CARDS: TrackCard[] = [
+  {
+    id: 'founder',
+    index: '01',
+    kicker: 'Startup Incubation',
+    title: 'Incubation',
+    lead: 'A structured six-month programme for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.',
+    body: 'From an early idea to an investment-ready enterprise with business-model refinement, product validation, real-time mentorship, pitch development, investor readiness, legal & financial guidance, market access, and ecosystem linkages.',
+    motto: 'From idea to investor-ready unseen to undeniable.',
+    cta: 'Take Flight',
+    readMoreHref: '/incubation',
+    primary: '#2E8C8A',
+    accent: '#2E7D7B',
+    soft: 'rgba(46,125,123,0.10)',
+    Icon: Rocket,
+  },
+  {
+    id: 'enterprise',
+    index: '02',
+    kicker: 'MSME Training',
+    title: 'Micro-Entrepreneurship',
+    lead: 'A nationwide capacity-building programme for women running micro, small, home-based, or early-stage businesses.',
+    body: 'Turning skills, home-based work, and small businesses into sustainable enterprises with business planning, financial literacy, digital tools, branding, pricing, customer management, and market access.',
+    motto: 'From skill to income cocoon to flight.',
+    cta: 'Grow Your Enterprise',
+    readMoreHref: '/micro-entrepreneurship',
+    primary: '#FF8A65',
+    accent: '#FF8A65',
+    soft: 'rgba(232,130,60,0.10)',
+    Icon: Sprout,
+  },
+]
 
 export function BuildTracks() {
-  const { t } = useTranslation()
   const { track, selectTrack } = useTrack()
-  const CARDS = getCards(t)
 
   return (
     <section
@@ -82,18 +64,15 @@ export function BuildTracks() {
     >
       <div className="container-wise relative">
         <Reveal className="max-w-2xl">
-          <p className="eyebrow">{t('nav.links.programs', 'Programs')}</p>
+          <p className="eyebrow">Programs</p>
           <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
-            {t('buildTracks.title', 'Choose your program')}
+            Choose your program
           </h2>
           <p className="mt-4 text-lg text-plum/70">
-            {t('buildTracks.subtitle', 'Two tracks. One destination: women-led enterprise growth.')}
+            Two tracks. One destination: women-led enterprise growth.
           </p>
           <p className="mt-3 text-sm text-plum/50">
-            {t(
-              'buildTracks.hint',
-              'Select a track to preview it in the scene above the whole page responds to your choice.'
-            )}
+            Select a track to preview it in the scene above the whole page responds to your choice.
           </p>
         </Reveal>
 
@@ -177,7 +156,7 @@ export function BuildTracks() {
                     className="link-underline relative mt-4 inline-flex w-fit items-center gap-1 text-sm font-semibold"
                     style={{ color: c.accent }}
                   >
-                    {t('buildTracks.readMore', 'Read more')}
+                    Read more
                   </Link>
 
                   <div className="relative mt-8 flex items-center justify-between pt-6">
@@ -195,7 +174,7 @@ export function BuildTracks() {
                       className="text-xs font-medium transition-opacity duration-300"
                       style={{ color: c.accent, opacity: active ? 1 : 0 }}
                     >
-                      {t('buildTracks.previewingAbove', 'Previewing above ↑')}
+                      Previewing above ↑
                     </span>
                   </div>
                 </motion.div>
@@ -210,7 +189,6 @@ export function BuildTracks() {
 }
 
 function AnimatedBadge({ active, accent }: { active: boolean; accent: string }) {
-  const { t } = useTranslation()
   return (
     <motion.span
       initial={false}
@@ -219,7 +197,7 @@ function AnimatedBadge({ active, accent }: { active: boolean; accent: string }) 
       className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold"
       style={{ background: accent, color: '#fff' }}
     >
-      <Check className="h-3.5 w-3.5" /> {t('buildTracks.selected', 'Selected')}
+      <Check className="h-3.5 w-3.5" /> Selected
     </motion.span>
   )
 }

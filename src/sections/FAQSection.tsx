@@ -33,9 +33,10 @@ const TOP_FAQS: FAQItem[] = [
   {
     question: 'Are Cohort 1 applications open?',
     answer:
-      'Yes. Cohort 1 applications are open until 10 September 2026. Complete and submit the relevant application form at wiselab.org.pk.',
+      'No. Applications for Cohort 1 are currently closed. Stay connected with us to be the first to know when admissions open for upcoming cohorts and initiatives.',
   },
 ]
+
 
 function FAQAccordionItem({
   item,
@@ -61,7 +62,7 @@ function FAQAccordionItem({
         aria-expanded={isOpen}
         aria-controls={`faq-home-panel-${index}`}
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/50 focus-visible:ring-offset-1"
       >
         <span className="font-display text-[17px] font-semibold leading-snug text-plum">
           {item.question}
@@ -108,11 +109,11 @@ export function FAQSection() {
       {/* Decorative blobs */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-teal/5 blur-3xl"
+        className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-teal/8 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-coral/5 blur-3xl"
+        className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-coral/8 blur-3xl"
       />
 
       <div className="container-wise relative">
@@ -120,7 +121,7 @@ export function FAQSection() {
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="eyebrow">Have Questions?</p>
+              <p className="eyebrow tracking-wide">Have Questions?</p>
               <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
                 Frequently Asked{' '}
                 <span className="text-teal">Questions</span>
@@ -141,17 +142,21 @@ export function FAQSection() {
         </Reveal>
 
         {/* Accordion */}
-        <RevealGroup className="mt-10 space-y-3" stagger={0.06}>
-          {TOP_FAQS.map((faq, i) => (
-            <RevealItem key={i}>
-              <FAQAccordionItem
-                item={faq}
-                index={i}
-                isOpen={openIndex === i}
-                onToggle={() => toggle(i)}
-              />
-            </RevealItem>
-          ))}
+        <RevealGroup className="mt-10" stagger={0.06}>
+          <ul role="list" className="space-y-3">
+            {TOP_FAQS.map((faq, i) => (
+              <li key={faq.question}>
+                <RevealItem>
+                  <FAQAccordionItem
+                    item={faq}
+                    index={i}
+                    isOpen={openIndex === i}
+                    onToggle={() => toggle(i)}
+                  />
+                </RevealItem>
+              </li>
+            ))}
+          </ul>
         </RevealGroup>
 
         {/* Mobile CTA */}

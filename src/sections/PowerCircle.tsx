@@ -1,68 +1,59 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import type { TFunction } from 'i18next'
-import { useTranslation } from 'react-i18next'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 import { cn } from '@/lib/utils'
 
-function getPartners(t: TFunction) {
-  return [
-    {
-      name: 'JazzWorld',
-      role: t('powerCircle.partners.jazz', 'Consortium Lead'),
-      logo: '/partners/jazz.png',
-      description: "Pakistan’s leading digital connectivity company, bringing technological expertise, nationwide reach, and enterprise innovation to the WISE Lab consortium.",
-      logoClass: 'h-[140px] md:h-[150px] w-auto object-contain',
-      url: 'https://jazzworld.com.pk/#home',
-    },
-    {
-      name: 'Mobilink Bank',
-      role: t('powerCircle.partners.mobilink', 'Co-Lead Partner'),
-      logo: '/partners/mobilink-mmbl.png',
-      description: "Pakistan’s leading digital microfinance bank, advancing financial inclusion, digital banking, and growth opportunities for women entrepreneurs and MSMEs.",
-      logoClass: 'h-[100px] md:h-[130px] w-auto object-contain',
-      url: 'https://mobilinkbank.com',
-    },
-    {
-      name: 'Change Mechanics',
-      role: t('powerCircle.partners.changeMechanics', 'Managing Partner'),
-      logo: '/partners/change-mechanics.png',
-      description: "An innovation and ecosystem-development organization bringing programme design, entrepreneurship support, and implementation expertise to WISE Lab.",
-      // wide horizontal lockup with heavy internal padding — needs the full
-      // box height to read at the same optical size as the stacked marks
-      logoClass: 'h-[80px] md:h-[100px] w-auto object-contain',
-      url: 'https://changemechanics.pk/',
-    },
-  ]
-}
+const PARTNERS = [
+  {
+    name: 'JazzWorld',
+    role: 'Consortium Lead',
+    logo: '/partners/jazz.png',
+    description: "Pakistan’s leading digital connectivity company, bringing technological expertise, nationwide reach, and enterprise innovation to the WISE Lab consortium.",
+    logoClass: 'h-[140px] md:h-[150px] w-auto object-contain',
+    url: 'https://jazzworld.com.pk/#home',
+  },
+  {
+    name: 'Mobilink Bank',
+    role: 'Co-Lead Partner',
+    logo: '/partners/mobilink-mmbl.png',
+    description: "Pakistan’s leading digital microfinance bank, advancing financial inclusion, digital banking, and growth opportunities for women entrepreneurs and MSMEs.",
+    logoClass: 'h-[100px] md:h-[130px] w-auto object-contain',
+    url: 'https://mobilinkbank.com',
+  },
+  {
+    name: 'Change Mechanics',
+    role: 'Managing Partner',
+    logo: '/partners/change-mechanics.png',
+    description: "An innovation and ecosystem-development organization bringing programme design, entrepreneurship support, and implementation expertise to WISE Lab.",
+    // wide horizontal lockup with heavy internal padding — needs the full
+    // box height to read at the same optical size as the stacked marks
+    logoClass: 'h-[80px] md:h-[100px] w-auto object-contain',
+    url: 'https://changemechanics.pk/',
+  },
+]
 
-function getFunders(t: TFunction) {
-  return [
-    {
-      name: 'Ministry of IT & Telecommunication (MoITT)',
-      role: t('powerCircle.funders.moitt', 'Initiated by'),
-      logo: '/partners/moitt.png',
-      description: "The Government of Pakistan’s lead ministry for shaping national technology policy, accelerating digital transformation, and enabling inclusive economic development.",
-      // lead funder — reads larger than Ignite, whose chunky wordmark would
-      // otherwise dominate the pair at equal box sizes
-      logoClass: 'max-h-full max-w-[800px] scale-[1.15] md:scale-125',
-      url: 'https://moitt.gov.pk/',
-    },
-    {
-      name: 'Ignite – National Technology Fund',
-      role: t('powerCircle.funders.ignite', 'Funded by'),
-      logo: '/partners/ignite.png',
-      description: "The government-backed funding and innovation agency supporting technology startups, entrepreneurship, research, and incubation ecosystems across Pakistan.",
-      logoClass: 'max-h-[85%] max-w-[300px]',
-      url: 'https://ignite.org.pk/',
-    },
-  ]
-}
+const FUNDERS = [
+  {
+    name: 'Ministry of IT & Telecommunication (MoITT)',
+    role: 'Initiated by',
+    logo: '/partners/moitt.png',
+    description: "The Government of Pakistan’s lead ministry for shaping national technology policy, accelerating digital transformation, and enabling inclusive economic development.",
+    // lead funder — reads larger than Ignite, whose chunky wordmark would
+    // otherwise dominate the pair at equal box sizes
+    logoClass: 'max-h-full max-w-[800px] scale-[1.15] md:scale-125',
+    url: 'https://moitt.gov.pk/',
+  },
+  {
+    name: 'Ignite – National Technology Fund',
+    role: 'Funded by',
+    logo: '/partners/ignite.png',
+    description: "The government-backed funding and innovation agency supporting technology startups, entrepreneurship, research, and incubation ecosystems across Pakistan.",
+    logoClass: 'max-h-[85%] max-w-[300px]',
+    url: 'https://ignite.org.pk/',
+  },
+]
 
 export function PowerCircle() {
-  const { t } = useTranslation()
-  const PARTNERS = getPartners(t)
-  const FUNDERS = getFunders(t)
 
   return (
     <section
@@ -78,18 +69,15 @@ export function PowerCircle() {
               className="text-[11px] font-semibold uppercase tracking-eyebrow"
               style={{ color: '#FF8A65' }}
             >
-              {t('nav.links.our-partners', 'Our Partners')}
+              Our Partners
             </p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
-              {t('powerCircle.title', 'The ecosystem behind her enterprise')}
+              The ecosystem behind her enterprise
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg leading-relaxed text-black/70">
-              {t(
-                'powerCircle.intro',
-                "A premier alliance committed to women-led innovation, access, enterprise, and inclusive growth because when the right rooms open, women-led businesses don't just enter them. They transform them."
-              )}
+              A premier alliance committed to women-led innovation, access, enterprise, and inclusive growth because when the right rooms open, women-led businesses don't just enter them. They transform them.
             </p>
           </Reveal>
         </div>
@@ -204,16 +192,13 @@ export function PowerCircle() {
         <Reveal delay={0.1}>
           <div className="mt-16 flex flex-col items-start gap-6 border-t border-black/10 pt-10 md:flex-row md:items-center md:justify-between">
             <p className="max-w-xl font-display text-[clamp(1.4rem,2.6vw,2rem)] font-medium italic leading-snug text-black">
-              {t(
-                'powerCircle.closingLine',
-                'She always had the wings; now she has the space to fly.'
-              )}
+              She always had the wings; now she has the space to fly.
             </p>
             <a
               href="#wise-connect"
               className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#FF8A65] px-7 py-3.5 text-sm font-semibold text-plum transition-transform hover:scale-[1.03]"
             >
-              {t('powerCircle.cta', 'Join the Power Circle')}
+              Join the Power Circle
               <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>

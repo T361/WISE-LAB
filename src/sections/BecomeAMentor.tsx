@@ -1,12 +1,25 @@
-
-import { useTranslation } from 'react-i18next'
 import { ArrowUpRight, Compass, Handshake, Lightbulb } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 
 const WAYS_TO_HELP = [
-  { key: 'share', Icon: Lightbulb },
-  { key: 'network', Icon: Handshake },
-  { key: 'shape', Icon: Compass },
+  {
+    key: 'share',
+    title: 'Share your expertise',
+    body: 'Guide founders through business strategy, product, finance, marketing, or legal questions in focused mentoring sessions.',
+    Icon: Lightbulb,
+  },
+  {
+    key: 'network',
+    title: 'Open your network',
+    body: "Connect women-led startups and MSMEs to investors, customers, partners, and opportunities they wouldn't otherwise reach.",
+    Icon: Handshake,
+  },
+  {
+    key: 'shape',
+    title: 'Shape the ecosystem',
+    body: 'Help set the standard for what women-led enterprise support looks like in Pakistan one founder relationship at a time.',
+    Icon: Compass,
+  },
 ] as const
 
 /**
@@ -17,7 +30,6 @@ const WAYS_TO_HELP = [
  * living inside the 4-card grid.
  */
 export function BecomeAMentor() {
-  const { t } = useTranslation()
   return (
     <section
       id="become-a-mentor"
@@ -29,15 +41,15 @@ export function BecomeAMentor() {
           <div className="lg:col-span-6">
             <Reveal>
               <p className="eyebrow" style={{ color: '#2C7A70' }}>
-                {t('mentorSection.eyebrow')}
+                Guide Her Growth
               </p>
               <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
-                {t('mentorSection.title1')}
+                Become a mentor.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-plum/70">
-                {t('mentorSection.body')}
+                For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical, hands-on support from first idea to investor-ready enterprise.
               </p>
             </Reveal>
             <Reveal delay={0.15}>
@@ -48,7 +60,7 @@ export function BecomeAMentor() {
                 className="mt-10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
                 style={{ background: '#2C7A70' }}
               >
-                {t('mentorSection.cta')}
+                Become a Mentor
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             </Reveal>
@@ -56,7 +68,7 @@ export function BecomeAMentor() {
 
           <div className="lg:col-span-6">
             <RevealGroup className="space-y-4" stagger={0.08}>
-              {WAYS_TO_HELP.map(({ key, Icon }) => (
+              {WAYS_TO_HELP.map(({ key, title, body, Icon }) => (
                 <RevealItem key={key}>
                   <div className="flex gap-4 rounded-2xl border border-black/5 bg-[#FAFAFA] p-6 shadow-card">
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-teal">
@@ -64,10 +76,10 @@ export function BecomeAMentor() {
                     </span>
                     <div>
                       <h3 className="font-display text-lg font-semibold text-black">
-                        {t(`mentorSection.ways.${key}.title`)}
+                        {title}
                       </h3>
                       <p className="mt-1.5 text-[15px] leading-relaxed text-plum/65">
-                        {t(`mentorSection.ways.${key}.body`)}
+                        {body}
                       </p>
                     </div>
                   </div>

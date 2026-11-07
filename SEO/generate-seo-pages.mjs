@@ -30,18 +30,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const DIST = join(ROOT, 'dist')
 
-// /apply/founder and /apply/enterprise are deliberately excluded — they
-// now auto-redirect to external Google Forms (see src/lib/forms/googleFormLinks.ts),
-// so prerendering them would have the headless browser follow that redirect
-// and capture Google's page instead of ours.
 const STATIC_ROUTES = [
   '/',
   '/vision',
   '/mission',
   '/incubation',
   '/micro-entrepreneurship',
-  '/apply/mentor',
-  '/apply/partner',
   '/happenings',
   '/faqs',
 ]

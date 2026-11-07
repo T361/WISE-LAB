@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 import { X, Clock, Sparkles, ArrowRight } from 'lucide-react'
 import { usePrefersReducedMotion } from '@/lib/useTrackState'
 
@@ -11,7 +10,6 @@ import { usePrefersReducedMotion } from '@/lib/useTrackState'
  * are currently closed and guides them to stay updated for the next cycle.
  */
 export function ApplyNowButton() {
-  const { t } = useTranslation()
   const reduce = usePrefersReducedMotion()
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
@@ -36,17 +34,17 @@ export function ApplyNowButton() {
     return () => window.removeEventListener('open-apply-modal', handleOpenModal)
   }, [])
 
-  // Navigate or smooth scroll to the newsletter section
+  // Navigate or smooth scroll to the connect section
   const handleStayUpdated = () => {
     setIsOpen(false)
     if (location.pathname === '/') {
-      const el = document.getElementById('newsletter')
+      const el = document.getElementById('wise-connect')
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' })
         return
       }
     }
-    navigate('/#newsletter')
+    navigate('/#wise-connect')
   }
 
   return (
@@ -112,7 +110,7 @@ export function ApplyNowButton() {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                aria-label={t('applyNow.close', 'Close')}
+                aria-label="Close"
                 className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full bg-plum/5 text-plum/70 hover:bg-plum/10 hover:text-plum transition-colors cursor-pointer"
               >
                 <X className="h-4 w-4" />
@@ -127,13 +125,13 @@ export function ApplyNowButton() {
                   <div>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-50 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-rose-700 border border-rose-200/70">
                       <span className="h-1.5 w-1.5 rounded-full bg-rose-600 animate-pulse" />
-                      {t('applyNow.closedBadge', 'Applications Closed')}
+                      Applications Closed
                     </span>
                     <h3
                       id="closed-modal-title"
                       className="text-xl font-bold tracking-tight text-gray-950 mt-1 font-display"
                     >
-                      {t('applyNow.closedTitle', 'Applications are Closed')}
+                      Applications are Closed
                     </h3>
                   </div>
                 </div>
@@ -143,10 +141,7 @@ export function ApplyNowButton() {
                   id="closed-modal-desc"
                   className="text-sm leading-relaxed text-gray-600 mb-5"
                 >
-                  {t(
-                    'applyNow.closedMessage',
-                    'Applications for WISE Lab Cohort 1 are currently closed. Thank you for your interest! Stay connected with us to be the first to know when admissions open for upcoming cohorts and initiatives.'
-                  )}
+                  Applications for WISE Lab Cohort 1 are currently closed. Thank you for your interest! Stay connected with us to be the first to know when admissions open for upcoming cohorts and initiatives.
                 </p>
 
                 {/* Info Callout Box */}
@@ -154,7 +149,7 @@ export function ApplyNowButton() {
                   <div className="flex items-start gap-2.5">
                     <Sparkles className="h-4 w-4 shrink-0 text-[#2E7D7B] mt-0.5" />
                     <p className="text-xs leading-relaxed text-[#134443]">
-                      Missed this cycle? Don’t worry! Subscribe to our newsletter to receive an early notification the moment the next cohort opens.
+                      Missed this cycle? Don’t worry! Get in touch with us to receive an early notification the moment the next cohort opens.
                     </p>
                   </div>
                 </div>
@@ -166,14 +161,14 @@ export function ApplyNowButton() {
                     onClick={() => setIsOpen(false)}
                     className="w-full sm:w-auto flex-1 rounded-xl border border-gray-200 bg-white py-2.5 px-4 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer text-center"
                   >
-                    {t('applyNow.close', 'Close')}
+                    Close
                   </button>
                   <button
                     type="button"
                     onClick={handleStayUpdated}
                     className="w-full sm:w-auto flex-[1.4] inline-flex items-center justify-center gap-2 rounded-xl bg-[#2E7D7B] py-2.5 px-4 text-sm font-semibold text-white shadow-sm hover:bg-[#256866] transition-all cursor-pointer"
                   >
-                    <span>{t('applyNow.stayUpdated', 'Stay Updated')}</span>
+                    <span>Stay Updated</span>
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>

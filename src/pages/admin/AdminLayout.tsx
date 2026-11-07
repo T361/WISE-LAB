@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Navigate, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { FileText, LayoutDashboard, LogOut, Menu, MessageCircle, Newspaper, Users, Users2, X } from 'lucide-react'
+import { LayoutDashboard, LogOut, Menu, MessageCircle, Newspaper, Users, Users2, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 import { WiseMark } from '@/components/WiseLabLogo'
 import { useAdminAuth } from '@/lib/auth/useAdminAuth'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { cn } from '@/lib/utils'
 
 export function AdminLayout() {
-  const { t } = useTranslation()
   const { session, loading, isAdmin, role, signOut } = useAdminAuth()
   useDocumentMeta({ title: 'Admin', path: '/admin', noIndex: true })
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const isSuperAdmin = role === 'super_admin'
   const nav = [
-    { to: '/admin', label: t('admin.nav.dashboard'), Icon: LayoutDashboard, end: true },
-    { to: '/admin/submissions', label: t('admin.nav.submissions'), Icon: FileText },
-    { to: '/admin/wise-connect', label: t('admin.nav.wiseConnect', 'WISE Connect'), Icon: MessageCircle },
-    { to: '/admin/happenings', label: t('admin.nav.happenings'), Icon: Newspaper },
+    { to: '/admin', label: 'Dashboard', Icon: LayoutDashboard, end: true },
+    { to: '/admin/wise-connect', label: 'WISE Connect', Icon: MessageCircle },
+    { to: '/admin/happenings', label: 'Happenings', Icon: Newspaper },
     { to: '/admin/team', label: 'Team Members', Icon: Users2 },
     ...(isSuperAdmin ? [{ to: '/admin/users', label: 'Manage Admins', Icon: Users, end: false }] : []),
   ]
@@ -32,7 +29,7 @@ export function AdminLayout() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-beige text-plum/50">
-        {t('admin.common.loading')}
+        Loading…
       </div>
     )
   }
@@ -65,7 +62,7 @@ export function AdminLayout() {
       <div className="flex items-center justify-between border-b border-plum/10 bg-white p-4 lg:hidden">
         <div className="flex items-center gap-2.5">
           <WiseMark className="h-7 w-auto" />
-          <span className="font-display text-base font-bold text-plum">{t('admin.nav.title')}</span>
+          <span className="font-display text-base font-bold text-plum">WISE Lab Admin</span>
         </div>
         <button
           type="button"
@@ -100,7 +97,7 @@ export function AdminLayout() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <WiseMark className="h-8 w-auto" />
-                <span className="font-display text-lg font-bold text-plum">{t('admin.nav.title')}</span>
+                  <span className="font-display text-lg font-bold text-plum">WISE Lab Admin</span>
                 </div>
                 <button
                   type="button"
@@ -118,7 +115,7 @@ export function AdminLayout() {
                 className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"
               >
                 <LogOut className="h-4 w-4" />
-                {t('admin.common.signOut')}
+                Sign out
               </button>
             </motion.aside>
           </motion.div>
@@ -129,7 +126,7 @@ export function AdminLayout() {
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-plum/10 bg-white p-6 lg:flex">
         <div className="flex items-center gap-2.5">
           <WiseMark className="h-8 w-auto" />
-          <span className="font-display text-lg font-bold text-plum">{t('admin.nav.title')}</span>
+          <span className="font-display text-lg font-bold text-plum">WISE Lab Admin</span>
         </div>
         <nav className="mt-10 flex flex-1 flex-col gap-1">{navLinks}</nav>
         <button
@@ -138,7 +135,7 @@ export function AdminLayout() {
           className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"
         >
           <LogOut className="h-4 w-4" />
-          {t('admin.common.signOut')}
+          Sign out
         </button>
       </aside>
       <main className="flex-1 overflow-x-hidden p-5 sm:p-8 md:p-12">

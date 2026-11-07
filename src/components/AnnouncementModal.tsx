@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowRight } from 'lucide-react'
-// Link import removed as we now use a native 'a' tag for external links
-import { useTranslation } from 'react-i18next'
+import { X, ArrowRight, Building2 } from 'lucide-react'
 
 export function AnnouncementModal() {
-  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -60,9 +57,25 @@ export function AnnouncementModal() {
             </div>
 
             <div className="p-8 text-center">
-              <p className="mb-8 text-base leading-relaxed text-plum/80" dir="rtl" lang="ur" style={{ fontFamily: "'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', sans-serif" }}>
+              <p className="mb-5 text-base leading-relaxed text-plum/80" dir="rtl" lang="ur" style={{ fontFamily: "'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', sans-serif" }}>
                 خواتین کے زیرِ انتظام چھوٹے اور گھریلو کاروبار کے لیے وائز لیب کا ایک ماہ کا مفت تربیتی پروگرام۔ ابھی اپلائی کریں!
               </p>
+
+              {/* Mobilink Bank branch assistance note */}
+              <div className="mb-6 rounded-2xl border border-plum/10 bg-plum/[0.03] p-4 text-center">
+                <div className="flex items-center justify-center gap-2 text-sm font-medium text-plum">
+                  <Building2 className="h-4 w-4 shrink-0 text-[#FF8A65]" />
+                  <span>You can also visit any Mobilink Bank branch for help</span>
+                </div>
+                <p
+                  className="mt-1.5 text-sm leading-relaxed text-plum/75"
+                  dir="rtl"
+                  lang="ur"
+                  style={{ fontFamily: "'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', sans-serif" }}
+                >
+                  آپ مدد کے لیے موبی لنک بینک کی کسی بھی برانچ میں بھی جا سکتی ہیں۔
+                </p>
+              </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
                 {/* Apply link */}
@@ -80,7 +93,7 @@ export function AnnouncementModal() {
                   onClick={() => setIsOpen(false)}
                   className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"
                 >
-                  {t('form.close', 'Close')}
+                  Close
                 </button>
               </div>
             </div>

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 import { useTrack, type Track } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
 import { ArrowUpRight, Rocket, Sprout } from 'lucide-react'
@@ -7,7 +6,9 @@ import { ArrowUpRight, Rocket, Sprout } from 'lucide-react'
 interface Option {
   id: Exclude<Track, 'neutral'>
   index: string
-  i18nKey: 'founder' | 'enterprise'
+  kicker: string
+  title: string
+  lead: string
   primary: string
   soft: string
   ink: string
@@ -18,7 +19,9 @@ const OPTIONS: Option[] = [
   {
     id: 'founder',
     index: '01',
-    i18nKey: 'founder',
+    kicker: 'Startup Incubation',
+    title: 'Incubation',
+    lead: 'A structured six-month programme for women-led, technology-enabled startups ready to validate, strengthen, launch, or scale.',
     primary: '#2e7d7b',
     soft: 'rgba(46,125,123,0.12)',
     ink: '#0f3d3b',
@@ -27,7 +30,9 @@ const OPTIONS: Option[] = [
   {
     id: 'enterprise',
     index: '02',
-    i18nKey: 'enterprise',
+    kicker: 'MSME Training',
+    title: 'Micro-Entrepreneurship',
+    lead: 'A nationwide capacity-building programme for women running micro, small, home-based, or early-stage businesses.',
     primary: '#d1701f',
     soft: 'rgba(232,130,60,0.14)',
     ink: '#5a2e0c',
@@ -36,14 +41,13 @@ const OPTIONS: Option[] = [
 ]
 
 export function TrackToggle({ className }: { className?: string }) {
-  const { t } = useTranslation()
   const { track, selectTrack } = useTrack()
 
   return (
     <div
       className={cn('flex w-full flex-col gap-3 sm:flex-row', className)}
       role="group"
-      aria-label={t('hero.trackToggleAria')}
+      aria-label="Select track"
     >
       {OPTIONS.map((opt) => {
         const active = track === opt.id
@@ -95,7 +99,7 @@ export function TrackToggle({ className }: { className?: string }) {
                     {opt.index}
                   </span>
                   <span className="truncate text-[11px] font-semibold uppercase tracking-[0.14em] text-plum/50">
-                    {t(`buildTracks.${opt.i18nKey}.kicker`)}
+                    {opt.kicker}
                   </span>
                 </div>
                 <div className="mt-0.5 flex items-center gap-1.5">
@@ -103,7 +107,7 @@ export function TrackToggle({ className }: { className?: string }) {
                     className="font-display text-lg font-semibold leading-tight"
                     style={{ color: active ? opt.ink : '#4A2E3D' }}
                   >
-                    {t(`buildTracks.${opt.i18nKey}.title`)}
+                    {opt.title}
                   </span>
                   <ArrowUpRight
                     className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -111,7 +115,7 @@ export function TrackToggle({ className }: { className?: string }) {
                   />
                 </div>
                 <p className="mt-0.5 truncate text-[13px] text-plum/55">
-                  {t(`buildTracks.${opt.i18nKey}.lead`)}
+                  {opt.lead}
                 </p>
               </div>
             </div>

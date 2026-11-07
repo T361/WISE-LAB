@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
-import { listSubmissions, type StoredSubmission } from '@/lib/admin/submissions'
+import { listWiseConnectInquiries, type StoredInquiry } from '@/lib/wiseConnect'
 
 export function AdminWiseConnectPage() {
-  const [inquiries, setInquiries] = useState<StoredSubmission[]>([])
+  const [inquiries, setInquiries] = useState<StoredInquiry[]>([])
   const [loading, setLoading] = useState(true)
   const [expanded, setExpanded] = useState<string | null>(null)
 
   useEffect(() => {
-    listSubmissions().then((s) => {
-      setInquiries(s.filter((row) => row.track === 'wise-connect'))
+    listWiseConnectInquiries().then((s) => {
+      setInquiries(s)
       setLoading(false)
     })
   }, [])

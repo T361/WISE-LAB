@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { LinkedinIcon } from '@/components/BrandIcons'
 import { listVisibleTeamMembers } from '@/lib/team/api'
 import type { TeamMember } from '@/lib/team/types'
 
 export function BehindTheWings() {
-  const { t } = useTranslation()
   const [members, setMembers] = useState<TeamMember[]>([])
 
   useEffect(() => {
@@ -26,19 +24,16 @@ export function BehindTheWings() {
       <div className="container-wise relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
-            <p className="eyebrow">{t('nav.links.behind-the-wings', 'Behind the Wings')}</p>
+            <p className="eyebrow">Behind the Wings</p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">
-              {t('behindTheWings.title1', 'The team helping')}
+              The team helping
               <br />
-              {t('behindTheWings.title2', 'her take flight')}
+              her take flight
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="text-pretty leading-relaxed text-plum/70">
-              {t(
-                'behindTheWings.intro',
-                'WISE Lab is led by a multidisciplinary team across incubation, entrepreneurship development, partnerships, communications, training, technology, and ecosystem engagement building the space where she can become a founder.'
-              )}
+              WISE Lab is led by a multidisciplinary team across incubation, entrepreneurship development, partnerships, communications, training, technology, and ecosystem engagement building the space where she can become a founder.
             </p>
           </Reveal>
         </div>

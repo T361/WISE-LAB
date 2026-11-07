@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { useTranslation } from 'react-i18next'
 import { Hero3D } from '@/components/Hero3D'
 import { TrackToggle } from '@/components/Hero3D/TrackToggle'
 import { Button } from '@/components/ui/button'
@@ -7,8 +6,8 @@ import { MagneticButton } from '@/components/MagneticButton'
 import { useTrack, useIsDesktop } from '@/lib/useTrackState'
 import { TRACK_THEME } from '@/lib/theme'
 import { cn } from '@/lib/utils'
+
 export function Hero() {
-  const { t } = useTranslation()
   const { track } = useTrack()
   const dark = false
   // Gate mounting, not just CSS visibility — a `hidden` element still loads
@@ -18,9 +17,8 @@ export function Hero() {
   // English-only: figure always on the right, text on the left.
   const rtl = false
 
-  // Split on spaces so the line-reveal animation works for any translated
-  // headline, not just the hardcoded English word count.
-  const words = t('hero.headline', 'WISE Verticals').split(' ')
+  // Split on spaces so the line-reveal animation works for each word
+  const words = ['WISE', 'Verticals']
 
   return (
     <section
@@ -56,7 +54,7 @@ export function Hero() {
             className="eyebrow theme-shift"
             style={{ color: dark ? TRACK_THEME[track].accent : undefined }}
           >
-            {t('hero.eyebrow', 'Women Innovation & Startup Empowerment Lab')}
+            Women Innovation & Startup Empowerment Lab
           </motion.p>
 
           <h1
@@ -89,10 +87,7 @@ export function Hero() {
             className="mt-6 max-w-md text-lg leading-relaxed theme-shift"
             style={{ color: dark ? 'rgba(255,255,255,0.78)' : '#000000' }}
           >
-            {t(
-              'hero.subheadline',
-              'Where women-led ideas move from quiet potential to visible enterprise.'
-            )}
+            Where women-led ideas move from quiet potential to visible enterprise.
           </motion.p>
 
           <motion.div
@@ -108,14 +103,14 @@ export function Hero() {
                 size="lg"
                 style={{ background: 'var(--track-primary)' }}
               >
-                <a href="#enter-the-lab">{t('nav.cta', 'Enter the Lab')}</a>
+                <a href="#enter-the-lab">Enter the Lab</a>
               </Button>
             </MagneticButton>
             <span
               className="text-sm theme-shift"
               style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(74,46,61,0.55)' }}
             >
-              {t('hero.previewHint', 'or preview a program ↓')}
+              or preview a program ↓
             </span>
           </motion.div>
 

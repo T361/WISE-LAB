@@ -65,6 +65,7 @@ export default {
       fontFamily: {
         display: ['Outfit', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        urdu: ['"Noto Nastaliq Urdu"', 'serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',

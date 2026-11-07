@@ -1,39 +1,32 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { MessageCircle, Newspaper, Users2, ArrowUpRight } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
-import { listSubmissions, aggregateByDimension, type StoredSubmission } from '@/lib/admin/submissions'
-
-const TRACK_LABELS: Record<string, string> = {
-  founder: 'Incubation',
-  enterprise: 'Micro-Entrepreneurship (EOI)',
-  mentor: 'Guide Her Growth',
-  partner: 'Open the Ecosystem',
-}
+import { listWiseConnectInquiries, type StoredInquiry } from '@/lib/wiseConnect'
 
 export function AdminDashboardPage() {
-  const [submissions, setSubmissions] = useState<StoredSubmission[]>([])
+  const [inquiries, setInquiries] = useState<StoredInquiry[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // WISE Connect inquiries share the submissions table but aren't
-    // applications — they get their own tab (AdminWiseConnectPage), so
-    // they're excluded from this dashboard's counts/charts.
-    listSubmissions().then((s) => {
-      setSubmissions(s.filter((row) => row.track !== 'wise-connect'))
+    listWiseConnectInquiries().then((s) => {
+      setInquiries(s)
       setLoading(false)
     })
   }, [])
 
-  const byTrack = aggregateByDimension(
-    submissions.map((s) => ({ ...s, analytics: { ...s.analytics, track: s.track } })),
-    'track'
-  )
-  const byVertical = aggregateByDimension(submissions, 'vertical')
+  // Aggregate by inquiry type
+  const byType: Record<string, number> = {}
+  for (const item of inquiries) {
+    const type = item.values?.inquiryType || 'General / Other'
+    byType[type] = (byType[type] ?? 0) + 1
+  }
 
   return (
     <div>
       <Reveal>
         <h1 className="font-display text-2xl font-bold text-plum sm:text-3xl">Dashboard</h1>
-        <p className="mt-2 text-plum/60">Overview of applications across all tracks.</p>
+        <p className="mt-2 text-plum/60">Overview of inquiries and portal management.</p>
       </Reveal>
 
       {loading ? (
@@ -42,36 +35,82 @@ export function AdminDashboardPage() {
         <>
           <RevealGroup className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" stagger={0.05}>
             <RevealItem>
-              <StatCard label="Total applications" value={submissions.length} />
+              <StatCard label="Total Inquiries" value={inquiries.length} />
             </RevealItem>
-            {Object.entries(TRACK_LABELS).map(([key, label]) => (
-              <RevealItem key={key}>
-                <StatCard label={label} value={byTrack[key] ?? 0} />
-              </RevealItem>
-            ))}
+            <RevealItem>
+              <Link
+                to="/admin/wise-connect"
+                className="group flex flex-col justify-between rounded-2xl border border-plum/10 bg-white p-5 shadow-card transition-all duration-300 hover:border-teal/30 hover:shadow-card-hover"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal/10 text-teal">
+                    <MessageCircle className="h-5 w-5" />
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 text-plum/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-teal" />
+                </div>
+                <div className="mt-4">
+                  <p className="font-display text-lg font-bold text-plum">WISE Connect</p>
+                  <p className="text-xs text-plum/60">View contact inquiries</p>
+                </div>
+              </Link>
+            </RevealItem>
+            <RevealItem>
+              <Link
+                to="/admin/happenings"
+                className="group flex flex-col justify-between rounded-2xl border border-plum/10 bg-white p-5 shadow-card transition-all duration-300 hover:border-teal/30 hover:shadow-card-hover"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal/10 text-teal">
+                    <Newspaper className="h-5 w-5" />
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 text-plum/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-teal" />
+                </div>
+                <div className="mt-4">
+                  <p className="font-display text-lg font-bold text-plum">Happenings</p>
+                  <p className="text-xs text-plum/60">Publish stories & updates</p>
+                </div>
+              </Link>
+            </RevealItem>
+            <RevealItem>
+              <Link
+                to="/admin/team"
+                className="group flex flex-col justify-between rounded-2xl border border-plum/10 bg-white p-5 shadow-card transition-all duration-300 hover:border-teal/30 hover:shadow-card-hover"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal/10 text-teal">
+                    <Users2 className="h-5 w-5" />
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 text-plum/40 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-teal" />
+                </div>
+                <div className="mt-4">
+                  <p className="font-display text-lg font-bold text-plum">Team Members</p>
+                  <p className="text-xs text-plum/60">Manage team profiles</p>
+                </div>
+              </Link>
+            </RevealItem>
           </RevealGroup>
 
-          {Object.keys(byVertical).length > 0 && (
+          {Object.keys(byType).length > 0 && (
             <Reveal delay={0.1}>
               <div className="mt-10 rounded-3xl border border-plum/10 bg-white p-6 shadow-card">
                 <h2 className="font-display text-lg font-semibold text-plum">
-                  Founder applications by vertical
+                  Inquiries by category
                 </h2>
                 <div className="mt-4 space-y-2">
-                  {Object.entries(byVertical).map(([vertical, count]) => (
-                    <div key={vertical} className="flex items-center gap-3">
-                      <span className="w-24 shrink-0 truncate text-sm text-plum/70 sm:w-40">
-                        {vertical}
+                  {Object.entries(byType).map(([type, count]) => (
+                    <div key={type} className="flex items-center gap-3">
+                      <span className="w-32 shrink-0 truncate text-sm text-plum/70 sm:w-48">
+                        {type}
                       </span>
                       <div className="h-2 flex-1 rounded-full bg-plum/5">
                         <div
                           className="h-2 rounded-full bg-teal"
                           style={{
-                            width: `${(count / submissions.length) * 100}%`,
+                            width: `${inquiries.length ? (count / inquiries.length) * 100 : 0}%`,
                           }}
                         />
                       </div>
-                      <span className="w-6 shrink-0 text-right text-sm font-semibold text-plum">
+                      <span className="w-8 shrink-0 text-right text-sm font-semibold text-plum">
                         {count}
                       </span>
                     </div>

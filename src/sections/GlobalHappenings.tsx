@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { listPublishedPosts } from '@/lib/happenings/api'
 import type { HappeningsPost } from '@/lib/happenings/types'
@@ -12,7 +11,6 @@ import { HappeningsEventCard } from '@/components/happenings/HappeningsEventCard
 type TabType = 'blog' | 'events'
 
 export function GlobalHappenings() {
-  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState<TabType>('blog')
   const [posts, setPosts] = useState<HappeningsPost[]>([])
   const [loading, setLoading] = useState(true)
@@ -41,7 +39,7 @@ export function GlobalHappenings() {
           {/* Breadcrumb & Title row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <p className="eyebrow">{t('journal.latestFrom', 'Happenings')}</p>
+              <p className="eyebrow">Happenings</p>
               <h2 className="mt-4 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-tight text-[#1A1A1A]">
                 Latest updates
               </h2>

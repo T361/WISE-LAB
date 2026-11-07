@@ -10,7 +10,6 @@ import { ApplyNowButton } from '@/components/ApplyNowButton'
  * Supabase client, admin editor) should be in the initial bundle a phone on
  * a slow connection has to download before the homepage is interactive.
  */
-const ApplyPage = lazy(() => import('@/pages/ApplyPage').then((m) => ({ default: m.ApplyPage })))
 const HappeningsListPage = lazy(() =>
   import('@/pages/HappeningsListPage').then((m) => ({ default: m.HappeningsListPage }))
 )
@@ -60,15 +59,15 @@ function RouteFallback() {
  */
 function GlobalChrome() {
   const { pathname } = useLocation()
-  if (pathname.startsWith('/admin') || pathname.startsWith('/apply')) return null
+  if (pathname.startsWith('/admin')) return null
   return <ApplyNowButton />
 }
 
 /**
  * Top-level route tree. The landing page ("/") is exactly the pre-existing
  * <App /> — untouched, still the single-page scroll experience with hash
- * nav, and the only route loaded eagerly. Everything else (application
- * forms, blog, admin portal) is lazy-loaded per the note above.
+ * nav, and the only route loaded eagerly. Everything else (blog, vision/mission
+ * pages, admin portal) is lazy-loaded per the note above.
  */
 export function AppRouter() {
   return (
@@ -76,8 +75,8 @@ export function AppRouter() {
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/apply" element={<Navigate to="/" replace />} />
-          <Route path="/apply/:track" element={<ApplyPage />} />
+          <Route path="/apply" element={<Navigate to="/#wise-connect" replace />} />
+          <Route path="/apply/:track" element={<Navigate to="/#wise-connect" replace />} />
           <Route path="/happenings" element={<HappeningsListPage />} />
           <Route path="/happenings/:slug" element={<HappeningsPostPage />} />
           <Route path="/vision" element={<VisionPage />} />

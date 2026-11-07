@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { Reveal } from '@/components/Reveal'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -10,7 +9,6 @@ import { useAdminAuth } from '@/lib/auth/useAdminAuth'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
 
 export function AdminLoginPage() {
-  const { t } = useTranslation()
   const { session, isAdmin, isNotAuthorized, signIn, signOut } = useAdminAuth()
   useDocumentMeta({ title: 'Admin sign in', path: '/admin/login', noIndex: true })
   const [email, setEmail] = useState('')
@@ -57,35 +55,35 @@ export function AdminLoginPage() {
             <WiseMark className="h-12 w-auto" />
           </div>
           <h1 className="mt-6 text-center font-display text-2xl font-bold text-plum">
-            {t('admin.login.title')}
+            Admin sign in
           </h1>
 
-            <form onSubmit={onSubmit} className="mt-8 space-y-5">
-              <div className="space-y-2">
-                <Label htmlFor="admin-email">{t('admin.login.email')}</Label>
-                <Input
-                  id="admin-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="admin-password">{t('admin.login.password')}</Label>
-                <Input
-                  id="admin-password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {error && <p className="text-[13px] font-medium text-destructive">{error}</p>}
-              <Button type="submit" className="w-full" disabled={submitting}>
-                {submitting ? t('admin.login.signingIn') : t('admin.login.signIn')}
-              </Button>
-            </form>
+          <form onSubmit={onSubmit} className="mt-8 space-y-5">
+            <div className="space-y-2">
+              <Label htmlFor="admin-email">Email</Label>
+              <Input
+                id="admin-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="admin-password">Password</Label>
+              <Input
+                id="admin-password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            {error && <p className="text-[13px] font-medium text-destructive">{error}</p>}
+            <Button type="submit" className="w-full" disabled={submitting}>
+              {submitting ? 'Signing in…' : 'Sign in'}
+            </Button>
+          </form>
         </div>
       </Reveal>
     </main>

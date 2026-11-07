@@ -53,7 +53,7 @@ Deno.serve(async (req) => {
       from: 'WISE Lab <notifications@wiselab.org.pk>',
       to: [NOTIFY_EMAIL_TO],
       subject: `New ${trackLabel} application`,
-      text: `A new ${trackLabel} application was submitted at ${submitted_at}.\n\nView it in the admin dashboard: https://wiselab.org.pk/admin/submissions\n\nSubmission ID: ${id}`,
+      text: `A new inquiry was submitted at ${submitted_at}.\n\nView it in the admin dashboard: https://wiselab.org.pk/admin/wise-connect\n\nSubmission ID: ${id}`,
     }),
   })
 

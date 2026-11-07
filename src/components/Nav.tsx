@@ -2,14 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
 import { WiseMark } from './WiseLabLogo'
 
 import { NAV_LINKS } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 
 export function Nav() {
-  const { t } = useTranslation()
   const [scrolled, setScrolled] = useState(false)
   const [active, setActive] = useState<string>(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
@@ -29,7 +27,7 @@ export function Nav() {
   }, [])
 
   useEffect(() => {
-    const ids = ['hero', ...NAV_LINKS.map((l) => l.id), 'faqs', 'newsletter']
+    const ids = ['hero', ...NAV_LINKS.map((l) => l.id), 'faqs']
     const els = ids
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[]
@@ -91,7 +89,7 @@ export function Nav() {
         <div className="flex items-center gap-6 xl:gap-10">
           <a
             href="#hero"
-            aria-label={t('nav.home')}
+            aria-label="WISE Lab home"
             className="flex items-center gap-3 shrink-0"
           >
             {/* smaller on phones/tablets now that links live in the drawer, not
@@ -117,7 +115,7 @@ export function Nav() {
                     active === l.id && (lightText ? 'text-white bg-white/20 shadow-sm' : 'text-plum bg-plum/10 shadow-sm')
                   )}
                 >
-                  {t(`nav.links.${l.id}`, l.label)}
+                  {l.label}
                 </a>
               ))}
             </div>
@@ -136,7 +134,7 @@ export function Nav() {
             ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen(true)}
-            aria-label={t('nav.openMenu')}
+            aria-label="Open menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav-drawer"
             className={cn(
@@ -171,7 +169,7 @@ export function Nav() {
               id="mobile-nav-drawer"
               role="dialog"
               aria-modal="true"
-              aria-label={t('nav.home')}
+              aria-label="WISE Lab home"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -184,7 +182,7 @@ export function Nav() {
                   ref={closeButtonRef}
                   type="button"
                   onClick={closeMenu}
-                  aria-label={t('nav.closeMenu')}
+                  aria-label="Close menu"
                   className="flex h-11 w-11 shrink-0 items-center justify-center text-plum transition-colors"
                 >
                   <X className="h-5 w-5" />
@@ -205,7 +203,7 @@ export function Nav() {
                         : 'text-plum/70 hover:bg-plum/[0.04] hover:text-plum'
                     )}
                   >
-                    {t(`nav.links.${l.id}`, l.label)}
+                    {l.label}
                   </a>
                 ))}
               </div>
