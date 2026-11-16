@@ -9,7 +9,13 @@ import { usePrefersReducedMotion } from '@/lib/useTrackState'
  * When clicked, notifies visitors that applications for the current cohort
  * are currently closed and guides them to stay updated for the next cycle.
  */
+// Set to false to hide the floating launcher when applications are closed.
+const SHOW_APPLY_NOW_BUTTON = false
+
 export function ApplyNowButton() {
+  // Applications are currently closed — hide the launcher.
+  if (!SHOW_APPLY_NOW_BUTTON) return null
+
   const reduce = usePrefersReducedMotion()
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()

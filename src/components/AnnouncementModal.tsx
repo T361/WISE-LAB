@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowRight, Building2 } from 'lucide-react'
 
+// Set to false to hide the announcement modal when applications are closed.
+const SHOW_ANNOUNCEMENT_MODAL = false
+
 export function AnnouncementModal() {
+  // Applications are currently closed — hide the modal.
+  if (!SHOW_ANNOUNCEMENT_MODAL) return null
+
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -78,17 +84,19 @@ export function AnnouncementModal() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                {/* Apply link */}
-                <a
-                  href="https://redmarker.io/apply"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF8A65] px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-[#FF8A65]/90 hover:shadow-lg hover:shadow-[#FF8A65]/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF8A65]"
-                >
-                  Apply Now / ابھی اپلائی کریں
-                  <ArrowRight className="h-4 w-4" />
-                </a>
+                {/* Apply link (hidden when applications are closed) */}
+                {SHOW_ANNOUNCEMENT_MODAL && (
+                  <a
+                    href="https://redmarker.io/apply"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FF8A65] px-8 py-3.5 text-sm font-semibold text-white transition-all hover:bg-[#FF8A65]/90 hover:shadow-lg hover:shadow-[#FF8A65]/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF8A65]"
+                  >
+                    Apply Now / ابھی اپلائی کریں
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                )}
                 <button
                   onClick={() => setIsOpen(false)}
                   className="inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-plum/60 transition-colors hover:bg-plum/5 hover:text-plum"

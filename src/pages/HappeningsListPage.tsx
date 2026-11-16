@@ -16,7 +16,7 @@ type TabType = 'blog' | 'events'
 export function HappeningsListPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const tabParam = searchParams.get('tab') as TabType | null
-  const [activeTab, setActiveTab] = useState<TabType>(tabParam === 'events' ? 'events' : 'blog')
+  const [activeTab, setActiveTab] = useState<TabType>(tabParam === 'blog' ? 'blog' : 'events')
   const [posts, setPosts] = useState<HappeningsPost[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -72,7 +72,7 @@ export function HappeningsListPage() {
 
           {/* Header */}
           <h1 className="mt-8 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.05] tracking-tight text-[#1A1A1A]">
-            {activeTab === 'blog' ? 'All Blog Posts' : 'All Events'}
+            {activeTab === 'events' ? 'All Events' : 'All Blog Posts'}
           </h1>
         </Reveal>
 
@@ -80,11 +80,11 @@ export function HappeningsListPage() {
         <div className="mt-16 flex items-center justify-between border-b border-plum/10 pb-4">
           <div className="flex items-center gap-8 text-[13px] font-bold tracking-wider text-plum/50">
             <button
-              onClick={() => handleTabChange('blog')}
-              className={`relative pb-4 transition-colors hover:text-plum ${activeTab === 'blog' ? 'text-plum' : ''}`}
+              onClick={() => handleTabChange('events')}
+              className={`relative pb-4 transition-colors hover:text-plum ${activeTab === 'events' ? 'text-plum' : ''}`}
             >
-              Blog
-              {activeTab === 'blog' && (
+              Events
+              {activeTab === 'events' && (
                 <motion.div
                   layoutId="list-tab-indicator"
                   className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"
@@ -92,11 +92,11 @@ export function HappeningsListPage() {
               )}
             </button>
             <button
-              onClick={() => handleTabChange('events')}
-              className={`relative pb-4 transition-colors hover:text-plum ${activeTab === 'events' ? 'text-plum' : ''}`}
+              onClick={() => handleTabChange('blog')}
+              className={`relative pb-4 transition-colors hover:text-plum ${activeTab === 'blog' ? 'text-plum' : ''}`}
             >
-              Events
-              {activeTab === 'events' && (
+              Blog
+              {activeTab === 'blog' && (
                 <motion.div
                   layoutId="list-tab-indicator"
                   className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"

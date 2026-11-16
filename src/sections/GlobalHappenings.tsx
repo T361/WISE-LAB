@@ -11,7 +11,7 @@ import { HappeningsEventCard } from '@/components/happenings/HappeningsEventCard
 type TabType = 'blog' | 'events'
 
 export function GlobalHappenings() {
-  const [activeTab, setActiveTab] = useState<TabType>('blog')
+  const [activeTab, setActiveTab] = useState<TabType>('events')
   const [posts, setPosts] = useState<HappeningsPost[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -51,20 +51,6 @@ export function GlobalHappenings() {
         <div className="mt-16 flex items-center justify-between border-b border-plum/10 pb-4">
           <div className="flex items-center gap-8 text-[13px] font-bold tracking-wider text-plum/50">
             <button
-              onClick={() => setActiveTab('blog')}
-              className={`relative pb-4 transition-colors hover:text-plum ${
-                activeTab === 'blog' ? 'text-plum' : ''
-              }`}
-            >
-              Blog
-              {activeTab === 'blog' && (
-                <motion.div
-                  layoutId="global-tab-indicator"
-                  className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"
-                />
-              )}
-            </button>
-            <button
               onClick={() => setActiveTab('events')}
               className={`relative pb-4 transition-colors hover:text-plum ${
                 activeTab === 'events' ? 'text-plum' : ''
@@ -72,6 +58,20 @@ export function GlobalHappenings() {
             >
               Events
               {activeTab === 'events' && (
+                <motion.div
+                  layoutId="global-tab-indicator"
+                  className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"
+                />
+              )}
+            </button>
+            <button
+              onClick={() => setActiveTab('blog')}
+              className={`relative pb-4 transition-colors hover:text-plum ${
+                activeTab === 'blog' ? 'text-plum' : ''
+              }`}
+            >
+              Blog
+              {activeTab === 'blog' && (
                 <motion.div
                   layoutId="global-tab-indicator"
                   className="absolute bottom-[-17px] left-0 right-0 h-[2px] bg-[#B85C38]"
@@ -126,10 +126,10 @@ export function GlobalHappenings() {
         <Reveal delay={0.1}>
           <div className="mt-16 flex justify-center">
             <Link
-              to={activeTab === 'blog' ? '/happenings?tab=blog' : '/happenings?tab=events'}
+              to={activeTab === 'events' ? '/happenings?tab=events' : '/happenings?tab=blog'}
               className="group flex items-center gap-2 rounded-full bg-[#FF8A65] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#E67C5B]"
             >
-              {activeTab === 'blog' ? 'Browse all Blog' : 'Browse all Events'}
+              {activeTab === 'events' ? 'Browse all Events' : 'Browse all Blog'}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
