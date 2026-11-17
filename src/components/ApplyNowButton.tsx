@@ -13,9 +13,6 @@ import { usePrefersReducedMotion } from '@/lib/useTrackState'
 const SHOW_APPLY_NOW_BUTTON = false
 
 export function ApplyNowButton() {
-  // Applications are currently closed — hide the launcher.
-  if (!SHOW_APPLY_NOW_BUTTON) return null
-
   const reduce = usePrefersReducedMotion()
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
@@ -23,6 +20,7 @@ export function ApplyNowButton() {
 
   // Close dialog on Escape key press
   useEffect(() => {
+    if (!SHOW_APPLY_NOW_BUTTON) return
     if (!isOpen) return
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -35,10 +33,14 @@ export function ApplyNowButton() {
 
   // Listen for custom event from other components (like PMBanner)
   useEffect(() => {
+    if (!SHOW_APPLY_NOW_BUTTON) return
     const handleOpenModal = () => setIsOpen(true)
     window.addEventListener('open-apply-modal', handleOpenModal)
     return () => window.removeEventListener('open-apply-modal', handleOpenModal)
   }, [])
+
+  // Applications are currently closed — hide the launcher.
+  if (!SHOW_APPLY_NOW_BUTTON) return null
 
   // Navigate or smooth scroll to the connect section
   const handleStayUpdated = () => {

@@ -303,17 +303,17 @@ export function FAQPage() {
                 <ArrowUpRight className="h-4 w-4" />
               </a>
               <a
-                href={SOCIAL_LINKS.find((s) => s.label === 'Instagram')?.href ?? 'https://www.instagram.com/wise.labpk/'}
+                href={SOCIAL_LINKS.find((s) => s.label === 'Instagram')?.href ?? 'https://www.instagram.com/wiselabpk'}
                 id="faq-contact-instagram"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-plum/20 px-6 py-3 text-sm font-semibold text-plum transition-colors hover:bg-plum/[0.04]"
               >
                 <InstagramIcon className="h-4 w-4" />
-                @wise.labpk
+                @wiselabpk
               </a>
               <a
-                href={SOCIAL_LINKS.find((s) => s.label === 'Facebook')?.href ?? 'https://www.facebook.com'}
+                href={SOCIAL_LINKS.find((s) => s.label === 'Facebook')?.href ?? 'https://www.facebook.com/wiselabpk'}
                 id="faq-contact-facebook"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -2,6 +2,8 @@ import {
   FacebookIcon,
   InstagramIcon,
   LinkedinIcon,
+  LinktreeIcon,
+  TiktokIcon,
   XIcon,
   YoutubeIcon,
 } from '@/components/BrandIcons'
@@ -16,27 +18,37 @@ export interface SocialLink {
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/women-innovation-and-startup-empowerment-lab/?viewAsMember=true',
+    href: 'https://www.linkedin.com/company/wiselabpk',
     Icon: LinkedinIcon,
   },
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/wise.labpk/',
+    href: 'https://www.instagram.com/wiselabpk',
     Icon: InstagramIcon,
   },
   {
     label: 'X',
-    href: 'https://x.com/wise_labpk',
+    href: 'https://x.com/wiselabpk',
     Icon: XIcon,
   },
   {
     label: 'Facebook',
-    href: 'https://www.facebook.com/profile.php?id=61591692284630',
+    href: 'https://www.facebook.com/wiselabpk',
     Icon: FacebookIcon,
   },
   {
     label: 'YouTube',
     href: 'https://www.youtube.com/@wiselabpk',
     Icon: YoutubeIcon,
+  },
+  {
+    label: 'TikTok',
+    href: 'https://www.tiktok.com/@wiselabpk',
+    Icon: TiktokIcon,
+  },
+  {
+    label: 'Linktree',
+    href: 'https://linktr.ee/wiselabpk',
+    Icon: LinktreeIcon,
   },
 ]

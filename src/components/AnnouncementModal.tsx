@@ -6,12 +6,10 @@ import { X, ArrowRight, Building2 } from 'lucide-react'
 const SHOW_ANNOUNCEMENT_MODAL = false
 
 export function AnnouncementModal() {
-  // Applications are currently closed — hide the modal.
-  if (!SHOW_ANNOUNCEMENT_MODAL) return null
-
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
+    if (!SHOW_ANNOUNCEMENT_MODAL) return
     // Only show once per session so it doesn't annoy the user
     const hasSeenModal = sessionStorage.getItem('wise:seen-announcement')
     if (!hasSeenModal) {
@@ -23,6 +21,9 @@ export function AnnouncementModal() {
       return () => clearTimeout(timer)
     }
   }, [])
+
+  // Applications are currently closed — hide the modal.
+  if (!SHOW_ANNOUNCEMENT_MODAL) return null
 
   return (
     <AnimatePresence>

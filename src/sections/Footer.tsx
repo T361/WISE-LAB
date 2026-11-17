@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import { NAV_LINKS } from '@/lib/nav'
+import { SOCIAL_LINKS } from '@/lib/social'
 
 export function Footer() {
   return (
@@ -15,6 +16,20 @@ export function Footer() {
             <p className="font-display text-2xl font-medium text-black">
               Her idea. Her enterprise.
             </p>
+            <div className="mt-6 flex flex-wrap items-center gap-2.5">
+              {SOCIAL_LINKS.map(({ Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`WISE Lab on ${label} (opens in a new tab)`}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 text-black/70 transition-colors hover:border-[#FF8A65] hover:bg-[#FF8A65] hover:text-white"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           <nav className="grid grid-cols-2 gap-x-6 gap-y-3 md:justify-items-end">
