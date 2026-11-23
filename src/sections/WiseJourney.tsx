@@ -27,14 +27,14 @@ export function WiseJourney() {
           <div className="lg:col-span-7">
             <Reveal delay={0.1}>
               <p className="text-pretty text-lg leading-relaxed text-plum/80">
-                WISE Lab Women Innovation and Startup Empowerment Lab is a national flagship platform supporting women-led startups, entrepreneurs, and MSMEs across Pakistan. Built around the philosophy of transformation, it supports women at the most critical stages of their journey when ideas are still forming, businesses are still finding direction, and founders are ready to move from hidden potential to visible impact.
+                Women Innovation and Startup Empowerment (WISE) Lab is a national flagship platform supporting women-led startups, entrepreneurs, and MSMEs across Pakistan. Built around the philosophy of transformation, it supports women at the most critical stages of their journey when ideas are still forming, businesses are still finding direction, and founders are ready to move from hidden potential to visible impact.
               </p>
             </Reveal>
 
             {/* Signature line */}
             <Reveal delay={0.15}>
               <blockquote className="my-12 border-l-2 border-coral pl-6">
-                <p className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-medium italic leading-snug text-black">
+                <p className="font-display text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-snug text-black">
                   She always had the wings.
                   <br />
                   <span className="text-[#FF8A65]">Now she has the space to fly.</span>

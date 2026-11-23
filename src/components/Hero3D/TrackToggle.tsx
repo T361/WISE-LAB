@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useTrack, type Track } from '@/lib/useTrackState'
 import { cn } from '@/lib/utils'
@@ -41,13 +42,29 @@ const OPTIONS: Option[] = [
 ]
 
 export function TrackToggle({ className }: { className?: string }) {
-  const { track, selectTrack } = useTrack()
+  const { track, setTrack } = useTrack()
+  const [pinnedTrack, setPinnedTrack] = useState<Track>('neutral')
+
+  const handleMouseEnter = (id: Exclude<Track, 'neutral'>) => {
+    setTrack(id)
+  }
+
+  const handleMouseLeaveContainer = () => {
+    setTrack(pinnedTrack)
+  }
+
+  const handleClick = (id: Exclude<Track, 'neutral'>) => {
+    const next = pinnedTrack === id ? 'neutral' : id
+    setPinnedTrack(next)
+    setTrack(next)
+  }
 
   return (
     <div
       className={cn('flex w-full flex-col gap-3 sm:flex-row', className)}
       role="group"
       aria-label="Select track"
+      onMouseLeave={handleMouseLeaveContainer}
     >
       {OPTIONS.map((opt) => {
         const active = track === opt.id
@@ -55,7 +72,10 @@ export function TrackToggle({ className }: { className?: string }) {
           <motion.button
             key={opt.id}
             type="button"
-            onClick={() => selectTrack(opt.id)}
+            onClick={() => handleClick(opt.id)}
+            onMouseEnter={() => handleMouseEnter(opt.id)}
+            onFocus={() => handleMouseEnter(opt.id)}
+            onBlur={handleMouseLeaveContainer}
             aria-pressed={active}
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.98 }}

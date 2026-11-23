@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 import { Hero3D } from '@/components/Hero3D'
 import { TrackToggle } from '@/components/Hero3D/TrackToggle'
-import { Button } from '@/components/ui/button'
-import { MagneticButton } from '@/components/MagneticButton'
 import { useTrack, useIsDesktop } from '@/lib/useTrackState'
 import { TRACK_THEME } from '@/lib/theme'
 import { cn } from '@/lib/utils'
@@ -89,30 +87,6 @@ export function Hero() {
           >
             Where women-led ideas move from quiet potential to visible enterprise.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 flex flex-wrap items-center gap-4"
-          >
-            <MagneticButton>
-              <Button
-                asChild
-                variant="track"
-                size="lg"
-                style={{ background: 'var(--track-primary)' }}
-              >
-                <a href="#enter-the-lab">Enter the Lab</a>
-              </Button>
-            </MagneticButton>
-            <span
-              className="text-sm theme-shift"
-              style={{ color: dark ? 'rgba(255,255,255,0.6)' : 'rgba(74,46,61,0.55)' }}
-            >
-              or preview a program ↓
-            </span>
-          </motion.div>
 
           {/* Track selectors — the centerpiece interaction */}
           <motion.div

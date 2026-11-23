@@ -79,7 +79,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-start justify-between gap-3 text-sm text-black/45 sm:flex-row sm:items-center">
-          <p>© 2026 WISE Lab Women Innovation and Startup Empowerment Lab.</p>
+          <p>© 2026 Women Innovation and Startup Empowerment (WISE) Lab.</p>
           <p className="font-display italic text-black/60">From idea to impact.</p>
         </div>
       </div>

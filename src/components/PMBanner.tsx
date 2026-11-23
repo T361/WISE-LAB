@@ -437,35 +437,6 @@ const styles = `
   to { --angle: 360deg; }
 }
 
-.hero-partner-logos-strip {
-  display: flex; flex-direction: column;
-  gap: 0.75rem; padding-top: 0.5rem;
-}
-
-.partner-strip-label {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 14px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.2em;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-.partner-logos-row {
-  display: flex; align-items: center;
-  gap: 2.5rem; margin-top: 0.5rem;
-}
-
-.partner-logo-img {
-  height: 75px; width: auto; object-fit: contain;
-  filter: none; opacity: 0.85;
-  transition: opacity 0.3s ease;
-}
-
-.partner-logo-img:hover { opacity: 1; }
-
-.logo-divider {
-  width: 1.5px; height: 65px;
-  background: rgba(0, 0, 0, 0.2); flex-shrink: 0;
-}
 
 .hero-right-col {
   display: flex; justify-content: flex-end;
@@ -536,7 +507,6 @@ const styles = `
   .hero-mission-editorial { align-items: center; }
   .mission-text { text-align: center; }
   .hero-cta-group { justify-content: center; }
-  .hero-partner-logos-strip { align-items: center; }
   .hero-object-layer { max-width: 400px; margin: 0 auto; }
   .hero-title-bespoke { font-size: clamp(2.4rem, 10vw, 3.6rem); }
 }
@@ -600,25 +570,6 @@ export function PMBanner() {
                 exclusively for women building high-growth startups and
                 sustainable MSMEs.
               </p>
-            </div>
-
-
-            {/* Partner logos */}
-            <div className="hero-partner-logos-strip">
-              <span className="partner-strip-label">FUNDED &amp; SUPPORTED BY</span>
-              <div className="partner-logos-row">
-                <img
-                  alt="Ministry of IT &amp; Telecom"
-                  className="partner-logo-img logo-moitt"
-                  src="/partners/moitt.png"
-                />
-                <span className="logo-divider" />
-                <img
-                  alt="Ignite National Technology Fund"
-                  className="partner-logo-img logo-ignite"
-                  src="/partners/ignite.png"
-                />
-              </div>
             </div>
           </div>
         </div>
