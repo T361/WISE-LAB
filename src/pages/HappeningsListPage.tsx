@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft } from 'lucide-react'
+import { Nav } from '@/components/Nav'
+import { Footer } from '@/sections/Footer'
 import { Reveal } from '@/components/Reveal'
 import { listPublishedPosts } from '@/lib/happenings/api'
 import type { HappeningsPost } from '@/lib/happenings/types'
@@ -58,7 +60,11 @@ export function HappeningsListPage() {
   }
 
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-white py-16 md:py-24">
+    <>
+      <div className="sticky top-0 z-50">
+        <Nav />
+      </div>
+      <main className="relative min-h-screen w-full overflow-hidden bg-white pt-4 pb-20 md:pt-6 md:pb-28">
       <div className="container-wise relative mx-auto max-w-6xl">
         <Reveal>
           {/* Back link */}
@@ -155,5 +161,7 @@ export function HappeningsListPage() {
         </div>
       </div>
     </main>
+    <Footer />
+  </>
   )
 }

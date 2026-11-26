@@ -70,7 +70,7 @@ export function WiseConnect() {
   }
 
   return (
-    <section id="wise-connect" className="relative bg-white overflow-hidden py-28 md:py-36">
+    <section id="wise-connect" className="relative bg-white overflow-hidden pt-6 pb-24 md:pt-8 md:pb-32">
       {/* removed grain for pure white bg */}
       <div className="container-wise relative grid gap-14 lg:grid-cols-2 lg:gap-20">
         {/* Left: heading + contact info */}
@@ -91,8 +91,8 @@ export function WiseConnect() {
                 AIOU, Sector H-8, Islamabad
               </ContactRow>
               <ContactRow Icon={Mail} label="Email">
-                <a className="link-underline" href="mailto:mahnoor.fatima@changemechanics.pk">
-                  mahnoor.fatima@changemechanics.pk
+                <a className="link-underline" href="mailto:info@wiselab.org.pk">
+                  info@wiselab.org.pk
                 </a>
               </ContactRow>
               <ContactRow Icon={Globe} label="Web">

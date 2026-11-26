@@ -2,6 +2,8 @@ import { useState, useEffect, useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, Sparkles, HelpCircle, Layers, Search, X, ArrowUpRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Nav } from '@/components/Nav'
+import { Footer } from '@/sections/Footer'
 import { Reveal } from '@/components/Reveal'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { breadcrumbSchema, faqPageSchema } from '@/lib/structuredData'
@@ -108,7 +110,11 @@ export function FAQPage() {
   })
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-white py-16 pb-32 md:py-24 md:pb-32">
+    <>
+      <div className="sticky top-0 z-50">
+        <Nav />
+      </div>
+      <main className="relative min-h-screen overflow-hidden bg-white pt-4 pb-24 md:pt-6 md:pb-32">
       {/* Decorative gradient top */}
       <div
         aria-hidden="true"
@@ -294,12 +300,12 @@ export function FAQPage() {
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <a
-                href="mailto:mahnoor.fatima@changemechanics.pk"
+                href="mailto:info@wiselab.org.pk"
                 id="faq-contact-email"
                 className="inline-flex items-center gap-2 rounded-full bg-teal px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
               >
                 <span className="sm:hidden">Email Us</span>
-                <span className="hidden sm:inline">mahnoor.fatima@changemechanics.pk</span>
+                <span className="hidden sm:inline">info@wiselab.org.pk</span>
                 <ArrowUpRight className="h-4 w-4" />
               </a>
               <a
@@ -327,5 +333,7 @@ export function FAQPage() {
         </Reveal>
       </div>
     </main>
+    <Footer />
+  </>
   )
 }

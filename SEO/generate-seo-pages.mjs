@@ -36,7 +36,12 @@ const STATIC_ROUTES = [
   '/mission',
   '/incubation',
   '/micro-entrepreneurship',
-  '/happenings',
+  '/our-partners',
+  '/behind-the-wings',
+  '/become-a-mentor',
+  '/connect',
+  '/events',
+  '/blog',
   '/faqs',
 ]
 
@@ -93,15 +98,17 @@ function routeToOutputPath(route) {
 const SITE_URL = 'https://wiselab.org.pk'
 const STATIC_SITEMAP_ENTRIES = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
+  { path: '/incubation', changefreq: 'monthly', priority: '0.9' },
+  { path: '/micro-entrepreneurship', changefreq: 'monthly', priority: '0.9' },
+  { path: '/our-partners', changefreq: 'monthly', priority: '0.8' },
+  { path: '/behind-the-wings', changefreq: 'monthly', priority: '0.8' },
+  { path: '/become-a-mentor', changefreq: 'monthly', priority: '0.8' },
+  { path: '/connect', changefreq: 'monthly', priority: '0.7' },
+  { path: '/events', changefreq: 'weekly', priority: '0.8' },
+  { path: '/blog', changefreq: 'weekly', priority: '0.8' },
   { path: '/vision', changefreq: 'monthly', priority: '0.6' },
   { path: '/mission', changefreq: 'monthly', priority: '0.6' },
-  { path: '/incubation', changefreq: 'monthly', priority: '0.8' },
-  { path: '/micro-entrepreneurship', changefreq: 'monthly', priority: '0.8' },
-  { path: '/apply/enterprise', changefreq: 'monthly', priority: '0.7' },
-  { path: '/apply/mentor', changefreq: 'monthly', priority: '0.6' },
-  { path: '/apply/partner', changefreq: 'monthly', priority: '0.6' },
-  { path: '/happenings', changefreq: 'weekly', priority: '0.7' },
-  { path: '/faqs', changefreq: 'monthly', priority: '0.6' },
+  { path: '/faqs', changefreq: 'monthly', priority: '0.7' },
 ]
 
 /** Regenerates dist/sitemap.xml with real published blog post URLs and
@@ -113,10 +120,11 @@ function writeSitemap(blogPosts) {
     ...STATIC_SITEMAP_ENTRIES.map(
       (e) => `  <url>\n    <loc>${SITE_URL}${e.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${e.changefreq}</changefreq>\n    <priority>${e.priority}</priority>\n  </url>`
     ),
-    ...blogPosts.map(
-      (p) =>
-        `  <url>\n    <loc>${SITE_URL}/happenings/${p.slug}</loc>\n    <lastmod>${p.updatedAt.slice(0, 10)}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`
-    ),
+    ...blogPosts.flatMap((p) => [
+      `  <url>\n    <loc>${SITE_URL}/events/${p.slug}</loc>\n    <lastmod>${p.updatedAt.slice(0, 10)}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+      `  <url>\n    <loc>${SITE_URL}/blog/${p.slug}</loc>\n    <lastmod>${p.updatedAt.slice(0, 10)}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+      `  <url>\n    <loc>${SITE_URL}/happenings/${p.slug}</loc>\n    <lastmod>${p.updatedAt.slice(0, 10)}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`,
+    ]),
   ]
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`
   writeFileSync(join(DIST, 'sitemap.xml'), xml)
@@ -125,7 +133,11 @@ function writeSitemap(blogPosts) {
 
 async function main() {
   const blogPosts = await getPublishedBlogPosts()
-  const blogRoutes = blogPosts.map((p) => `/happenings/${p.slug}`)
+  const blogRoutes = blogPosts.flatMap((p) => [
+    `/events/${p.slug}`,
+    `/blog/${p.slug}`,
+    `/happenings/${p.slug}`,
+  ])
   const routes = [...STATIC_ROUTES, ...blogRoutes]
 
   writeSitemap(blogPosts)

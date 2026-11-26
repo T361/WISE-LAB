@@ -118,7 +118,7 @@ export function TrackToggle({ className }: { className?: string }) {
                   >
                     {opt.index}
                   </span>
-                  <span className="truncate text-[11px] font-semibold uppercase tracking-[0.14em] text-plum/50">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-plum/50">
                     {opt.kicker}
                   </span>
                 </div>
@@ -134,7 +134,7 @@ export function TrackToggle({ className }: { className?: string }) {
                     style={{ color: opt.primary, opacity: active ? 1 : 0.5 }}
                   />
                 </div>
-                <p className="mt-0.5 truncate text-[13px] text-plum/55">
+                <p className="mt-0.5 text-[13px] text-plum/55">
                   {opt.lead}
                 </p>
               </div>

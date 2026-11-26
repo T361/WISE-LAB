@@ -36,7 +36,7 @@ const PILLARS: Pillar[] = [
     body: 'For experts, founders, investors, trainers, and professionals who want to guide women entrepreneurs through practical support.',
     cta: 'Become a Mentor',
     color: '#2E8C8A',
-    href: '/#wise-connect',
+    href: '/become-a-mentor',
     Icon: Compass,
   },
   {
@@ -44,18 +44,18 @@ const PILLARS: Pillar[] = [
     body: 'For organizations ready to collaborate on women-led innovation, enterprise, access, and inclusive growth.',
     cta: 'Partner with WISE',
     color: '#FF8A65',
-    href: '/#wise-connect',
+    href: '/our-partners',
     Icon: Network,
   },
 ]
 
 export function EnterTheLab() {
   return (
-    <section id="enter-the-lab" className="relative bg-white overflow-hidden py-28 md:py-36">
+    <section id="enter-the-lab" className="relative bg-white overflow-hidden pt-10 pb-24 md:pt-14 md:pb-32">
       {/* removed grain to keep background purely white */}
       <div className="container-wise relative">
 
-        <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
           <Reveal className="lg:col-span-7">
             <p className="eyebrow">Enter the Lab</p>
             <h2 className="mt-4 font-display text-[clamp(2.2rem,5vw,3.6rem)] font-bold leading-[1.03] text-black">

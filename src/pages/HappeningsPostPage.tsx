@@ -348,9 +348,9 @@ export function HappeningsPostPage() {
     return () => { alive = false }
   }, [slug])
 
-  if (post === null) return <Navigate to="/happenings" replace />
+  if (post === null) return <Navigate to="/events" replace />
 
-  const backLink = post?.section === 'events' ? '/happenings?tab=events' : '/happenings?tab=blog'
+  const backLink = post?.section === 'events' ? '/events' : '/blog'
   const backLabel = post?.section === 'events' ? 'Back to Events' : 'Back to Blog'
 
   return (

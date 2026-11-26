@@ -3,7 +3,7 @@ import { Reveal } from '@/components/Reveal'
 
 export function WiseJourney() {
   return (
-    <section id="home" className="relative bg-white overflow-hidden py-28 md:py-36">
+    <section id="home" className="relative bg-white overflow-hidden pt-20 pb-10 md:pt-28 md:pb-14">
       {/* removed grain to keep background purely white */}
       <div className="container-wise relative">
         {/* Intro */}

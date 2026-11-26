@@ -33,7 +33,7 @@ export function BecomeAMentor() {
   return (
     <section
       id="become-a-mentor"
-      className="relative bg-white overflow-hidden py-28 md:py-36"
+      className="relative bg-white overflow-hidden pt-6 pb-24 md:pt-8 md:pb-32"
     >
       {/* removed grain for pure white bg */}
       <div className="container-wise relative">

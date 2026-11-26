@@ -19,7 +19,7 @@ export function BehindTheWings() {
   return (
     <section
       id="behind-the-wings"
-      className="relative overflow-hidden bg-white py-28 md:py-36"
+      className="relative overflow-hidden bg-white pt-6 pb-24 md:pt-8 md:pb-32"
     >
       <div className="container-wise relative">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">

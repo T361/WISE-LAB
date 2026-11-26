@@ -326,6 +326,13 @@ const styles = `
   display: flex; flex-direction: column; gap: 2.5rem;
 }
 
+@media (min-width: 1024px) {
+  .hero-left-col {
+    align-self: flex-start;
+    margin-top: -2.5rem;
+  }
+}
+
 .hero-typography-layer {
   display: flex; flex-direction: column;
 }

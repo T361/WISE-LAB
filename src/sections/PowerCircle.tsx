@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal'
 import { cn } from '@/lib/utils'
 
@@ -58,7 +57,7 @@ export function PowerCircle() {
   return (
     <section
       id="our-partners"
-      className="relative bg-white overflow-hidden py-28 text-black md:py-36"
+      className="relative bg-white overflow-hidden pt-6 pb-24 text-black md:pt-8 md:pb-32"
     >
       {/* removed grain and glows for pure white bg */}
 
@@ -188,19 +187,12 @@ export function PowerCircle() {
 
         {/* Ecosystem chips removed as per instructions */}
 
-        {/* Closing + CTA */}
+        {/* Closing quote */}
         <Reveal delay={0.1}>
-          <div className="mt-16 flex flex-col items-start gap-6 border-t border-black/10 pt-10 md:flex-row md:items-center md:justify-between">
+          <div className="mt-16 border-t border-black/10 pt-10">
             <p className="max-w-xl font-display text-[clamp(1.4rem,2.6vw,2rem)] font-medium italic leading-snug text-black">
               She always had the wings; now she has the space to fly.
             </p>
-            <a
-              href="#wise-connect"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#FF8A65] px-7 py-3.5 text-sm font-semibold text-plum transition-transform hover:scale-[1.03]"
-            >
-              Join the Power Circle
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
           </div>
         </Reveal>
 

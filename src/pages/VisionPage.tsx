@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { Nav } from '@/components/Nav'
+import { Footer } from '@/sections/Footer'
 import { Reveal } from '@/components/Reveal'
 import { useDocumentMeta } from '@/lib/useDocumentMeta'
 import { breadcrumbSchema } from '@/lib/structuredData'
@@ -16,7 +18,11 @@ export function VisionPage() {
     ]),
   })
   return (
-    <main className="relative min-h-screen overflow-hidden bg-white py-16 pb-32 md:py-24 md:pb-32">
+    <>
+      <div className="sticky top-0 z-50">
+        <Nav />
+      </div>
+      <main className="relative min-h-screen overflow-hidden bg-white pt-4 pb-24 md:pt-6 md:pb-32">
       <div className="container-wise relative max-w-3xl">
         <Reveal>
           <Link
@@ -55,5 +61,7 @@ export function VisionPage() {
         </Reveal>
       </div>
     </main>
+    <Footer />
+  </>
   )
 }
